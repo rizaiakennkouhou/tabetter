@@ -11,6 +11,22 @@ div .card-body {
     padding: 0;
 }
 
+div .col-6 {
+    margin: 0;
+    padding: 0;
+}
+
+div .d-flex.justify-content-end {
+    width: 23%;
+    margin-left: 60%;
+}
+
+div .d-flex.justify-content-center {
+    width: 23%;
+    margin-left: 45%;
+    padding-top: 1%;
+}
+
 .profielIcon {
     width: 40px;
     height: 40px;
@@ -29,11 +45,11 @@ div .card-body {
 }
 
 .like{
-    padding-left: 5%;
+    padding-left: 15%;
 }
 
 .comment{
-    padding-left: 5%;
+    padding-left: 15%;
 }
 
 .userName {
