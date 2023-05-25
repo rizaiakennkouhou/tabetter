@@ -1,0 +1,37 @@
+<<<<<<< Updated upstream
+/* @media screen and (max-width:500px) {
+    #logoImg{
+        padding-right: 37px;
+    }
+} */
+#logoImg{
+    padding-right: 37px;
+=======
+@media screen and (max-width:500px) {
+    #logoImg{
+        padding-right: 37px;
+    }
+>>>>>>> Stashed changes
+}
+.logo{
+    height: 150px; 
+    margin-top: -11px;
+}
+.headline{
+    font-family: 'Kaisei Decol', serif;
+    margin-top: -7px;
+}
+.form{
+    border: solid #FFAC4A;
+    border-radius: 14px;
+    margin: 0 2rem  0 2rem   ;
+}
+.loginBtn{
+    background-color: #FFAC4A;
+}
+.registBtn{
+    border: solid #FFAC4A;
+}
+#underLogo{
+    /* padding-left: 27px; */
+}
