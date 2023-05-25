@@ -31,7 +31,7 @@ navigationLinks.forEach((link) => {
 	originalImages.push(imgElement.src);
   });
   
-  function changeImage2(element) {
+  function changeImage2(element, page) {
 	let imgElement = element.querySelector('img');
   
 	// すべての要素の画像を元に戻す
@@ -42,6 +42,9 @@ navigationLinks.forEach((link) => {
   
 	// クリックされた要素の画像を変更
 	imgElement.src = '../svg/forum2.svg';  // 別の画像のパスを指定
+
+	window.location.href = page;
+
   }
   navigationLinks.forEach((link) => {
 	let imgElement = link.querySelector('img');
