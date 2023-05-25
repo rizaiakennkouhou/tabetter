@@ -1,12 +1,52 @@
+<<<<<<< Updated upstream
+
+.p_photo{
+  width: 150px;
+  border-radius: 100px;
+}
+#photo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+=======
+>>>>>>> Stashed changes
+.name{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+<<<<<<< Updated upstream
+=======
+  font-size: 20px;
+  height: 200px;
+>>>>>>> Stashed changes
+}
+.name_id{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+<<<<<<< Updated upstream
+  color: dimgray;
+}
+
+=======
+  color: grey;
+  font-size: 16px;
+  height: 10px;
+}
+
+
+>>>>>>> Stashed changes
 .waku{
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 400px;
+
 }
 .frame{
   width: 95%; /* 幅を設定 */
-  height: 200px;/* 高さを設定 */
+  height: 180px;/* 高さを設定 */
   border: 2px solid #ffac4a; /* 枠線の太さと色を指定 */
   border-radius: 6px; /* 枠角の丸みを指定 */
 }
@@ -15,7 +55,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 500px;
+  height: 200px;
   padding: 10px 20px;
 }
 .button {
@@ -23,11 +63,11 @@
   text-decoration: none;
   background-color: #ffac4a; /* ボタンの背景色 */
   color: #000000; /* ボタンのテキストカラー */
-  font-size: 15px; /* ボタンのテキストサイズ */
+  font-size: 17px; /* ボタンのテキストサイズ */
   border: none;
   border-radius: 50px 50px 50px 50px; /* 左上と左下の角を10ピクセルの丸角にする */
-  width: 220px; /* ボタンの幅 */
-  height: 60px; /* ボタンの高さ */
+  width: 180px; /* ボタンの幅 */
+  height: 55px; /* ボタンの高さ */
   line-height: 50px; /* ボタンの中央にテキストを配置するための値 */
   box-shadow: 1px 1px 4px rgba(20, 1, 1, 1);/*ボタンの影を決める値*/
   transition: background-color 0.3s ease-in-out; /* ホバーエフェクトを設定 */
