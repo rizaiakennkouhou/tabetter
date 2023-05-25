@@ -68,7 +68,7 @@ navigationLinks.forEach((link) => {
 	originalImages.push(imgElement.src);
   });
   
-  function changeImage4(element) {
+  function changeImage4(element, page) {
 	let imgElement = element.querySelector('img');
   
 	// すべての要素の画像を元に戻す
@@ -79,6 +79,8 @@ navigationLinks.forEach((link) => {
   
 	// クリックされた要素の画像を変更
 	imgElement.src = '../svg/profile2.svg';  // 別の画像のパスを指定
+
+	window.location.href = page;
   }
   
 	// クリックされた要素のインデックスを先頭に移動
