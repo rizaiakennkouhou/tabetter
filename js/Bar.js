@@ -7,7 +7,7 @@ navigationLinks.forEach((link) => {
 	originalImages.push(imgElement.src);
   });
   
-  function changeImage(element) {
+  function changeImage(element, page) {
 	let imgElement = element.querySelector('img');
 	let index = Array.from(navigationLinks).indexOf(element);
   
@@ -19,6 +19,11 @@ navigationLinks.forEach((link) => {
   
 	// クリックされた要素の画像を変更
 	imgElement.src = '../svg/time2.svg';  // 別の画像のパスを指定
+
+
+	// time.htmlに遷移
+	window.location.href = page;
+
   }
 
   navigationLinks.forEach((link) => {
