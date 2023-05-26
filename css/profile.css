@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 
 .p_photo{
   width: 150px;
@@ -10,34 +9,18 @@
   align-items: center;
 }
 
-=======
->>>>>>> Stashed changes
 .name{
   display: flex;
   justify-content: center;
   align-items: center;
-<<<<<<< Updated upstream
-=======
   font-size: 20px;
-  height: 200px;
->>>>>>> Stashed changes
 }
 .name_id{
   display: flex;
   justify-content: center;
   align-items: center;
-<<<<<<< Updated upstream
   color: dimgray;
 }
-
-=======
-  color: grey;
-  font-size: 16px;
-  height: 10px;
-}
-
-
->>>>>>> Stashed changes
 .waku{
   display: flex;
   justify-content: center;

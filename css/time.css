@@ -80,12 +80,12 @@ div .d-flex.justify-content-center {
     display: flex;
     justify-content: space-between;
     position: fixed;
-    bottom: 1%;
-    width: 90%;
-    background-color: var(--primary-gree);
+    bottom: 0;
+    width: 100%;
+    background-color: #FFFFFF;
     padding: 10px;
-    margin-left: 6%;
-    margin-right: 4%;
+    /* margin-left: 6%;
+    margin-right: 4%; */
    }
    .border{
      display: flex;
