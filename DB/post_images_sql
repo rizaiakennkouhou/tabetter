@@ -1,8 +1,11 @@
 CREATE TABLE post_images (
-  post_id INT PRIMARY KEY,
-  post_image BLOB,
+  post_id INT,
+  image_name VARCHAR(256),
+  image_type VARCHAR(64),
+  post_image MEDIUMBLOB,
+  image_size INT
   FOREIGN KEY (post_id) REFERENCES post(post_id)
 );
 
 
-INSERT INTO post_images (post_id) VALUES(1),(2);
+//INSERT INTO post_images (post_id) VALUES(1),(2);

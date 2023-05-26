@@ -12,3 +12,10 @@ CREATE TABLE user (
 INSERT INTO user (user_id,user_name, mail, password, bio)
 VALUES ('tamanegi','たまねぎ星人魑魅魍魎', 'tamanegi@gmail.com', 'pass1','福岡県在住のたまねぎです。好きな野菜は新玉ねぎ'),
        ('avocado1', 'アボカドくん', 'avocado@s.2000.ac.jp', 'pass2','福岡在住のアボカドです。好きな食べ物はえびアボカド');
+
+
+
+
+ALTER TABLE user DROP profile_image;
+
+ALTER TABLE user ADD profile_image MEDIUMBLOB;
