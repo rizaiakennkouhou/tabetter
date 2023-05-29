@@ -37,12 +37,10 @@
     color: black;
     font-size: 12px;
 }
-.loginBtn{
+.createBtn{
     background-color: #FFAC4A;
 }
-.registBtn{
-    border: solid #FFAC4A;
-}
+
 button{
     height: 48px;
     box-shadow: 0 10px 10px -9px gray;

@@ -7,28 +7,6 @@
     <link rel="stylesheet" href="../css/j.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ログイン</title>
-    <div class="login">
-    <div>
-
-    </div>
-    <div class="">
-    <input type="text" name="mail"> <br>
-    <input type="text" name="pass"><br>
-    <a href="">
-    <input type="button" value="ログイン"></a><br>
-    <a href="">
-    <input type="text" name="pass"></a>
-    <a href="">
-    <input type="button" value="ログイン"></a>
-    <a href="">
-    <input type="button" value="新規登録"></a>
-</div>
-    <input type="button" value="新規登録"></a><br>
-    </div>
-    <div>
-    <a href="">パスワードを忘れた場合はこちら</a>
-    </div>
-
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- googleフォント -->
@@ -37,43 +15,46 @@
     <link href="https://fonts.googleapis.com/css2?family=Kaisei+Decol&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/login.css">
 
-
-</head>
-<body>
     <div class="logo col text-center">
         <img src="../svg/login_logo.svg" alt="ログインロゴ" id="logoImg">
     </div>
+
+</head>
+<body>
     <div class="container">
         <div id="underLogo">
-            <h5 class="headline col text-center">美味しいを伝えよう</h2>
-                <div class="form text-center col">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M2 5H22V19H2V5ZM4 7V17H20V7H4Z" fill="#424242"/>
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M2.38135 6.78558L3.61909 5.2146L12.0002 11.8179L20.3813 5.2146L21.6191 6.78558L12.0002 14.3641L2.38135 6.78558Z" fill="#424242"/>
-                    </svg>    
+            <h5 class="headline col text-center mb-5">美味しいを伝えよう</h2>
+                <div class="form text-center col" id="FormAbove">
+                    
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M2 5H22V19H2V5ZM4 7V17H20V7H4Z" fill="#424242"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M2.38135 6.78558L3.61909 5.2146L12.0002 11.8179L20.3813 5.2146L21.6191 6.78558L12.0002 14.3641L2.38135 6.78558Z" fill="#424242"/>
+                        </svg>   
+                    
+                     
                     <!-- メール -->
-                    <input type="email" name="mail" placeholder="メールアドレス/ID" style="border: none;">
+                    <input type="email" name="mail" placeholder="メールアドレス/ID" class="formInput text-center">
                 </div>    
-                <div class="form col text-center">
+                <div class="form col text-center" id="">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M13.3823 13.2381L14.4983 13.5378C16.007 13.9431 17.6761 13.552 18.8538 12.3744C20.6112 10.617 20.6112 7.76777 18.8538 6.01041C17.0964 4.25305 14.2472 4.25305 12.4898 6.01041C11.4191 7.08115 10.999 8.55627 11.2357 9.95086L11.4085 10.9693L9.00984 13.3679L9.00984 15.9537L7.59563 15.9537V17.3679L5.00984 17.3679L4.4903 17.8875L4.45102 20.0481L6.61162 20.0088L13.3823 13.2381ZM7.45506 21.9938L2.41365 22.0854L2.50531 17.044L4.18141 15.3679H5.59563L5.59563 13.9537H7.00984V12.5395L9.26385 10.2855C8.92343 8.27948 9.52735 6.14446 11.0756 4.59619C13.614 2.05779 17.7296 2.05779 20.268 4.59619C22.8064 7.1346 22.8064 11.2502 20.268 13.7886C18.5644 15.4922 16.1504 16.0525 13.9795 15.4693L7.45506 21.9938Z" fill="#424242"/>
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9093 9.00372L15.4951 7.58951L16.9093 6.17529L18.3235 7.58951L16.9093 9.00372Z" fill="#424242"/>
                     </svg>
                     <!-- パスワード         -->
-                    <input type="password" name="pass" placeholder="パスワード" style="border: none;">
+                    <input type="password" name="pass" placeholder="パスワード" class="formInput text-center    ">
                 </div>
-                <div class="d-grid gap-2 col-6 mx-auto">
+                <div class="d-grid gap-2 col-6 mx-auto mt-5">
                     <button class="loginBtn btn" type="button">ログイン</button>
                 </div>
-                <p class="text-center">アカウントをお持ちでない方</p>
-                <div class="d-grid gap-2 col-6 mx-auto">
+                <p class="registTxt text-center">アカウントをお持ちでない方</p>
+                <div class="d-grid gap-2 col-6 mx-auto mt-3">
                     <button class="registBtn btn" type="button">新規登録</button>
                 </div>
                 
         </div> 
         
-        <div>
-        <a href="" class="col">パスワードを忘れた場合はこちら</a>
+        <div class="fogetPassDiv col">
+        <a href="rogin.html" class="fogetPass">パスワードを忘れた場合はこちら</a>
         </div>
     </div>
     
