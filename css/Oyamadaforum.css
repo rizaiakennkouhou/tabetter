@@ -1,0 +1,14 @@
+  .card{
+    border: solid #FFAC4A;
+    border-radius: 14px;
+  }
+  .top_row{
+    font-size: 19px;
+  }
+  .title{
+    margin-top: 9px;
+  }
+  .bottom_row{
+    font-size: 11.5px;
+  }
+    

@@ -1,0 +1,80 @@
+.container-fluid {
+    margin-top: 0%;
+}
+
+.box {
+    margin-top: 0%;
+    margin: 0;
+}
+
+div .card-body {
+    margin-top: 3%;
+    margin-bottom: 3%;
+    margin-left: 2%;
+    margin-right: 2%;
+    padding: 0;
+}
+
+div .col-6 {
+    margin: 0;
+    padding: 0;
+}
+
+div .d-flex.justify-content-end {
+    width: 23%;
+    margin-left: 60%;
+}
+
+div .d-flex.justify-content-center {
+    width: 23%;
+    margin-left: 45%;
+    padding-top: 1%;
+}
+
+.profielIcon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    float: left;
+}
+
+.postImage {
+    display: block;
+    border-radius: 5%;
+    object-fit: cover;
+    width: 85%;
+    margin-left: 15%;
+    margin-bottom: 5%;
+}
+
+.like{
+    padding-left: 15%;
+}
+
+.comment{
+    padding-left: 15%;
+}
+
+.userName {
+    display: inline-block;
+    vertical-align: auto;
+    padding-top: 2%;
+    margin-left: 2%;
+    margin-bottom: 0;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.userComment {
+    padding-left: 15%;
+    padding-bottom: 2%;
+    margin: 0;
+    font-size: 20px;
+    line-height: 1;
+}
+.scrollable {
+    height: 650px; /* スクロール可能な高さを指定 */
+    overflow-y: auto; /* 縦方向のスクロールを有効にする */
+  }
+  
