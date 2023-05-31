@@ -4,9 +4,9 @@ html, body {
     margin: 0;
 }
 
-/* header {
+header {
     position: fixed;
-} */
+}
 
 .container-fluid {
     height: 100%;

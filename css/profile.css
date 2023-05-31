@@ -1,4 +1,4 @@
-/* 
+
 .photo{
   text-align: center;
 }
@@ -16,7 +16,7 @@
 
 
 }
-=======
+
 
 .name{
   display: flex;
@@ -25,7 +25,7 @@
   font-size: 20px;
 
   margin: 0;
-=======
+
 
 }
 .name_id{
@@ -88,4 +88,4 @@
 .button:hover {
   background-color: #0062cc; /* ホバーエフェクト時の背景色 */
   cursor: pointer; /* ホバーエフェクト時のカーソルスタイル */
-} */
+}
