@@ -48,6 +48,11 @@ div .d-flex.justify-content-center {
     margin-bottom: 5%;
 }
 
+#likeButton {
+    width: 30px;
+    height: 30px;
+}
+
 .like{
     padding-left: 15%;
 }

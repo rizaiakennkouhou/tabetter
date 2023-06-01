@@ -28,7 +28,7 @@
     border: none;
     z-index: 999;
     height: 55px;
-    width: 13rem;
+    width: 12rem;
 }   
 .formInput:focus{
     outline: none;
@@ -60,4 +60,22 @@ button{
 }
 .fogetPass{
     color: #FFAC4A;
+}
+#errorMsg{
+    font-size: 13px;   
+}
+.errorMsgDiv{
+    height: 19.5px;
+}
+@media screen and (max-width:370px){
+    #logoImg{
+        width: 90%;
+        padding-right: 20px;
+    }
+    /* .logo{
+        width: 90%;
+    } */
+    .formInput{
+        width: 8rem;
+    }
 }
