@@ -1,20 +1,10 @@
 <?php
 
-$dsn  = 'mysql:dbname=tabetterdb;host=localhost;charset=utf8';
-$user = 'webuser';
-$pw   = 'abccsd2';
-$driver_options = [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_EMULATE_PREPARES => false,
-];
+//画像を表示テスト（使わない関数）
 
 //データベースに接続
-$pdo = new PDO(
-    $dsn,
-    $user,
-    $pw,
-    $driver_options
-);
+$pdo = new PDO('mysql:host=localhost; dbname=tabetterdb; charset=utf8',
+'webuser', 'abccsd2');
 
 $sql = 'SELECT * FROM post_images WHERE post_id = :image_id';
 $stmt = $pdo->prepare($sql);
@@ -27,13 +17,5 @@ foreach($image as $row){
 echo $image['post_image'];
 }
 exit();
-
-
-
-//$sql = 'SELECT * FROM `post_images` WHERE post_id = 2';
-//$stmt = $pdo->query($sql);
-
-// 今回はgif画像なので、image/gifになります
-//echo '<img src="data:image/png;base64,' . base64_encode($stmt->fetchAll()[0]['post_image']) . '>';
 
 ?>

@@ -1,6 +1,8 @@
 
 <?php
 
+//保存テスト（使わない関数）
+
 $dsn  = 'mysql:dbname=tabetterdb;host=localhost;charset=utf8';
 $user = 'webuser';
 $pw   = 'abccsd2';
