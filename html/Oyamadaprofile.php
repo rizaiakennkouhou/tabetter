@@ -1,3 +1,8 @@
+<?php 
+    require_once '../DAO/userdb.php';
+    $userdao = new DAO_userdb();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,11 +14,6 @@
     <link rel="stylesheet" href="../css/OyamadaBar.css">
     <link rel="stylesheet" href="../css/Oyamadaprofile.css">
 </head>
-
-<?php 
-    require_once '../DAO/userdb.php';
-    $userdao = new DAO_userdb();
-?>
 
 
 <body>
@@ -47,6 +47,7 @@
         </div>
     </div>
   </header>
+  
   <!-- ヘッダー↑ -->
 
 <div id="photo">
@@ -56,14 +57,17 @@
         <img src="../svg/tpyosaka.svg" alt="編集ボタン" >
 </div>
     <div class="account">
-        <h1 class="name">タマネギ星人魑魅魍魎</h1>
-        <p class="name_id">@tamanegisan</p>
+        <h1 class="name"><?= $userdao->getUserName("tamanegi"); ?></h1>
+    </div>
+    <div>
+        <p class="name_id"><?= $userdao->getUserMail("tamanegi"); ?></p>
     </div>
     <div class="rank">
         <img src="../svg/trophy.svg" alt="トロフィー" class="trophy"><p id="r_name">ブロンズ</p>
   </div>
     <div class="waku">
     <div class="frame">
+    <?= $userdao->getUserBio("tamanegi"); ?>
     </div>
     </div>
     <div class="toukou">
@@ -95,14 +99,6 @@
      </i>
      </a>
     </div>
-    <div>
-        <?= $forumdao->getuserId("1"); ?>
-    </div>
-    <form method="POST" action="../DAO/save.php" enctype="multipart/form-data">
-    <input type="text" name="post_id" placeholder="1">
-    <input type="file" name="image">
-    <input type="submit" value="送信！">
-    </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="../js/OyamadaBar.js"></script>
 </body>
