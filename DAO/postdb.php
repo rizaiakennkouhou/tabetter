@@ -4,35 +4,24 @@ class DAO_post{
     private function dbConnect(){
         //データベースに接続
         $pdo = new PDO('mysql:host=localhost; dbname=tabetterdb; charset=utf8',
-                        'webuser', 'abccsd2');
+                        'root', 'root');
         return $pdo;
     }
 
-    //投稿情報を配列に入れる
-    public function getPostTblById($id){
+    //投稿を表示
+    public function getPostDetail($postId){
         $pdo = $this->dbConnect();
 
         $sql = "SELECT * FROM post WHERE post_id=?";
 
         $ps = $pdo->prepare($sql);
 
-        $ps->bindValue(1, $id, PDO::PARAM_INT);
+        $ps->bindValue(1, $postId, PDO::PARAM_INT);
 
-        $ps->$execute();
-        $result = $ps->fetchAll();
+        $ps->execute();
+        $result = $ps->fetch(PDO::FETCH_ASSOC);
 
-        return $reuslt;
-    }
-
-    //投稿内容を出力
-    public function outputPostDetail($id){
-        $result = $this->getPostTblById($id);
-
-        foreach($result as $row){
-            $postDetail = $row['post_detail'];
-        }
-
-        echo $postDetail;
+        return $result;
     }
 }
 

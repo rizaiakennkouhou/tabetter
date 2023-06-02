@@ -1,26 +1,57 @@
+.edit{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 30px;
+  padding-top: 0%;
+  padding-bottom: 0%;
+}
+
+.photo{
+  position: relative;
+  text-align: center;
+  margin-bottom: 20px;
+  z-index: 0px;
+}
 
 .p_photo{
   width: 150px;
   border-radius: 100px;
+
 }
-#photo{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 
 .name{
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 20px;
+  margin: 0;
+
+
 }
 .name_id{
   display: flex;
   justify-content: center;
   align-items: center;
   color: dimgray;
+  margin: 0;
 }
+
+.rank{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: saddlebrown;
+  margin-bottom: 20px;
+}
+.trophy{
+  margin-left: -25px;
+}
+#r_name{
+  margin: 0;
+}
+
 .waku{
   display: flex;
   justify-content: center;
@@ -29,7 +60,7 @@
 }
 .frame{
   width: 95%; /* 幅を設定 */
-  height: 180px;/* 高さを設定 */
+  height: 140px;/* 高さを設定 */
   border: 2px solid #ffac4a; /* 枠線の太さと色を指定 */
   border-radius: 6px; /* 枠角の丸みを指定 */
 }
@@ -38,7 +69,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 200px;
+  height: 100px;
   padding: 10px 20px;
 }
 .button {

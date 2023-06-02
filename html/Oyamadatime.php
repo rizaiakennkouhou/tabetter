@@ -10,9 +10,13 @@
     <link rel="stylesheet" href="../css/Oyamadatime2.css">
 </head>
 <body>
+    <?php
+        require '../DAO/postdb.php';
+        $daoPostDb = new DAO_post();
+    ?>
     <div id="app">
     <!-- ヘッダー -->
-   <header class="mb-3 border-bottom" id="header">
+   <header class="border-bottom" id="header">
     <div class="container-fluid">
         <div class="row row justify-content-between">
             <div class="d-flex align-items-center mb-0 text-dark text-decoration-none col-7 text-left px-0" style="height: 50px; padding-top: 55px;">
@@ -20,11 +24,7 @@
             </div>
     
             <button class="navbar-toggler col-3 p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation" style="height: 50px; box-shadow: none;">
-                    <rect width="60" height="60" fill="url(#pattern1)"/>
-                    <pattern id="pattern1" patternContentUnits="objectBoundingBox" width="1" height="1">
-                    <use xlink:href="#image0_173_3205" transform="scale(0.00333333)"/>
-                    </pattern>
-                    <img src="../svg/b.svg" width="50" height="50" viewBox="0 0 60 60" fill="none" > 
+                <img src="../svg/b.svg" width="50" height="50" viewBox="0 0 60 60" fill="none" > 
             </button>
         </div>
         <div class="collapse navbar-collapse" id="navbarsExample05">
@@ -48,7 +48,7 @@
                 <div class="box">
                     <img src="../userImage/main.jpg" class="profielIcon" />
                     <p class="userName">アボカドくん</p>
-                    <p class="userComment">このチャーハンおいしかった</p>
+                    <p class="userComment"><?php $daoPostDb->getPostDetail(1); ?>このチャーハンおいしかった</p>
                     <img src="../userImage/main.jpg" class="postImage">
                 </div>
                 <div class="row row-eq-height">
