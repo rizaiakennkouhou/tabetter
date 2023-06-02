@@ -1,3 +1,33 @@
+<?php
+//セッションスタート
+    session_start();
+    //DAO接続
+    require_once '../DAO/logindb.php';
+    $dbmng = new DAO_Logindb;
+    //POST要求があれば
+    if ($_SERVER['REQUEST_METHOD']==='POST') {
+        try {
+            //ユーザー検索
+            $userArray = $dbmng->getUserByMail($_POST['mail'],$_POST['pass']);
+            foreach ($userArray as $row) {
+                //セッション作成
+                $_SESSION['user_id']=$row['user_id'];
+            }
+            
+        } catch (BadMethodCallException $bex) {
+            echo "<script> alert('メールアドレスが存在しません。');</script>";
+            $msg='メールアドレスが存在しません。';
+            echo '<script> console.log('.json_encode( $msg ).')</script>';
+        }catch(LogicException $lex){
+          echo "<script> alert('パスワードが一致しません。');</script>";
+            $msg ='パスワードが一致しません';
+            echo '<script> console.log('.json_encode( $msg ).')</script>';
+        }
+        //移動   テストで一旦　Oyamadaprofile　にしてます
+        header('Location: Oyamadaprofile.php');
+        exit();
+    }
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -25,7 +55,7 @@
         <div id="underLogo"> 
             <h5 class="headline col text-center mb-5">美味しいを伝えよう</h5>
                 <!-- フォーム -->
-                <form name="loginForm">
+                <form name="loginForm" action="" method="post">
                     <div class="form text-center col" id="FormAbove">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd" d="M2 5H22V19H2V5ZM4 7V17H20V7H4Z" fill="#424242"/>
@@ -59,9 +89,9 @@
                 
         </div> 
         
-        <div class="fogetPassDiv col">
+        <!-- <div class="fogetPassDiv col">
         <a href="rogin.html" class="fogetPass">パスワードを忘れた場合はこちら</a>
-        </div>
+        </div> -->
     </div>
     
     <!-- bootstrap -->
