@@ -1,3 +1,6 @@
+document.getElementById("FormAbove").addEventListener("focus", function() {
+    this.setSelectionRange(0, 0);
+  });
 //登録チェック
 function registClick() {
     let errorMsg = document.getElementById("errorMsg"); 

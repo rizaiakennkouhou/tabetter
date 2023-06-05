@@ -14,25 +14,20 @@
 
             $_SESSION['user_id']=$row['user_id'];
             // echo $row['user_id'];
-        }
-
-                $_SESSION['user_id']=$row['user_id'];
             }
-            
-
         } catch (BadMethodCallException $bex) {
-            echo "<script> alert('メールアドレスが存在しません。');</script>";
-            $msg='メールアドレスが存在しません。';
-            echo '<script> console.log('.json_encode( $msg ).')</script>';
+            // echo "<script> alert('メールアドレスが存在しません。');</script>";
+            // $msg='メールアドレスが存在しません。';
+            // echo '<script> console.log('.json_encode( $msg ).')</script>';
         }catch(LogicException $lex){
-          echo "<script> alert('パスワードが一致しません。');</script>";
-            $msg ='パスワードが一致しません';
-            echo '<script> console.log('.json_encode( $msg ).')</script>';
+        //   echo "<script> alert('パスワードが一致しません。');</script>";
+        //     $msg ='パスワードが一致しません';
+        //     echo '<script> console.log('.json_encode( $msg ).')</script>';
         }
         //移動   テストで一旦　Oyamadaprofile　にしてます
         header('Location: Oyamadaprofile.php');
         exit();
-    
+    }
 ?>
 <!DOCTYPE html>
 <html lang="ja">
