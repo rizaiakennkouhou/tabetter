@@ -55,9 +55,8 @@
   
   <!-- ヘッダー↑ -->
 
-<div id="photo">
-    <img src="../DAO/display.php?id=1" width="100">
-    <img src="../svg/tamanegi.svg" alt="プロフィール画像" class="p_photo">
+    <div id="photo">
+    <img src="../DAO/display.php?id=1" class="photo" width="100">
     </div>
     <div class="edit">
         <img src="../svg/tpyosaka.svg" alt="編集ボタン" >
@@ -66,14 +65,14 @@
         <h1 class="name"><?= $userdao->getUserName($_SESSION['user_id']); ?></h1>
     </div>
     <div>
-        <p class="name_id"><?= $userdao->getUserMail("tamanegi"); ?></p>
+        <p class="name_id"><?= $userdao->getUserMail($_SESSION['user_id']); ?></p>
     </div>
     <div class="rank">
         <img src="../svg/trophy.svg" alt="トロフィー" class="trophy"><p id="r_name">ブロンズ</p>
   </div>
     <div class="waku">
     <div class="frame">
-    <?= $userdao->getUserBio("tamanegi"); ?>
+    <?= $userdao->getUserBio($_SESSION['user_id']); ?>
     </div>
     </div>
     <div class="toukou">

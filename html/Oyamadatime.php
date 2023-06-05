@@ -11,8 +11,10 @@
 </head>
 <body>
     <?php
-        require '../DAO/postdb.php';
+        require_once '../DAO/postdb.php';
+        require_once '../DAO/userdb.php';
         $daoPostDb = new DAO_post();
+        $daoUserDb = new DAO_userdb();
     ?>
     <div id="app">
     <!-- ヘッダー -->
@@ -47,8 +49,8 @@
             <div class="card-body">
                 <div class="box">
                     <img src="../userImage/main.jpg" class="profielIcon" />
-                    <p class="userName">アボカドくん</p>
-                    <p class="userComment"><?php $daoPostDb->getPostDetail(1); ?>このチャーハンおいしかった</p>
+                    <p class="userName"><?= $daoUserDb->getUserName("avocado1"); ?></p>
+                    <p class="userComment"><?= $daoPostDb->getPostDetail(1); ?></p>
                     <img src="../userImage/main.jpg" class="postImage">
                 </div>
                 <div class="row row-eq-height">

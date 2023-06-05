@@ -91,3 +91,16 @@
   background-color: #0062cc; /* ホバーエフェクト時の背景色 */
   cursor: pointer; /* ホバーエフェクト時のカーソルスタイル */
 }
+
+.gazou {
+  display: flex;
+}
+.gazou >img{
+  justify-content: center;
+  align-items: center; 
+}
+#photo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -31,6 +31,7 @@ class DAO_userdb{
             $pdo = $this->dbConnect();
         
             $sql = "SELECT * FROM user WHERE user_id = ?";
+
             $ps = $pdo->prepare($sql);
             $ps->bindValue(1, $userId, PDO::PARAM_STR);
             $ps->execute();
@@ -50,6 +51,7 @@ class DAO_userdb{
             $pdo = $this->dbConnect();
         
             $sql = "SELECT * FROM user WHERE user_id = ?";
+
             $ps = $pdo->prepare($sql);
             $ps->bindValue(1, $userId, PDO::PARAM_STR);
             $ps->execute();
