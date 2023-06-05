@@ -1,7 +1,11 @@
 <?php 
+    session_start();
     require_once '../DAO/userdb.php';
     $userdao = new DAO_userdb();
+    
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,13 +31,14 @@
             </div>
     
             <button class="navbar-toggler col-3 p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation" style="height: 50px; box-shadow: none;">
-                <svg width="50" height="50" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                    <rect width="60" height="60" fill="url(#pattern1)"/>
-                    <defs>
+                <!-- <svg width="50" height="50" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <rect width="60" height="60" fill="url(#pattern1)"/> -->
+                    <!-- <defs>
                     <pattern id="pattern1" patternContentUnits="objectBoundingBox" width="1" height="1">
                     <use xlink:href="#image0_173_3205" transform="scale(0.00333333)"/>
                     </pattern>
-                    </defs>
+                    </defs> -->
+                    <img src="../svg/b.svg">
                 </svg>          
             </button>
         </div>
@@ -51,13 +56,14 @@
   <!-- ヘッダー↑ -->
 
 <div id="photo">
+    <img src="../DAO/display.php?id=1" width="100">
     <img src="../svg/tamanegi.svg" alt="プロフィール画像" class="p_photo">
     </div>
     <div class="edit">
         <img src="../svg/tpyosaka.svg" alt="編集ボタン" >
 </div>
     <div class="account">
-        <h1 class="name"><?= $userdao->getUserName("tamanegi"); ?></h1>
+        <h1 class="name"><?= $userdao->getUserName($_SESSION['user_id']); ?></h1>
     </div>
     <div>
         <p class="name_id"><?= $userdao->getUserMail("tamanegi"); ?></p>

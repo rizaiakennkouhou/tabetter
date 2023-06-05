@@ -11,9 +11,15 @@
             $userArray = $dbmng->getUserByMail($_POST['mail'],$_POST['pass']);
             foreach ($userArray as $row) {
                 //セッション作成
+
+            $_SESSION['user_id']=$row['user_id'];
+            // echo $row['user_id'];
+        }
+
                 $_SESSION['user_id']=$row['user_id'];
             }
             
+
         } catch (BadMethodCallException $bex) {
             echo "<script> alert('メールアドレスが存在しません。');</script>";
             $msg='メールアドレスが存在しません。';
@@ -26,7 +32,7 @@
         //移動   テストで一旦　Oyamadaprofile　にしてます
         header('Location: Oyamadaprofile.php');
         exit();
-    }
+    
 ?>
 <!DOCTYPE html>
 <html lang="ja">
