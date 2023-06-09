@@ -59,6 +59,8 @@
                     <input type="text" name="menu">
                     <p>価格のテキストボックス</p>
                     <input type="text" name="price">
+                    <p>場所のテキストボックス</p>
+                    <input type="text" name="addres">
                     </details>
             </div>
             <div>
@@ -69,7 +71,7 @@
             </div>
         </form>
     </open-modal>
-
+    
     <button v-on:click="openModal" class="button-style">オープン</button>
 </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

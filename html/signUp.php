@@ -25,7 +25,7 @@
         <div id="underLogo">
             <h5 class="headline col text-center mb-5">美味しいを伝えよう</h5>
             <!-- フォーム     -->
-            <form name="registForm">
+            <form name="registForm" action="signUpdetail.php" method="POST" enctype="multipart/form-data">
                 <div class="form text-center col" id="FormAbove">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M2 5H22V19H2V5ZM4 7V17H20V7H4Z" fill="#424242"/>
@@ -68,7 +68,7 @@
                 </div>
                 <!-- 登録ボタン -->
                 <div class="d-grid gap-2 col-6 mx-auto">
-                    <button class="createBtn btn" type="button" onclick="registClick()">作成</button>
+                    <button class="createBtn btn" type="submit" onclick="registClick()">作成</button>
                 </div>
             </form>
         </div> 

@@ -13,9 +13,9 @@ $stmt->execute();
 $image = $stmt->fetch();
 
 header('Content-type: ' . $image['image_type']);
-foreach($image as $row){
+
 echo $image['post_image'];
-}
+
 exit();
 
 ?>

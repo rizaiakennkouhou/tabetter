@@ -18,8 +18,10 @@
                 // echo $row['user_id'];
             }
             //移動   テストで一旦　Oyamadaprofile　にしてます
-            header('Location: time.php');
+            header('Location: Oyamadatime.php');
             exit();
+
+        } catch (BadMethodCallException $bex) {
 
 
             $_SESSION['user_id']=$row['user_id'];
@@ -28,8 +30,9 @@
             
 
         catch (BadMethodCallException $bex) {
+
             //エラーキャッチ　メアドなし
-            $msg='メールアドレスが存在しません。';
+            $msg='メールアドレスが存在しません';
         }catch(LogicException $lex){
             //パスなし
             $msg ='パスワードが一致しません';

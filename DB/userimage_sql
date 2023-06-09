@@ -1,0 +1,10 @@
+CREATE TABLE user_image (
+  user_id CHAR(8) PRIMARY KEY,
+  image_name VARCHAR(256),
+  image_type VARCHAR(64),
+  user_image MEDIUMBLOB,
+  image_size INT,
+  FOREIGN KEY (user_id) REFERENCES user(user_id)
+);
+
+

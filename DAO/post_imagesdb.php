@@ -29,6 +29,16 @@
                     $stmt->bindValue(5, $size, PDO::PARAM_INT);
                     $stmt->execute();
             }
+            $sql = 'INSERT INTO post(post_detail, post_date, user_id, store, menu, price, address)
+                    VALUES (?, CURRENT_TIMESTAMP, ?, ?, ?, ?, ?)';
+                    $stmt = $pdo->prepare($sql);
+                    $stmt->bindValue(1, $_POST['detail'], PDO::PARAM_STR);
+                    $stmt->bindValue(2, $_POST['userid'], PDO::PARAM_STR);
+                    $stmt->bindValue(3, $_POST['store'], PDO::PARAM_STR);
+                    $stmt->bindValue(4, $_POST['menu'], PDO::PARAM_STR);
+                    $stmt->bindValue(5, $_POST['price'], PDO::PARAM_STR);
+                    $stmt->bindValue(6, $_POST['address'], PDO::PARAM_STR);
+                    $stmt->execute();
 
                 header('Location: https://localhost/tabetter/html/M.test.php');
             }else{
