@@ -17,6 +17,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/OyamadaBar.css">
     <link rel="stylesheet" href="../css/Oyamadaprofile.css">
+    <link rel="stylesheet" href="../css/modal.css">
 </head>
 
 
@@ -54,10 +55,25 @@
   </header>
   
   <!-- ヘッダー↑ -->
-
-    <div id="photo">
-    <img src="../DAO/display.php?id=1" class="photo" width="100">
+  <div id="app">
+  <div id="photo">
+    <button v-on:click="openModal" class="button-style">
+    <img src="../DAO/userdisplay.php" width="100">
+    </button>
     </div>
+    <!-- open-modalの中身が表示される -->
+    <open-modal v-show="showContent" v-on:from-child="closeModal">
+        <form method="POST" action="../DAO/userimagedb.php" enctype="multipart/form-data">
+                <div>
+                <input type="file" name="image">
+                <input type="hidden" name="id" value="<?= $_SESSION['user_id']?>">
+                <input type="submit" value="送信！">
+            </div>
+        </form>
+    </open-modal>
+
+    
+</div>
     <div class="edit">
         <img src="../svg/tpyosaka.svg" alt="編集ボタン" >
 </div>
@@ -104,7 +120,13 @@
      </i>
      </a>
     </div>
+
+
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="../js/OyamadaBar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="../js/MaedaTest.js"></script>
 </body>
 </html>

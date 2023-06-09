@@ -27,7 +27,7 @@
         }
             
 
-        } catch (BadMethodCallException $bex) {
+        catch (BadMethodCallException $bex) {
             //エラーキャッチ　メアドなし
             $msg='メールアドレスが存在しません。';
         }catch(LogicException $lex){

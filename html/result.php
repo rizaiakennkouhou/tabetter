@@ -1,1 +1,1 @@
-<img src="../DAO/display.php?id=1" width="100">
+<img src="../DAO/userdisplay.php" width="100">

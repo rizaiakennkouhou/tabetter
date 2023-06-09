@@ -7,9 +7,10 @@ navigationLinks.forEach((link) => {
 	originalImages.push(imgElement.src);
   });
   
-  function changeImage(element, page) {
+  function changeImage(element, index, page) {
 	let imgElement = element.querySelector('img');
 	let index = Array.from(navigationLinks).indexOf(element);
+	navigationLinks.splice(index, 1);
   
 	// すべての要素の画像を元に戻す
 	navigationLinks.forEach((link, i) => {
