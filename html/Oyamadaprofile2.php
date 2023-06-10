@@ -22,7 +22,7 @@
 
 
 <body>
-
+    
    <!-- ヘッダー -->
    <header class="mb-3 border-bottom" id="header">
     <div class="container-fluid">
@@ -130,6 +130,7 @@
 
 
 <script>
+    alert("ユーザー名は1文字以上10文字以下で入力してください。");
     function openModal() {
         var modal = document.getElementById("modal");
         modal.style.display = "block";
@@ -145,7 +146,6 @@
         var bioInput = document.getElementById("edit-bio");
         var username = usernameInput.value;
         var bio = bioInput.value;
-
 
         // ここでユーザー名と自己紹介文を保存する処理を追加する
 
