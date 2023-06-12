@@ -48,7 +48,20 @@ div .d-flex.justify-content-center {
     margin-bottom: 5%;
 }
 
-#likeButton {
+.likeButton{
+    display: flex;
+}
+
+.likeButton input:checked+label{
+    background-image: url("../svg/Like-orange.png");
+    background-repeat: no-repeat;
+}
+
+.likeButton input{
+    display: none;
+}
+
+.likeButtonImg {
     width: 30px;
     height: 30px;
 }

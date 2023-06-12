@@ -32,7 +32,7 @@
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M2.38135 6.78558L3.61909 5.2146L12.0002 11.8179L20.3813 5.2146L21.6191 6.78558L12.0002 14.3641L2.38135 6.78558Z" fill="#424242"/>
                     </svg>   
                 <!-- メール -->
-                <input type="email" name="mail" placeholder="メールアドレス/ID" class="formInput text-center">
+                <input type="email" name="mail" placeholder="メールアドレス/ID" class="formInput text-center" required>
                 </div>    
 
                 <div class="form col text-center" id="">
@@ -41,7 +41,7 @@
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9093 9.00372L15.4951 7.58951L16.9093 6.17529L18.3235 7.58951L16.9093 9.00372Z" fill="#424242"/>
                     </svg>
                     <!-- パスワード         -->
-                    <input type="password" name="pass" placeholder="パスワード" class="formInput text-center    ">
+                    <input type="password" name="pass" placeholder="パスワード" class="formInput text-center    " required>
                 </div>
 
                 <div class="form col text-center" id="">
@@ -50,7 +50,7 @@
                         </svg>
                         
                     <!-- ID登録         8文字限定-->
-                    <input type="text" name="userId" placeholder="ID登録" class="formInput text-center    ">
+                    <input type="text" name="userId" placeholder="ID登録" class="formInput text-center    " required>
                 </div>
 
                 <div class="form col text-center" id="">
@@ -59,7 +59,12 @@
                         </svg>
                         
                     <!-- ニックネーム       -->
-                    <input type="text" name="userName" placeholder="ニックネーム" class="formInput text-center    ">
+                    <input type="text" name="userName" placeholder="ニックネーム" class="formInput text-center    " required>
+                </div>
+                <div class="form col text-center" id="">
+                <div>
+                    <input type="file" name="image" required>
+                </div>
                 </div>
 
                 <!-- エラーメッセ -->

@@ -16,7 +16,7 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/OyamadaBar.css">
-    <link rel="stylesheet" href="../css/Oyamadaprofile.css">
+    <link rel="stylesheet" href="../css/Oyamadaprofile2.css">
     <link rel="stylesheet" href="../css/modal.css">
 </head>
 
@@ -63,7 +63,7 @@
     </div>
     <!-- open-modalの中身が表示される -->
     <open-modal v-show="showContent" v-on:from-child="closeModal">
-        <form method="POST" action="../DAO/userimagedb.php" enctype="multipart/form-data">
+        <form method="POST" action="../DAO/newuserimagedb.php" enctype="multipart/form-data">
                 <div>
                 <input type="file" name="image">
                 <input type="hidden" name="id" value="<?= $_SESSION['user_id']?>">
@@ -112,7 +112,8 @@
 </div> -->
 
 <div id="modal" class="modal">
-    <div class="modal-content">
+    <div id="overlay" class="modal-content">
+        <div id="content">
     <form method="POST" action="../DAO/userupdate.php" enctype="multipart/form-data">
     <h2>プロフィール編集</h2>
         <p>ユーザー名:</p>
@@ -123,6 +124,7 @@
         <button onclick="saveChanges()" type="submit">保存</button>
         <button onclick="closeModal()">キャンセル</button>
     </form>
+</div>
     </div>
 </div>
      
