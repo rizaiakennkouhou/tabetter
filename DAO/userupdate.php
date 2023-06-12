@@ -8,7 +8,7 @@
             $name=$_POST['user_name'];
 
             if(strlen($name)< 1 || strlen($name)> 30){
-                header('Location: https://localhost/tabetter/html/Oyamadaprofile2.php');
+                header('Location: https://localhost/tabetter/html/Oyamadaprofilecheck.php');
             }else{
                 $sql = 'UPDATE user
                     SET user_name = ?,bio = ?

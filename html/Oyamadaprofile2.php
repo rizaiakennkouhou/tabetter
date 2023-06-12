@@ -132,7 +132,6 @@
 
 
 <script>
-    alert("ユーザー名は1文字以上10文字以下で入力してください。");
     function openModal() {
         var modal = document.getElementById("modal");
         modal.style.display = "block";
