@@ -20,17 +20,7 @@
             //移動   テストで一旦　Oyamadaprofile　にしてます
             header('Location: Oyamadatime.php');
             exit();
-
         } catch (BadMethodCallException $bex) {
-
-
-            $_SESSION['user_id']=$row['user_id'];
-            // echo $row['user_id'];
-        }
-            
-
-        catch (BadMethodCallException $bex) {
-
             //エラーキャッチ　メアドなし
             $msg='メールアドレスが存在しません';
         }catch(LogicException $lex){

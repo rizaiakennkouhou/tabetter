@@ -19,7 +19,7 @@
                 throw new BadMethodCallException("メールアドレスが存在しません");
             }
             foreach($serchArray as $row){
-                if($pass == $row['password']){
+                if(password_verify($pass,$row['password'])){
                     //パスワード一致
                     return $serchArray;
                 }else{

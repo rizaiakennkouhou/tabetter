@@ -5,5 +5,14 @@ header {
 /* 画像スライダー */
 .splide__slide img {
     width: 100%;
-    height: auto;
-  }
+    height: 100%;
+    object-fit: cover;
+}
+.backBtn{
+    background-color: #fff;
+    border: none;
+}
+/* 詳細トグル ボタン*/
+.navber-toggler:focus{
+ box-shadow: none;
+}

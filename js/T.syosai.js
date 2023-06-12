@@ -1,1 +1,2 @@
-new Splide( '#image-carousel' ).mount();
+const splide = new Splide( '#image-carousel' );
+splide.mount();
