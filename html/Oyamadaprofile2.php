@@ -3,6 +3,19 @@
     require_once '../DAO/userdb.php';
     $userdao = new DAO_userdb();
     $user_id = isset($_POST['user_id']) ? $_POST['user_id'] : '';
+
+
+     //データベースに接続
+     $pdo = new PDO('mysql:host=localhost; dbname=tabetterdb; charset=utf8',
+     'webuser', 'abccsd2');
+ 
+     $sql = "SELECT * FROM user_image WHERE user_id = ? ";
+     $stmt = $pdo->prepare($sql);
+     $stmt->bindValue(1, $_POST['user_id'], PDO::PARAM_STR);
+     $stmt->execute();
+     $image = $stmt->fetch(PDO::FETCH_ASSOC);
+ 
+     $img = base64_encode($image['user_image']);
 ?>
 
 
@@ -57,9 +70,10 @@
   <!-- ヘッダー↑ -->
   <div id="app">
   <div id="photo">
-    <button v-on:click="openModal" class="button-style">
-    <img src="../DAO/userdisplay.php" width="100">
-    </button>
+  <!--画像 -->
+  <div class="icon-image">
+            <img src="data:<?php echo $image['image_type'] ?>;base64,<?php echo $img; ?>">
+  </div>
     </div>
     <!-- open-modalの中身が表示される -->
     <open-modal v-show="showContent" v-on:from-child="closeModal">
@@ -85,7 +99,7 @@
         <!-- <h1 class="name" id="username"><?= $userdao->getUserName($_SESSION['user_id']); ?></h1> -->
     </div>
     <div>
-    <p class="name_id"><?= isset($_POST['user_id']) ? $userdao->getUserMail($_POST['user_id']) : ''; ?></p>
+    <p class="name_id"><?= isset($_POST['user_id']) ? $userdao->getUserid($_POST['user_id']) : ''; ?></p>
         <!-- <p class="name_id"><?= $userdao->getUserMail($_SESSION['user_id']); ?></p> -->
     </div>
     <div class="rank">

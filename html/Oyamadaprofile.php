@@ -10,7 +10,7 @@
 
     $sql = "SELECT * FROM user_image WHERE user_id = ? ";
     $stmt = $pdo->prepare($sql);
-    $stmt->bindValue(1, "avocado1", PDO::PARAM_STR);
+    $stmt->bindValue(1, $_SESSION['user_id'], PDO::PARAM_STR);
     $stmt->execute();
     $image = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -125,9 +125,9 @@
     <form method="POST" action="../DAO/userupdate.php" enctype="multipart/form-data">
     <h2>プロフィール編集</h2>
         <p>ユーザー名:</p>
-        <input type="text" name="user_name" id="edit-username">
+        <input type="text" name="user_name" id="edit-username" value="<?= $userdao->getUserName($_SESSION['user_id'])?>">
         <p>自己紹介文:</p>
-        <input type="text" name="bio" id="edit-bio">
+        <input type="text" name="bio" id="edit-bio" value="<?= $userdao->getUserBio($_SESSION['user_id'])?>">
         <input type="hidden" name="id" value="<?= $_SESSION['user_id']?>">
         <button onclick="saveChanges()" type="submit">保存</button>
     </form>

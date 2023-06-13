@@ -50,21 +50,21 @@
 }
 
 .frame{
-  width: 95%; 
-  height: 140px;
-  border: 2px solid #ffac4a; 
-  border-radius: 6px; 
+  width: 95%;
+  height: 250px;
+  border: 2px solid #ffac4a;
+  border-radius: 6px;
 }
 
 .toukou{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100px;
-  padding: 10px 20px;
+  position: fixed;
+  left: 50%;
+  bottom: 95px;
+  transform: translateX(-50%);
 }
 
 .button {
+  display: block;
   text-align: center;
   text-decoration: none;
   background-color: #ffac4a;
@@ -72,11 +72,19 @@
   font-size: 17px;
   border: none;
   border-radius: 50px 50px 50px 50px;
-  width: 180px; 
-  height: 55px; 
-  line-height: 50px; 
+  width: 180px;
+  height: 55px;
+  line-height: 55px;
   box-shadow: 1px 1px 4px rgba(20, 1, 1, 1);
   transition: background-color 0.3s ease-in-out;
+}
+
+/* レスポンシブ対応 */
+@media screen and (max-width: 768px) {
+  .toukou {
+    width: 100%;
+    padding: 0 100px;
+  }
 }
 
 
