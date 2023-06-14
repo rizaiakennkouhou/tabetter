@@ -60,13 +60,13 @@
                     <p>価格のテキストボックス</p>
                     <input type="text" name="price">
                     <p>場所のテキストボックス</p>
-                    <input type="text" name="addres">
+                    <input type="text" name="address">
                     </details>
             </div>
             <div>
                 <p>画像を最大４枚まで選択</p>
                 <input type="file" name="image[]" multiple>
-                <input type="text" name="id">
+                <input type="text" name="userid">
                 <input type="submit" value="送信！">
             </div>
         </form>
