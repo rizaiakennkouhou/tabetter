@@ -37,5 +37,124 @@ class DAO_forumdb{
             } 
                 echo $s;
         }
+        // フォーラム関数
+
+        // 詳細を出す
+        public function getForumDetail($userId) {
+            $pdo = $this->dbConnect();
+        
+            $sql = "SELECT * FROM forum WHERE user_id = ?";
+            $ps = $pdo->prepare($sql);
+            $ps->bindValue(1, $userId, PDO::PARAM_STR);
+            $ps->execute();
+        
+            $result = $ps->fetch(PDO::FETCH_ASSOC);
+        
+            if ($result) {
+                return $result['forum_detail'];
+
+            } else {
+                return '投稿が見つかりませんでした';
+            }
+        }
+
+        // タイトルを出す
+        public function getForumTitle($forumId) {
+            $pdo = $this->dbConnect();
+        
+            $sql = "SELECT * FROM forum WHERE forum_id = ?";
+            $ps = $pdo->prepare($sql);
+            $ps->bindValue(1, $forumId, PDO::PARAM_INT);
+            $ps->execute();
+        
+            $result = $ps->fetch(PDO::FETCH_ASSOC);
+        
+            if ($result) {
+                return $result['title'];
+
+            } else {
+                return 'タイトル名が見つかりませんでした';
+            }
+        }
+
+
+        // 時間を出す
+        public function getForumDate($userId) {
+            $pdo = $this->dbConnect();
+        
+            $sql = "SELECT * FROM forum WHERE forum_id = ?";
+            $ps = $pdo->prepare($sql);
+            $ps->bindValue(1, $userId, PDO::PARAM_STR);
+            $ps->execute();
+        
+            $result = $ps->fetch(PDO::FETCH_ASSOC);
+        
+            if ($result) {
+                return $result['forum_date'];
+
+            } else {
+                return '時間が見つかりませんでした';
+            }
+        }
+
+
+        // ユーザーIDを出す
+        public function getUserId($userId) {
+            $pdo = $this->dbConnect();
+        
+            $sql = "SELECT * FROM forum WHERE forum_id = ?";
+            $ps = $pdo->prepare($sql);
+            $ps->bindValue(1, $userId, PDO::PARAM_STR);
+            $ps->execute();
+        
+            $result = $ps->fetch(PDO::FETCH_ASSOC);
+        
+            if ($result) {
+                return $result['user_id'];
+
+            } else {
+                return 'ユーザー名が見つかりませんでした';
+            }
+        }
+
+        // フォーラム全件検索
+        public function getForumIds(){
+            $pdo = $this->dbConnect();
+    
+            $sql = "SELECT * FROM forum ORDER BY forum_id DESC";
+    
+            $ps = $pdo->prepare($sql);
+    
+            $ps->execute();
+            $result = $ps->fetchAll(PDO::FETCH_ASSOC);
+    
+            foreach($result as $row){
+                $ForumIds[] = $row['forum_id'];
+            }
+    
+            return $ForumIds;
+        }
+
+        //forum_idからuser_idを検索
+    public function getUserIdsByForumId($forumId){
+        $pdo = $this->dbConnect();
+
+        $sql = "SELECT * FROM forum WHERE forum_id = ?";
+
+        $ps = $pdo->prepare($sql);
+
+        $ps->bindValue(1, $forumId, PDO::PARAM_INT);
+
+        $ps->execute();
+        $result = $ps->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach($result as $row){
+            $userIds=$row['user_id'];
+        }
+
+        return $userIds;
+    }
+
+
     }
 ?>
