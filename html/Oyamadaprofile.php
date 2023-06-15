@@ -2,6 +2,8 @@
     session_start();
     require_once '../DAO/userdb.php';
     $userdao = new DAO_userdb();
+    require_once '../DAO/rank.php';
+    $rank = new DAO_rank();
     
    
     //データベースに接続
@@ -96,7 +98,7 @@
     </div>
     <div class="rank">
         <img src="../svg/trophy.svg" alt="トロフィー" class="trophy">
-        <p id="r_name">ブロンズ</p>
+        <p id="r_name"><?= $rank->userRank($_SESSION['user_id']); ?></p>
     </div>
     <div class="waku">
     <div class="frame">

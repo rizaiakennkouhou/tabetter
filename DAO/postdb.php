@@ -94,6 +94,20 @@ class DAO_post{
 
         return $count;
     }
+
+    public function getPostCommentCount($postId){
+        $pdo = $this->dbConnect();
+
+        $sql = "SELECT * FROM post_comment WHERE post_id = ?";
+
+        $ps = $pdo->prepare($sql);
+        $ps->bindValue(1, $postId, PDO::PARAM_INT);
+
+        $ps->execute();
+        $count = $ps->rowCount();
+
+        return $count;
+    }
 }
 
 ?>

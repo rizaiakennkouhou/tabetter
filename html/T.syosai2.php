@@ -44,11 +44,10 @@ $img = base64_encode($image['user_image']);
             <img src="data:<?php echo $image['image_type'] ?>;base64,<?php echo $img; ?>">
     </div>
     <p>コメント先:</p>
-        <p>ユーザー名:</p>
-        <input type="text" name="user_name" id="edit-username" value="<?= $userdao->getUserName($_POST['user_id'])?>">
-        <p>自己紹介文:</p>
-        <input type="text" name="bio" id="edit-bio" value="<?= $userdao->getUserBio($_POST['user_id'])?>">
-        <input type="hidden" name="id" value="<?= $_POST['user_id']?>">
+        
+        <input type="text" name="comment_detail" id="edit-username">
+        
+        <input type="hidden" name="user_id" value="<?= $_POST['user_id']?>">
         <button onclick="saveChanges()" type="submit">保存</button>
     </form>
     <button onclick="closeModal()">キャンセル</button>
@@ -56,6 +55,7 @@ $img = base64_encode($image['user_image']);
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="../js/MaedaTest.js"></script>
 <script src="../js/Oyamadaprofile.js"></script>
 </body>
