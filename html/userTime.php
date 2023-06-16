@@ -4,19 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>画面一覧</title>
     <link rel="stylesheet" href="../css/OyamadaBar.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/Oyamadatime2.css">
-    <link rel="stylesheet" href="../css/modal.css">
-    <link rel="stylesheet" href="../css/Oyamadaprofile.css">
 </head>
 <body>
     <?php
+        session_start();
         require_once '../DAO/postdb.php';
         require_once '../DAO/userdb.php';
+        require_once '../DAO/forumdb.php'
         $daoPostDb = new DAO_post();
         $daoUserDb = new DAO_userdb();
+        $daoForumdb = new DAO_forumdb();
     ?>
     <div id="app">
     <!-- ヘッダー -->
@@ -115,67 +116,36 @@
 </div>
 
 
-<div id="modal" class="modal">
-    <div id="overlay" class="modal-content">
-    <div id="content" class="content">
-    <form method="POST" action="../DAO/post_imagesdb.php" enctype="multipart/form-data">
-            <div>
-                <p>投稿詳細のテキストボックス</p>
-                <input type="text" name="detail">
-                <details>
-                <summary>詳細</summary>
-                    <p>店名のテキストボックス</p>
-                    <input type="text" name="store">
-                    <p>メニュー名のテキストボックス</p>
-                    <input type="text" name="menu">
-                    <p>価格のテキストボックス</p>
-                    <input type="text" name="price">
-                    <p>場所のテキストボックス</p>
-                    <input type="text" name="address">
-                    </details>
-            </div>
-            <div>
-                <p>画像を最大４枚まで選択</p>
-                <input type="file" name="image[]" multiple>
-                <input type="text" name="userid">
-                <input type="submit" value="送信！">
-            </div>
-        </form>
-    <button onclick="closeModal()">キャンセル</button>
+
+
+
+    <!-- navigationBar -->
+    <div class="border"></div>
+ 
+    <div class="navigation">
+     <a class="list-link" href="#" onclick="changeImage(this, 'timeLine.php')">
+     <i class="icon">
+     <img src="../svg/time2.svg" class="image-size">
+     </i>
+     </a>
+     <a class="list-link" href="#" onclick="changeImage2(this, 'forum.php')">
+     <i class="icon">
+     <img src="../svg/forum.svg" class="image-size1">
+     </i>
+     </a>
+     <a class="list-link" href="#" onclick="changeImage3(this, 'Oyamadatokou.html')">
+     <i class="icon">
+     <img src="../svg/post.svg" class="image-size">
+     </i>
+     </a>
+     <a class="list-link" href="#" onclick="changeImage4(this, 'myProfile.php')">
+     <i class="icon">
+     <img src="../svg/profile.svg" class="image-size">
+     </i>
+     </a>
     </div>
-    </div>
-</div>
-
- <!-- navigationBar -->
- <div class="border"></div>
-
-<div class="navigation">
-    <a class="list-link" href="timeLine2.php">
-        <i class="icon">
-            <img src="../svg/time2.svg" class="image-size">
-        </i>
-    </a>
-    <a class="list-link" href="forum.php">
-        <i class="icon">
-            <img src="../svg/forum.svg" class="image-size1">
-        </i>
-    </a>
-    <a class="list-link" onclick="openModal()">
-        <i class="icon">
-            <img src="../svg/post.svg" class="image-size">
-        </i>
-    </a>
-    <a class="list-link" href="myProfile2.php">
-        <i class="icon">
-            <img src="../svg/profile.svg" class="image-size">
-        </i>
-    </a>
-</div>
-
-
-    <script src="../js/Oyamadaprofile.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <!-- <script src="../js/OyamadaBar.js"></script> -->
+    <script src="../js/OyamadaBar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <script src="../js/time.js"></script>
 </body>
