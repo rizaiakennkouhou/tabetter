@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form method="POST" action="T.syosai2.php" enctype="multipart/form-data">
+    <form method="POST" action="Oyamadaprofile.php" enctype="multipart/form-data">
         <input type="text" id="user_id" name="user_id" value="">
         <input type="submit" value="送信">
     </form>

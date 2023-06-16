@@ -2,6 +2,8 @@
     session_start();
     require_once '../DAO/userdb.php';
     $userdao = new DAO_userdb();
+    require_once '../DAO/rank.php';
+    $rank = new DAO_rank();
     $user_id = isset($_POST['user_id']) ? $_POST['user_id'] : '';
 
 
@@ -104,7 +106,7 @@
     </div>
     <div class="rank">
         <img src="../svg/trophy.svg" alt="トロフィー" class="trophy">
-        <p id="r_name">ブロンズ</p>
+        <p id="r_name"><?= $rank->userRank($_POST['user_id']); ?></p>
   </div>
     <div class="waku">
     <div class="frame">
@@ -187,12 +189,12 @@
     <div class="border"></div>
  
     <div class="navigation">
-     <a class="list-link" href="#" onclick="changeImage(this, 'Oyamadatime.html')">
+     <a class="list-link" href="#" onclick="changeImage(this, 'timeLine.php')">
      <i class="icon">
      <img src="../svg/time.svg" class="image-size">
      </i>
      </a>
-     <a class="list-link" href="#" onclick="changeImage2(this, 'Oyamadaforum.html')">
+     <a class="list-link" href="#" onclick="changeImage2(this, 'forum.php')">
      <i class="icon">
      <img src="../svg/forum.svg" class="image-size1">
      </i>
@@ -202,7 +204,7 @@
      <img src="../svg/post.svg" class="image-size">
      </i>
      </a>
-     <a class="list-link" href="#" onclick="changeImage4(this, 'Oyamadaprofile.html')">
+     <a class="list-link" href="#" onclick="changeImage4(this, 'myProfile.php')">
      <i class="icon">
      <img src="../svg/profile2.svg" class="image-size">
      </i>

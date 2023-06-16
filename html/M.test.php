@@ -17,6 +17,9 @@
 <?php 
     require_once '../DAO/forumdb.php';
     $forumdao = new DAO_forumdb();
+
+    require_once '../DAO/rank.php';
+    $rank = new DAO_rank();
 ?>
 <body>
     <div class="container-fluid">
@@ -41,7 +44,7 @@
         
     </div>
     <div>
-        <?= $forumdao->getForumId("1"); ?>
+        <?= $rank->userRank('tamanegi'); ?>
     </div>
 
 <div id="app">

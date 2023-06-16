@@ -7,7 +7,9 @@
     <title>フォーラム</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
-
+    .custom-hr {
+        border: 1px solid #FFAC4A; /* 赤色のカラーコードを指定 */
+    }
     </style>
     <link rel="stylesheet" href="../css/forum.css">
 </head>
@@ -17,9 +19,17 @@
         <div class="card mt-2">
             <div class="top_row row ms-1">
                 <h5 class="title col mb-0">
-                    あああ<!-- タイトル -->
+                    学校の近くで美味しい店ありませんか<!-- タイトル -->
                 </h5>
             </div>
+            <hr class="custom-hr">
+            <div class="top_row row ms-1">
+                <p class="title col mb-0" style="font-size: 16px;">
+                    学校の近くで美味しい店ありませんか出来れば博多駅周辺がいいです予算は1000～2000円がいいです
+                </p>
+            </div>
+            <hr class="custom-hr">
+
             <div class="bottom_row row mx-1 mb-1">
                 <p class="col mb-0">
                     <svg width="21" height="21" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -39,6 +49,10 @@
             </div>
         </div>
 
+    </div>
+
+    <div class = "top_row row ms-1">
+        コメント
     </div>
 
 

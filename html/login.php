@@ -18,7 +18,7 @@
                 // echo $row['user_id'];
             }
             //移動   テストで一旦　Oyamadaprofile　にしてます
-            header('Location: Oyamadatime.php');
+            header('Location: timeLine.php');
             exit();
         } catch (BadMethodCallException $bex) {
             //エラーキャッチ　メアドなし
@@ -87,7 +87,7 @@
                 
                 <p class="registTxt text-center">アカウントをお持ちでない方</p>
                 <div class="d-grid gap-2 col-6 mx-auto mt-3">
-                    <button class="registBtn btn" type="button" onclick="location.href='toroku.html'">新規登録</button>
+                    <button class="registBtn btn" type="button" onclick="location.href='signUp.php'">新規登録</button>
                 </div>
         </div> 
         

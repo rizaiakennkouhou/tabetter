@@ -64,7 +64,9 @@
                 </div>
                 <div class="form col text-center" id="">
                 <div>
-                    <input type="file" name="image" required>
+                    <!-- <input type="file" name="image" required> -->
+                    <img src="../svg/imagefile.svg" alt="" id="file-iamge">
+                    <input type="text" name="userIcon" placeholder="アイコン" class="formInput text-center    " required>
                 </div>
                 </div>
 
