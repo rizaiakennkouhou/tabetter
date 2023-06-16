@@ -106,7 +106,8 @@ class DAO_userdb{
                     return 'ユーザーIDが見つかりませんでした';
                 }
     
-                }
-    }
+                }    
+            
+            }
         
  
