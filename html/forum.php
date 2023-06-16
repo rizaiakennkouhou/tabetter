@@ -18,6 +18,7 @@
         <link rel="stylesheet" href="../css/forum.css">
         <link rel="stylesheet" href="../css/modal.css">
         <link rel="stylesheet" href="../css/Oyamadaprofile.css">
+        <form method="GET" action="../DAO/forumDetail.php" enctype="multipart/form-data">
 </head>
 <body>
 
@@ -58,13 +59,24 @@
         foreach($forumIds as $forumId){
             ?>
     <div class="container-fluid">
-
+    <form method="GET" action="./M.test.php" enctype="multipart/form-data">
+        <input type="hidden" name="formuid" value="<?= $forumId ?>">
         <div class="card mt-2">
             <div class="top_row row ms-1">
-                <h5 class="title col mb-0">
-                    <?= $forumdao->getForumTitle($forumId); ?>
-                </h5>
+            <a class="link-style" href="./forumDetail.php?forumid=<?= $forumId ?>">
+                <h6 class="title col mb-0">
+                    <?php
+                $title = $forumdao->getForumTitle($forumId);
+                        $maxCharacters = 25; // 表示する最大文字数
+                        if (mb_strlen($title) > $maxCharacters) {
+                            $title = mb_substr($title, 0, $maxCharacters) . '...';
+                        }
+                        echo $title;
+                        ?>
+                </h6>
+            </a>
             </div>
+            
             <div class="bottom_row row mx-1 mb-1">
                 <p class="col mb-0">
                     <svg width="21" height="21" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -82,7 +94,7 @@
                 </p>
             </div>
         </div>
-
+    </form>
     </div>
       <?php } ?>
 
@@ -91,13 +103,13 @@
       <div id="modal" class="modal">
     <div id="overlay" class="modal-content">
     <div id="content" class="content">
-    <form method="POST" action="../DAO/userupdate.php" enctype="multipart/form-data">
+    <form method="POST" action="../DAO/forumInsert.php" enctype="multipart/form-data">
     <h2>プロフィール編集</h2>
-        <p>ユーザー名:</p>
-        <input type="text" name="user_name" id="edit-username">
-        <p>自己紹介文:</p>
-        <input type="text" name="bio" id="edit-bio">
-        <input type="hidden" name="id">
+        <p>タイトル</p>
+        <input type="text" name="title" id="edit-username">
+        <p>投稿内容</p>
+        <input type="text" name="detail" id="edit-bio">
+        <input type="hidden" name="userid" value="<?= $_SESSION['user_id']?>">
         <button onclick="saveChanges()" type="submit">保存</button>
     </form>
     <button onclick="closeModal()">キャンセル</button>
@@ -138,7 +150,11 @@
 
 
 
-
+<script>
+function redirectToForumDetail(forumId) {
+    window.location = "./M.test.php?formid=" + forumId;
+}
+</script>
     <script src="../js/Oyamadaprofile.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
  </body>

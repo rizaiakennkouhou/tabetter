@@ -2,6 +2,24 @@
     session_start();
     require_once '../DAO/forumdb.php';
     $forumdao = new DAO_forumdb();
+
+
+
+    //データベースに接続
+    $pdo = new PDO('mysql:host=localhost; dbname=tabetterdb; charset=utf8',
+    'webuser', 'abccsd2');
+
+    $sql = "SELECT * FROM user_image WHERE user_id = ? ";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindValue(1, $_POST['user_id'], PDO::PARAM_STR);
+    $stmt->execute();
+    $image = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    $img = base64_encode($image['user_image']);
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -17,6 +35,8 @@
     }
     </style>
     <link rel="stylesheet" href="../css/forum.css">
+    <link rel="stylesheet" href="../css/modal.css">
+    <link rel="stylesheet" href="../css/Oyamadaprofile.css">
 </head>
 <body>
     <!-- ヘッダー -->
@@ -64,16 +84,29 @@
 
             <div class="bottom_row row mx-1 mb-1">
                 <p class="col mb-0">
-                    <svg width="21" height="21" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3 4H21V17H9V15H19V6H5V16H3V4Z" fill="#424242"/>
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M5 17.5858V15H3V22.4142L8.41421 17H12.5V15H7.58579L5 17.5858Z" fill="#424242"/>
-                    <rect x="7" y="9" width="2" height="2" fill="#424242"/>
-                    <rect x="11" y="9" width="2" height="2" fill="#424242"/>
-                    <rect x="15" y="9" width="2" height="2" fill="#424242"/>
-                    </svg>
+                <img src="../svg/comment.svg" onclick="openModal()">
                     <!-- コメント数 -->
                     件のコメント
                 </p>
+                <div id="modal" class="modal">
+                    <div id="overlay" class="modal-content">
+                    <div id="content" class="content">
+                    <form method="POST" action="../DAO/forum_commentdb.php" enctype="multipart/form-data">
+                    <h2>キャンセル</h2>
+                    <div class="icon-image">
+                            <img src="data:<?php echo $image['image_type'] ?>;base64,<?php echo $img; ?>">
+                    </div>
+                    <p>コメント先:</p>
+                        
+                        <input type="text" name="forum_comment_detail" id="edit-username">
+                        
+                        <input type="hidden" name="user_id" value="<?= $_POST['user_id']?>">
+                        <button onclick="saveChanges()" type="submit">保存</button>
+                    </form>
+                    <button onclick="closeModal()">キャンセル</button>
+                    </div>
+                    </div>
+                </div>
                 <p class="col mb-0 text-end">
                     <!-- 投稿時間 -->
                     <?= $forumdao->getForumDate($_GET['forumid']); ?>分前
@@ -87,7 +120,7 @@
         コメント
     </div>
 
-
+    <script src="../js/Oyamadaprofile.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
  </body>
 </html>
