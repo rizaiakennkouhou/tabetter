@@ -16,6 +16,8 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link rel="stylesheet" href="../css/OyamadaBar.css">
         <link rel="stylesheet" href="../css/forum.css">
+        <link rel="stylesheet" href="../css/modal.css">
+        <link rel="stylesheet" href="../css/Oyamadaprofile.css">
 </head>
 <body>
 
@@ -84,6 +86,28 @@
     </div>
       <?php } ?>
 
+
+
+      <div id="modal" class="modal">
+    <div id="overlay" class="modal-content">
+    <div id="content" class="content">
+    <form method="POST" action="../DAO/userupdate.php" enctype="multipart/form-data">
+    <h2>プロフィール編集</h2>
+        <p>ユーザー名:</p>
+        <input type="text" name="user_name" id="edit-username">
+        <p>自己紹介文:</p>
+        <input type="text" name="bio" id="edit-bio">
+        <input type="hidden" name="id">
+        <button onclick="saveChanges()" type="submit">保存</button>
+    </form>
+    <button onclick="closeModal()">キャンセル</button>
+    </div>
+    </div>
+    </div>
+
+
+
+
  <!-- navigationBar -->
  <div class="border"></div>
 
@@ -100,7 +124,7 @@
     </a>
     <a class="list-link">
         <i class="icon">
-            <img src="../svg/post.svg" class="image-size">
+            <img src="../svg/post.svg" class="image-size" onclick="openModal()">
         </i>
     </a>
     <a class="list-link" href="myProfile2.php">
@@ -115,7 +139,7 @@
 
 
 
-
+    <script src="../js/Oyamadaprofile.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
  </body>
 </html>
