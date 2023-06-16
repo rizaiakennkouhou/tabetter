@@ -84,31 +84,32 @@
     </div>
       <?php } ?>
 
-            <!-- navigationBar -->
-    <div class="border"></div>
- 
-            <div class="navigation">
-            <a class="list-link" href="#" onclick="changeImage(this, 'Oyamadatime.html')">
-            <i class="icon">
+ <!-- navigationBar -->
+ <div class="border"></div>
+
+<div class="navigation">
+    <a class="list-link" href="timeLine2.php">
+        <i class="icon">
             <img src="../svg/time.svg" class="image-size">
-            </i>
-            </a>
-            <a class="list-link" href="#" onclick="changeImage2(this, 'Oyamadaforum.html')">
-            <i class="icon">
+        </i>
+    </a>
+    <a class="list-link" href="forum.php">
+        <i class="icon">
             <img src="../svg/forum2.svg" class="image-size1">
-            </i>
-            </a>
-            <a class="list-link" href="#" onclick="changeImage3(this, 'Oyamadatokou.html')">
-            <i class="icon">
+        </i>
+    </a>
+    <a class="list-link">
+        <i class="icon">
             <img src="../svg/post.svg" class="image-size">
-            </i>
-            </a>
-            <a class="list-link" href="#" onclick="changeImage4(this, 'Oyamadaprofile.html')">
-            <i class="icon">
+        </i>
+    </a>
+    <a class="list-link" href="myProfile2.php">
+        <i class="icon">
             <img src="../svg/profile.svg" class="image-size">
-            </i>
-            </a>
-            </div>
+        </i>
+    </a>
+</div>
+
 
 
 

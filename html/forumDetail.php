@@ -1,3 +1,8 @@
+<?php 
+    session_start();
+    require_once '../DAO/forumdb.php';
+    $forumdao = new DAO_forumdb();
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -8,24 +13,51 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
     .custom-hr {
-        border: 1px solid #FFAC4A; /* 赤色のカラーコードを指定 */
+        border: 1px solid #FFAC4A; /* カラーコードを指定 */
     }
     </style>
     <link rel="stylesheet" href="../css/forum.css">
 </head>
 <body>
+    <!-- ヘッダー -->
+    <header class="mb-3 border-bottom" id="header">
+    <div class="container-fluid">
+        <div class="row row justify-content-between">
+
+            <div class="d-flex align-items-center mb-0 text-dark text-decoration-none col-7 text-left px-0" style="height: 50px; padding-top: 55px;">
+                <img src="../svg/a.svg">
+            </div>
+
+            <button class="navbar-toggler col-3 p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation" style="height: 50px; box-shadow: none;">
+                <img src="../svg/b.svg">       
+            </button>
+
+        </div>
+        <div class="collapse navbar-collapse" id="navbarsExample05">
+            <form wtx-context="0C9FB6AB-0B58-4B25-A43A-44B7ADC851E5" class="mx-4">
+              <input class="form-control text-center mb-3" type="text" placeholder="キーワードを入力" aria-label="Search" wtx-context="AA84657A-0F9B-4A04-B5FA-D24659B477FD"
+              style="height: 34px;
+              border: 3px solid #FFAC4A; 
+              box-shadow: none;">
+            </form>
+        </div>
+    </div>
+    </header>
+  
+  <!-- ヘッダー↑ -->
+
     <div class="container-fluid">
 
         <div class="card mt-2">
             <div class="top_row row ms-1">
                 <h5 class="title col mb-0">
-                    学校の近くで美味しい店ありませんか<!-- タイトル -->
+                <?= $forumdao->getForumTitle($_GET['forumid']); ?>
                 </h5>
             </div>
             <hr class="custom-hr">
             <div class="top_row row ms-1">
                 <p class="title col mb-0" style="font-size: 16px;">
-                    学校の近くで美味しい店ありませんか出来れば博多駅周辺がいいです予算は1000～2000円がいいです
+                <?= $forumdao->getForumDetail($_GET['forumid']); ?>
                 </p>
             </div>
             <hr class="custom-hr">
@@ -44,7 +76,7 @@
                 </p>
                 <p class="col mb-0 text-end">
                     <!-- 投稿時間 -->
-                    分前
+                    <?= $forumdao->getForumDate($_GET['forumid']); ?>分前
                 </p>
             </div>
         </div>
