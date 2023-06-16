@@ -86,6 +86,28 @@ class DAO_userdb{
             }
 
             }
-    }
+
+
+            public function getUserid($userId) {
+                $pdo = $this->dbConnect();
+            
+                $sql = "SELECT * FROM user WHERE user_id = ?";
+    
+                $ps = $pdo->prepare($sql);
+                $ps->bindValue(1, $userId, PDO::PARAM_STR);
+                $ps->execute();
+            
+                $result = $ps->fetch(PDO::FETCH_ASSOC);
+            
+                if ($result) {
+                    return $result['user_id'];
+    
+                } else {
+                    return 'ユーザーIDが見つかりませんでした';
+                }
+    
+                }    
+            
+            }
         
  

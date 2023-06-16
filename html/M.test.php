@@ -17,6 +17,9 @@
 <?php 
     require_once '../DAO/forumdb.php';
     $forumdao = new DAO_forumdb();
+
+    require_once '../DAO/rank.php';
+    $rank = new DAO_rank();
 ?>
 <body>
     <div class="container-fluid">
@@ -41,7 +44,7 @@
         
     </div>
     <div>
-        <?= $forumdao->getForumId("1"); ?>
+        <?= $rank->userRank('tamanegi'); ?>
     </div>
 
 <div id="app">
@@ -60,13 +63,13 @@
                     <p>価格のテキストボックス</p>
                     <input type="text" name="price">
                     <p>場所のテキストボックス</p>
-                    <input type="text" name="addres">
+                    <input type="text" name="address">
                     </details>
             </div>
             <div>
                 <p>画像を最大４枚まで選択</p>
                 <input type="file" name="image[]" multiple>
-                <input type="text" name="id">
+                <input type="text" name="userid">
                 <input type="submit" value="送信！">
             </div>
         </form>

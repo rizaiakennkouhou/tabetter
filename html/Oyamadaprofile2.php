@@ -2,7 +2,22 @@
     session_start();
     require_once '../DAO/userdb.php';
     $userdao = new DAO_userdb();
-    
+    require_once '../DAO/rank.php';
+    $rank = new DAO_rank();
+    $user_id = isset($_POST['user_id']) ? $_POST['user_id'] : '';
+
+
+     //データベースに接続
+     $pdo = new PDO('mysql:host=localhost; dbname=tabetterdb; charset=utf8',
+     'webuser', 'abccsd2');
+ 
+     $sql = "SELECT * FROM user_image WHERE user_id = ? ";
+     $stmt = $pdo->prepare($sql);
+     $stmt->bindValue(1, $_POST['user_id'], PDO::PARAM_STR);
+     $stmt->execute();
+     $image = $stmt->fetch(PDO::FETCH_ASSOC);
+ 
+     $img = base64_encode($image['user_image']);
 ?>
 
 
@@ -57,9 +72,10 @@
   <!-- ヘッダー↑ -->
   <div id="app">
   <div id="photo">
-    <button v-on:click="openModal" class="button-style">
-    <img src="../DAO/userdisplay.php" width="100">
-    </button>
+  <!--画像 -->
+  <div class="icon-image">
+            <img src="data:<?php echo $image['image_type'] ?>;base64,<?php echo $img; ?>">
+  </div>
     </div>
     <!-- open-modalの中身が表示される -->
     <open-modal v-show="showContent" v-on:from-child="closeModal">
@@ -77,22 +93,25 @@
 
     <div class="edit">
     
-        <img src="../svg/tpyosaka.svg" alt="編集ボタン" onclick="openModal()">
+        <!-- <img src="../svg/tpyosaka.svg" alt="編集ボタン" onclick="openModal()"> -->
 
 </div>
     <div class="account">
-        <h1 class="name" id="username"><?= $userdao->getUserName($_SESSION['user_id']); ?></h1>
+    <h1 class="name" id="username"><?php echo isset($_POST['user_id']) ? $userdao->getUserName($_POST['user_id']) : ''; ?></h1>
+        <!-- <h1 class="name" id="username"><?= $userdao->getUserName($_SESSION['user_id']); ?></h1> -->
     </div>
     <div>
-        <p class="name_id"><?= $userdao->getUserMail($_SESSION['user_id']); ?></p>
+    <p class="name_id"><?= isset($_POST['user_id']) ? $userdao->getUserid($_POST['user_id']) : ''; ?></p>
+        <!-- <p class="name_id"><?= $userdao->getUserMail($_SESSION['user_id']); ?></p> -->
     </div>
     <div class="rank">
         <img src="../svg/trophy.svg" alt="トロフィー" class="trophy">
-        <p id="r_name">ブロンズ</p>
+        <p id="r_name"><?= $rank->userRank($_POST['user_id']); ?></p>
   </div>
     <div class="waku">
     <div class="frame">
-    <p id="bio"><?= $userdao->getUserBio($_SESSION['user_id']); ?></p>
+    <p id="bio"><?= isset($_POST['user_id']) ? $userdao->getUserBio($_POST['user_id']) : ''; ?></p>
+    <!-- <p id="bio"><?= $userdao->getUserBio($_SESSION['user_id']); ?></p> -->
     </div>
     </div>
    <!-- モーダル -->
@@ -111,7 +130,7 @@
     </div>
 </div> -->
 
-<div id="modal" class="modal">
+<!-- <div id="modal" class="modal">
     <div id="overlay" class="modal-content">
         <div id="content">
     <form method="POST" action="../DAO/userupdate.php" enctype="multipart/form-data">
@@ -126,7 +145,7 @@
     </form>
 </div>
     </div>
-</div>
+</div> -->
      
 
 
@@ -161,10 +180,10 @@
 </script>
 
     
-
+<!-- 
     <div class="toukou">
         <button class="button">投稿一覧</button>
-    </div>
+    </div> -->
 </div>
     <!-- navigationBar -->
     <div class="border"></div>

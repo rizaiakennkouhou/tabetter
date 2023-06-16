@@ -8,11 +8,12 @@ header {
     height: 100%;
     object-fit: cover;
 }
+/* 戻るボタン */
 .backBtn{
     background-color: #fff;
     border: none;
 }
-/* 詳細トグル ボタン*/
-.navber-toggler:focus{
- box-shadow: none;
+/* 詳細トグルボタン内容 */
+.postInfo>p{
+    margin-bottom: 8px;
 }

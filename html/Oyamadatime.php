@@ -53,12 +53,28 @@
 
         foreach($postIds as $postId){
             $userIds = $daoPostDb->getUserIdsByPostId($postId);
+
+            // ユーザーアイコンのSQL
+            $pdo = new PDO('mysql:host=localhost; dbname=tabetterdb; charset=utf8',
+            'webuser', 'abccsd2');
+
+            $sql = "SELECT * FROM user_image WHERE user_id = ? ";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindValue(1, $userIds, PDO::PARAM_STR);
+            $stmt->execute();
+            $image = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $img = base64_encode($image['user_image']);
+
             echo '
             <!-- 投稿のカード -->
             <div class="card">
                 <div class="card-body">
                     <div class="box">
-                        <img src="../userImage/main.jpg" class="profielIcon" />
+                        <form action="Oyamadaprofile.php" method="get">
+                            <input type="image" src="data:',$image['image_type'],';base64,',$img,'" class="profielIcon" />
+                            <input type="hidden" name="id" value="',($userIds),'">
+                        </form>
                         <p class="userName">',$daoUserDb->getUserName($userIds),'</p>
                         <p class="userComment">
                         '
@@ -80,9 +96,9 @@
                         </div>
                         <div class="col-6">
                             <div class="d-flex justify-content-center">
-                                <img src="../svg/comment.svg" id="commentButton">
+                                <a href="Oyamadatokou.html"><img src="../svg/comment.svg" id="commentButton"></a>
                                 <div class="comment">
-                                    0
+                                    ',$daoPostDb->getPostCommentCount($postId),'
                                 </div>
                             </div>
                         </div>                                                    
