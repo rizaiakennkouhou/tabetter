@@ -17,7 +17,6 @@
         <link rel="stylesheet" href="../css/forum.css">
         <link rel="stylesheet" href="../css/modal.css">
         <link rel="stylesheet" href="../css/Oyamadaprofile.css">
-        <link rel="stylesheet" href="../css/scrollable.css">
         <form method="GET" action="../DAO/forumDetail.php" enctype="multipart/form-data">
 </head>
 <body>
@@ -49,7 +48,7 @@
   
   <!-- ヘッダー↑ -->
 
-  <div class="scrollable">
+
   <?php
         $forumIds = array();
         $forumIds = $forumdao->getForumIds();
@@ -98,7 +97,7 @@
     </div>
       <?php } ?>
 
-    </div>
+
 
       <div id="modal" class="modal">
     <div id="overlay" class="modal-content">

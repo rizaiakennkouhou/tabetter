@@ -12,12 +12,10 @@
 <body>
     <?php
         session_start();
-        require_once '../DAO/postdb.php';
+        require_once '../DAO/userTime.php';
         require_once '../DAO/userdb.php';
-        require_once '../DAO/forumdb.php'
-        $daoPostDb = new DAO_post();
+        $daoUserTime = new DAO_userTimedb();
         $daoUserDb = new DAO_userdb();
-        $daoForumdb = new DAO_forumdb();
     ?>
     <div id="app">
     <!-- ヘッダー -->
@@ -49,51 +47,31 @@
     <div class="row">
 
     <?php
-        $postIds = array();
-        $postIds = $daoPostDb->getPostIds();
         $userIds = array();
+        $userIds = $daoUserDb->getUserIds($_SESSION['user_id']);
         
 
-        foreach($postIds as $postId){
-            $userIds = $daoPostDb->getUserIdsByPostId($postId);
-
-            // ユーザーアイコンのSQL
-            $pdo = new PDO('mysql:host=localhost; dbname=tabetterdb; charset=utf8',
-            'webuser', 'abccsd2');
-
-            $sql = "SELECT * FROM user_image WHERE user_id = ? ";
-            $stmt = $pdo->prepare($sql);
-            $stmt->bindValue(1, $userIds, PDO::PARAM_STR);
-            $stmt->execute();
-            $image = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            $img = base64_encode($image['user_image']);
-
+        foreach($userIds as $userId){
             echo '
             <!-- 投稿のカード -->
             <div class="card">
                 <div class="card-body">
                     <div class="box">
-                        <form action="Oyamadaprofile.php" method="get">
-                            <input type="image" src="data:',$image['image_type'],';base64,',$img,'" class="profielIcon" />
-                            <input type="hidden" name="id" value="',($userIds),'">
-                        </form>
-                        <p class="userName">',$daoUserDb->getUserName($userIds),'</p>
+                        <p class="userName">',$daoUserDb->getUserName($_SESSION['user_id']),'</p>
                         <p class="userComment">
                         '
-                        ,$daoPostDb->getPostDetail($postId),
+                        ,$daoUserDb->getUserDetail($_SESSION['user_id']),
                         '
                         </p>
-                        <img src="../DAO/display.php?id=',($postId),'" width="100" class="postImage">
                     </div>
                     <div class="row row-eq-height">
                         <div class="col-6">
                             <div class="d-flex justify-content-end">
                                 <div class="likeButton">
-                                <input type="checkbox" checked id="',($postId),'" name="likeButton"><label for="',($postId),'"><img src="../svg/Like-black.png" class="likeButtonImg"/></label>
+                                <input type="checkbox" checked id="',($userId),'" name="likeButton"><label for="',($postId),'"><img src="../svg/Like-black.png" class="likeButtonImg"/></label>
                                 </div>
                                 <div class="like" id="likeCnt">
-                                    ',$daoPostDb->getPostCount($postId),'
+                                    ',$daoPostDb->getPostCount($_SESSION['user_id']),'
                                 </div>
                             </div>
                         </div>
@@ -101,7 +79,7 @@
                             <div class="d-flex justify-content-center">
                                 <a href="Oyamadatokou.html"><img src="../svg/comment.svg" id="commentButton"></a>
                                 <div class="comment">
-                                    ',$daoPostDb->getPostCommentCount($postId),'
+                                    ',$daoPostDb->getPostCommentCount($_SESSION['user_id']),'
                                 </div>
                             </div>
                         </div>                                                    
