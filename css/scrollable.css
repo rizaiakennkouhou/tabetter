@@ -1,0 +1,21 @@
+.scrollable {
+    width: 100%;
+        height: calc(80vh - 1px); /* 画面の高さの80%からナビゲーションバーの高さを差し引く */
+        overflow: auto;
+        margin-top: 10px; /* ナビゲーションバーの高さ */
+  }
+  
+  /* スクロールバーのトラック */
+  ::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+/* スクロールバーのハンドル */
+::-webkit-scrollbar-thumb {
+    background-color: #888;
+}
+
+/* スクロールバーのボタン */
+::-webkit-scrollbar-button {
+    display: none;
+}

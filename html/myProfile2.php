@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="../css/OyamadaBar.css">
     <link rel="stylesheet" href="../css/Oyamadaprofile.css">
     <link rel="stylesheet" href="../css/modal.css">
+    <link rel="stylesheet" href="../css/scrollable.css">
 </head>
 
 
@@ -62,6 +63,8 @@
   </header>
   
   <!-- ヘッダー↑ -->
+  <div class="scrollable">
+  <div style="height: 800px;">
   <div id="app">
     <div class="profile_icon">
     <button v-on:click="openModal" class="photo-button">
@@ -105,6 +108,7 @@
     <p id="bio"><?= $userdao->getUserBio($_SESSION['user_id']); ?></p>
     </div>
     </div>
+</div>
    <!-- モーダル -->
 <!-- <div id="modal" class="modal">
     <div class="modal-content">
@@ -141,6 +145,7 @@
         <button class="button">投稿一覧</button>
     </div>
 
+</div>
 </div>
 
 

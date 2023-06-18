@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../css/Oyamadatime2.css">
     <link rel="stylesheet" href="../css/modal.css">
     <link rel="stylesheet" href="../css/Oyamadaprofile.css">
+    <link rel="stylesheet" href="../css/scrollable.css">
 </head>
 <body>
     <?php
@@ -147,9 +148,8 @@
 </div>
 
  <!-- navigationBar -->
- <div class="border"></div>
-
 <div class="navigation">
+<div class="border"></div>
     <a class="list-link" href="timeLine2.php">
         <i class="icon">
             <img src="../svg/time2.svg" class="image-size">
