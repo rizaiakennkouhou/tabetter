@@ -29,7 +29,25 @@
     z-index: 999;
     height: 55px;
     width: 12rem;
-}   
+}
+#file-image{
+    width: 22px;
+    height: 22px;
+}
+.a{
+    display: none;
+    position: absolute;
+    float: left;
+    padding-left: 50%;
+}
+#filesend{
+    padding-left: 50%;
+    /* display: none; */
+} 
+.icon{
+    font-size: 14px;
+    text-align: center;
+}  
 .formInput:focus{
     outline: none;
 }

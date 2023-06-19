@@ -65,8 +65,17 @@
                 <div class="form col text-center" id="">
                 <div>
                     <!-- <input type="file" name="image" required> -->
-                    <img src="../svg/imagefile.svg" alt="" id="file-iamge">
-                    <input type="text" name="userIcon" placeholder="アイコン" class="formInput text-center    " required>
+
+                    <label>
+                        <span class="formInput">
+                            <img src="../svg/p.icon.svg" alt="" id="file-image">
+                        </span>
+                            <div class="a">
+                                <input type="file" name="image" placeholder="アイコン" class="formInput text-center    " id="filesend" required>
+                            </div>
+                                <p class="icon">アイコン</p>
+                    </label>
+
                 </div>
                 </div>
 
