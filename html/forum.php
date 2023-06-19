@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>フォーラム</title>
-        <link rel="stylesheet" href="../css/Bar3.css">
+        <link rel="stylesheet" href="../css/Bar4.css">
         <!-- <link rel="stylesheet" href="../css/OyamadaBar.css"> -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link rel="stylesheet" href="../css/forum1.css">
@@ -124,7 +124,7 @@
  <div class="border"></div>
 
 <div class="navigation">
-    <a class="list-link" href="timeLine2.php">
+    <a class="list-link" href="timeLine.php">
         <i class="icon">
             <img src="../svg/time.svg" class="image-size">
         </i>
@@ -139,7 +139,7 @@
             <img src="../svg/post.svg" class="image-size" onclick="openModal()">
         </i>
     </a>
-    <a class="list-link" href="myProfile2.php">
+    <a class="list-link" href="myProfile.php">
         <i class="icon">
             <img src="../svg/profile.svg" class="image-size">
         </i>
