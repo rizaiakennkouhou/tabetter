@@ -176,24 +176,26 @@
                             </div>
                         </ul> -->
                             <li>
-                                    <span class="a">店名:</span>
-                                    <input type="text" name="store"class="s_syosai">
-                            </li>
-                            <li>
-                                <div>
-                                    <span class="a">メニュー:</span>
+                                <div class="">
+                                    <span>店名:</span>
                                     <input type="text" name="store"class="s_syosai">
                                 </div>
                             </li>
                             <li>
                                 <div>
-                                    <span class="a">価格:</span>
+                                    <span>メニュー:</span>
                                     <input type="text" name="store"class="s_syosai">
                                 </div>
                             </li>
                             <li>
                                 <div>
-                                    <span class="a">場所:</span>
+                                    <span>価格:</span>
+                                    <input type="text" name="store"class="s_syosai">
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <span>場所:</span>
                                     <input type="text" name="store"class="s_syosai">
                                 </div>
                             </li>

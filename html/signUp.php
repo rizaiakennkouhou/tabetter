@@ -59,8 +59,7 @@
                         </svg>
                         
                     <!-- ニックネーム       -->
-                    <input type="text" name="
-                    " placeholder="ニックネーム" class="formInput text-center    " required>
+                    <input type="text" name="userName" placeholder="ニックネーム" class="formInput text-center    " required>
                 </div>
                 <div class="form col text-center" id="">
                 <div>
