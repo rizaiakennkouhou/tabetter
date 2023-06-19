@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>画面一覧</title>
-    <link rel="stylesheet" href="../css/OyamadaBar.css">
+    <link rel="stylesheet" href="../css/Bar4.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/Oyamadatime2.css">
 </head>
@@ -41,6 +41,10 @@
     </div>
   </header>
   <!-- ヘッダー↑ -->
+    <div class="row">
+        <h1 class="text-center">投稿</h1>
+        <hr>
+    </div>
 
   <div class="scrollable">
   <div class="container-fluid">
@@ -50,7 +54,7 @@
         $userIds = array();
         $userIds = $daoUserDb->getUserIds($_SESSION['user_id']);
         
-
+        if(isset($userIds)){
         foreach($userIds as $userId){
             echo '
             <!-- 投稿のカード -->
@@ -60,7 +64,7 @@
                         <p class="userName">',$daoUserDb->getUserName($_SESSION['user_id']),'</p>
                         <p class="userComment">
                         '
-                        ,$daoUserDb->getUserDetail($_SESSION['user_id']),
+                        ,$daoUserTime->getUserDetail($_SESSION['user_id']),
                         '
                         </p>
                     </div>
@@ -88,12 +92,28 @@
             </div>
             ';
         }
+    }else{
+        echo '投稿がありません' . '<hr>';
+    }
     ?>
     </div>
 </div>
 </div>
 
+    <div class="row">
+        <h1 class="text-center">投稿コメント</h1>
+        <hr>
+    </div>
 
+    <div class="row">
+        <h1 class="text-center">フォーラム</h1>
+        <hr>
+    </div>
+
+    <div class="row">
+        <h1 class="text-center">フォーラムコメント</h1>
+        <hr>
+    </div>
 
 
 

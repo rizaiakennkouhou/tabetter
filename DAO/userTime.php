@@ -37,6 +37,8 @@ class DAO_userTimedb{
 
                 if($result) {
                     return $result['post_detail'];
+                }else{
+                    echo 'データがありません';
                 }
             }
             
