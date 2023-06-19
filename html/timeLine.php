@@ -71,7 +71,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="box">
-                        <form action="Oyamadaprofile.php" method="get">
+                        <form action="userProfile.php" method="get">
                             <input type="image" src="data:',$image['image_type'],';base64,',$img,'" class="profielIcon" />
                             <input type="hidden" name="id" value="',($userIds),'">
                         </form>
