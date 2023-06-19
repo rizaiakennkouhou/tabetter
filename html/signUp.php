@@ -65,6 +65,7 @@
                 <div class="form col text-center" id="">
                 <div>
                     <!-- <input type="file" name="image" required> -->
+
                     <label>
                         <span class="formInput">
                             <img src="../svg/p.icon.svg" alt="" id="file-image">
@@ -74,6 +75,7 @@
                             </div>
                                 <p class="icon">アイコン</p>
                     </label>
+
                 </div>
                 </div>
 
