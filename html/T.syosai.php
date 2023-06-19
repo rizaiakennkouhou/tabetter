@@ -51,14 +51,33 @@
  
   <div class="scrollable">
   <div class="container-fluid">
-    <div class="row">
-        
+    <div class="row">     
     <?php
-        $postId = 1;
+        //post_id GETで受け取りたい
+        $postId = 4;
         $userIds = array();
         $userIds = $daoPostDb->getUserIdsByPostId($postId);
         //投稿詳細情報（店名など）取得
         $postInfo = $daoTshosaiDb -> getPostInfoByPostId($postId);
+        $postImgs = $daoTshosaiDb -> getPostImgByPostId($postId);
+        $postImgLiTag ="";
+        $postImgCarousel ="";
+        if(count($postImgs)>=1){
+            foreach($postImgs as $row){
+                $img = base64_encode($row['post_image']);
+                $postImgLiTag = $postImgLiTag.
+                '<li class="splide__slide">
+                <img src="data:' .$row['image_type'] .';base64,'.$img.'" alt="画像">
+                </li>';
+            }
+            $postImgCarousel='<section id="image-carousel" class="splide" aria-label="投稿画像">
+                <div class="splide__track">
+                <ul class="splide__list">'.
+                $postImgLiTag.
+                '</ul>
+                </div>
+                </section>';    
+        }
         echo '
         <!-- 投稿のカード -->
         <div class="card">
@@ -78,24 +97,12 @@
                     </p>
 
                 <!-- 写真カルーセル -->
-                    <section id="image-carousel" class="splide" aria-label="投稿画像">
-                    <div class="splide__track">
-                        <ul class="splide__list">
-                            <li class="splide__slide">
-                                <img src="../userImage/main.jpg" alt="画像1">
-                            </li>
-                            <li class="splide__slide">
-                                <img src="../userImage/main.jpg" alt="画像2">
-                            </li>
-                            <li class="splide__slide">
-                                <img src="../userImage/main.jpg" alt="画像3">
-                            </li>
-                        </ul>
-                    </div>
-                    </section>
-                    
+                    ',
+                    //写真カルーセル 
+                    $postImgCarousel,
+                    '
                 </div>
-                <div class="row row-eq-height">
+                <div class="row row-eq-height mt-1">
                     <div class="col-4">
                         <div class="d-flex justify-content-end">
                             <div class="likeButton">

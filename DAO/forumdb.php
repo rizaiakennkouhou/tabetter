@@ -40,12 +40,12 @@ class DAO_forumdb{
         // フォーラム関数
 
         // 詳細を出す
-        public function getForumDetail($userId) {
+        public function getForumDetail($forumId) {
             $pdo = $this->dbConnect();
         
-            $sql = "SELECT * FROM forum WHERE user_id = ?";
+            $sql = "SELECT * FROM forum WHERE forum_id = ?";
             $ps = $pdo->prepare($sql);
-            $ps->bindValue(1, $userId, PDO::PARAM_STR);
+            $ps->bindValue(1, $forumId, PDO::PARAM_STR);
             $ps->execute();
         
             $result = $ps->fetch(PDO::FETCH_ASSOC);
@@ -79,12 +79,12 @@ class DAO_forumdb{
 
 
         // 時間を出す
-        public function getForumDate($userId) {
+        public function getForumDate($forumId) {
             $pdo = $this->dbConnect();
         
             $sql = "SELECT * FROM forum WHERE forum_id = ?";
             $ps = $pdo->prepare($sql);
-            $ps->bindValue(1, $userId, PDO::PARAM_STR);
+            $ps->bindValue(1, $forumId, PDO::PARAM_STR);
             $ps->execute();
         
             $result = $ps->fetch(PDO::FETCH_ASSOC);
@@ -99,12 +99,12 @@ class DAO_forumdb{
 
 
         // ユーザーIDを出す
-        public function getUserId($userId) {
+        public function getUserId($forumId) {
             $pdo = $this->dbConnect();
         
             $sql = "SELECT * FROM forum WHERE forum_id = ?";
             $ps = $pdo->prepare($sql);
-            $ps->bindValue(1, $userId, PDO::PARAM_STR);
+            $ps->bindValue(1, $forumId, PDO::PARAM_STR);
             $ps->execute();
         
             $result = $ps->fetch(PDO::FETCH_ASSOC);

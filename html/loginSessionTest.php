@@ -69,4 +69,20 @@ session_destroy();
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" integrity="sha256-5uKiXEwbaQh9cgd2/5Vp6WmMnsUr3VZZw0a8rKnOKNU=" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js" integrity="sha256-FZsW7H2V5X9TGinSjjwYJ419Xka27I8XPDmWryGlWtw=" crossorigin="anonymous"></script>
         <script src="../js/T.syosai.js"></script>
+
+        <section id="image-carousel" class="splide" aria-label="投稿画像">
+            <div class="splide__track">
+                <ul class="splide__list">
+                    <li class="splide__slide">
+                        <img src="../userImage/main.jpg" alt="画像1">
+                    </li>
+                    <li class="splide__slide">
+                        <img src="../userImage/main.jpg" alt="画像2">
+                    </li>
+                    <li class="splide__slide">
+                        <img src="../userImage/main.jpg" alt="画像3">
+                    </li>
+                </ul>
+            </div>
+        </section>
 -->

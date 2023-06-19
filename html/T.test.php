@@ -36,7 +36,8 @@
         .s-container{
             padding-top: 5%;
         }
-        #file-iamge{
+
+                #file-iamge{
             width: 20px;
         }
         #filesend{

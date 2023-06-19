@@ -43,7 +43,7 @@ $sql2 = "INSERT INTO user_image(image_name, image_type, user_image, image_size, 
         $stmt->execute();
 
 
-header('Location: https://localhost/tabetter/html/rogin.php');
+header('Location: https://localhost/tabetter/html/login.php');
 }else{
 header('Location: https://localhost/tabetter/html/signUpIdMsg.php');
 }
