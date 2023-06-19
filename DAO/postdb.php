@@ -66,7 +66,7 @@ class DAO_post{
     public function getPostIds(){
         $pdo = $this->dbConnect();
 
-        $sql = "SELECT * FROM post";
+        $sql = "SELECT * FROM post ORDER BY post_id DESC";
 
         $ps = $pdo->prepare($sql);
 
@@ -107,6 +107,23 @@ class DAO_post{
         $count = $ps->rowCount();
 
         return $count;
+    }
+
+    public function getPostImageByPostId(){
+        $pdo = $this->dbConnect();
+
+        $sql = "SELECT * FROM post_images";
+
+        $ps = $pdo->prepare($sql);
+        
+        $ps->execute();
+        $result = $ps->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach($result as $row){
+            $postIds[] = $row['post_id'];
+        }
+
+        return $postIds;
     }
 }
 

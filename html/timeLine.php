@@ -49,6 +49,8 @@
         $postIds = array();
         $postIds = $daoPostDb->getPostIds();
         $userIds = array();
+        $imageIds = array();
+        $imageIds = $daoPostDb->getPostImageByPostId();
         
 
         foreach($postIds as $postId){
@@ -68,7 +70,9 @@
 
             echo '
             <!-- 投稿のカード -->
+            <form action="T.syosai.php" method="get">
             <div class="card">
+            <input type="hidden" name="id" value="',($postIds),'">
                 <div class="card-body">
                     <div class="box">
                         <form action="userProfile.php" method="get">
@@ -81,7 +85,7 @@
                         ,$daoPostDb->getPostDetail($postId),
                         '
                         </p>
-                        <img src="../DAO/display.php?id=',($postId),'" width="100" class="postImage">
+                            <img src="../DAO/display.php?id=',($postId),'" width="100" class="postImage">
                     </div>
                     <div class="row row-eq-height">
                         <div class="col-6">
@@ -105,6 +109,7 @@
                     </div>
                 </div>
             </div>
+            </form>
             ';
         }
     ?>
