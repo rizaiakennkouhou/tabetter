@@ -50,7 +50,7 @@
         public function getCommentByPostId($postId){
             $pdo = $this->dbConnect();
 
-            $sql = "SELECT * FROM post_comment WHERE post_id = ?";
+            $sql = "SELECT * FROM post_comment WHERE post_id = ? ORDER BY comment_id DESC";
 
             $ps = $pdo->prepare($sql);
 

@@ -150,50 +150,50 @@
             </div>
         </div>
         ';
+        $commentArray = $daoTshosaiDb->getCommentByPostId($postId);
+        foreach($commentArray as $row){
+            $userIds = $row['user_id'];
 
-        // foreach($postIds as $postId){
-        //     $userIds = $daoPostDb->getUserIdsByPostId($postId);
-
-        //     echo '
-        //     <!-- 投稿のカード -->
-        //     <div class="card">
-        //         <div class="card-body">
-        //             <div class="box">
-        //                 <form action="Oyamadaprofile.php" method="get">
-        //                     <input type="image" src="data:',$image['image_type'],';base64,',$img,'" class="profielIcon" />
-        //                     <input type="hidden" name="id" value="',($userIds),'">
-        //                 </form>
-        //                 <p class="userName">',$daoUserDb->getUserName($userIds),'</p>
-        //                 <p class="userComment">
-        //                 '
-        //                 ,$daoPostDb->getPostDetail($postId),
-        //                 '
-        //                 </p>
-        //             </div>
-        //             <div class="row row-eq-height">
-        //                 <div class="col-6">
-        //                     <div class="d-flex justify-content-end">
-        //                         <div class="likeButton">
-        //                         <input type="checkbox" checked id="',($postId),'" name="likeButton"><label for="',($postId),'"><img src="../svg/Like-black.png" class="likeButtonImg"/></label>
-        //                         </div>
-        //                         <div class="like" id="likeCnt">
-        //                             ',$daoPostDb->getPostCount($postId),'
-        //                         </div>
-        //                     </div>
-        //                 </div>
-        //                 <div class="col-6">
-        //                     <div class="d-flex justify-content-center">
-        //                         <a href="Oyamadatokou.html"><img src="../svg/comment.svg" id="commentButton"></a>
-        //                         <div class="comment">
-        //                             ',$daoPostDb->getPostCommentCount($postId),'
-        //                         </div>
-        //                     </div>
-        //                 </div>                                                    
-        //             </div>
-        //         </div>
-        //     </div>
-        //     ';
-        // }
+            echo '
+            <!-- 投稿のカード -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="box">
+                        <form action="Oyamadaprofile.php" method="get">
+                            <input type="image" src="data:',$image['image_type'],';base64,',$img,'" class="profielIcon" />
+                            <input type="hidden" name="id" value="',($userIds),'">
+                        </form>
+                        <p class="userName">',$daoUserDb->getUserName($userIds),'</p>
+                        <p class="userComment">
+                        '
+                        ,$daoPostDb->getPostDetail($postId),
+                        '
+                        </p>
+                    </div>
+                    <div class="row row-eq-height">
+                        <div class="col-6">
+                            <div class="d-flex justify-content-end">
+                                <div class="likeButton">
+                                <input type="checkbox" checked id="',($postId),'" name="likeButton"><label for="',($postId),'"><img src="../svg/Like-black.png" class="likeButtonImg"/></label>
+                                </div>
+                                <div class="like" id="likeCnt">
+                                    ',$daoPostDb->getPostCount($postId),'
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex justify-content-center">
+                                <a href="Oyamadatokou.html"><img src="../svg/comment.svg" id="commentButton"></a>
+                                <div class="comment">
+                                    ',$daoPostDb->getPostCommentCount($postId),'
+                                </div>
+                            </div>
+                        </div>                                                    
+                    </div>
+                </div>
+            </div>
+            ';
+        }
     ?>
    
     </div>
