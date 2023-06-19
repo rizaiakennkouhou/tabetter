@@ -54,15 +54,17 @@
     <div class="row">     
     <?php
         //post_id GETで受け取りたい
-        $postId = 4;
+        $postId = 5;
         $userIds = array();
         $userIds = $daoPostDb->getUserIdsByPostId($postId);
         //投稿詳細情報（店名など）取得
         $postInfo = $daoTshosaiDb -> getPostInfoByPostId($postId);
+        //投稿画像取得
         $postImgs = $daoTshosaiDb -> getPostImgByPostId($postId);
         $postImgLiTag ="";
         $postImgCarousel ="";
         if(count($postImgs)>=1){
+            //画像の数だけLiタグ作成
             foreach($postImgs as $row){
                 $img = base64_encode($row['post_image']);
                 $postImgLiTag = $postImgLiTag.
@@ -70,6 +72,7 @@
                 <img src="data:' .$row['image_type'] .';base64,'.$img.'" alt="画像">
                 </li>';
             }
+            //sectionタグなどとLiタグを合体
             $postImgCarousel='<section id="image-carousel" class="splide" aria-label="投稿画像">
                 <div class="splide__track">
                 <ul class="splide__list">'.
@@ -78,17 +81,24 @@
                 </div>
                 </section>';    
         }
+        $userImg = $daoTshosaiDb -> getUserImgByUserId($userIds);
+        $userImgBace = base64_encode($userImg['user_image']);
         echo '
         <!-- 投稿のカード -->
         <div class="card">
-        <button class="backBtn text-start" onclick="', "location.href='Oyamadatime.php'" ,'">
+        <!-- 戻るボタン -->
+        <button class="backBtn text-start" onclick="', "location.href='timeLine.php'" ,'">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M14.2931 5.29297L15.7073 6.70718L10.4144 12.0001L15.7073 17.293L14.2931 18.7072L7.58596 12.0001L14.2931 5.29297Z" fill="#424242"/>
         </svg>                    
         </button>
             <div class="card-body">
                 <div class="box">
-                    <img src="../userImage/main.jpg" class="profielIcon" />
+                <!-- user画像 -->
+                    <form action="userProfile.php" method="get">
+                    <input type="image" src="data:',$userImg['image_type'],';base64,',$userImgBace,'" class="profielIcon" />
+                    <input type="hidden" name="id" value="',($userIds),'">
+                    </form>
                     <p class="userName">',$daoUserDb->getUserName($userIds),'</p>
                     <p class="userComment">
                     '
@@ -115,9 +125,9 @@
                     </div>
                     <div class="col-4">
                         <div class="d-flex justify-content-center">
-                            <img src="../svg/comment.svg" id="commentButton">
+                            <a href="Oyamadatokou.html"><img src="../svg/comment.svg" id="commentButton"></a>
                             <div class="comment">
-                                0
+                                ',$daoPostDb->getPostCommentCount($postId),'
                             </div>
                         </div>
                     </div>     
@@ -140,7 +150,50 @@
             </div>
         </div>
         ';
-        
+
+        // foreach($postIds as $postId){
+        //     $userIds = $daoPostDb->getUserIdsByPostId($postId);
+
+        //     echo '
+        //     <!-- 投稿のカード -->
+        //     <div class="card">
+        //         <div class="card-body">
+        //             <div class="box">
+        //                 <form action="Oyamadaprofile.php" method="get">
+        //                     <input type="image" src="data:',$image['image_type'],';base64,',$img,'" class="profielIcon" />
+        //                     <input type="hidden" name="id" value="',($userIds),'">
+        //                 </form>
+        //                 <p class="userName">',$daoUserDb->getUserName($userIds),'</p>
+        //                 <p class="userComment">
+        //                 '
+        //                 ,$daoPostDb->getPostDetail($postId),
+        //                 '
+        //                 </p>
+        //             </div>
+        //             <div class="row row-eq-height">
+        //                 <div class="col-6">
+        //                     <div class="d-flex justify-content-end">
+        //                         <div class="likeButton">
+        //                         <input type="checkbox" checked id="',($postId),'" name="likeButton"><label for="',($postId),'"><img src="../svg/Like-black.png" class="likeButtonImg"/></label>
+        //                         </div>
+        //                         <div class="like" id="likeCnt">
+        //                             ',$daoPostDb->getPostCount($postId),'
+        //                         </div>
+        //                     </div>
+        //                 </div>
+        //                 <div class="col-6">
+        //                     <div class="d-flex justify-content-center">
+        //                         <a href="Oyamadatokou.html"><img src="../svg/comment.svg" id="commentButton"></a>
+        //                         <div class="comment">
+        //                             ',$daoPostDb->getPostCommentCount($postId),'
+        //                         </div>
+        //                     </div>
+        //                 </div>                                                    
+        //             </div>
+        //         </div>
+        //     </div>
+        //     ';
+        // }
     ?>
    
     </div>
