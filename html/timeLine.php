@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../css/Oyamadatime2.css">
     <link rel="stylesheet" href="../css/modal.css">
     <link rel="stylesheet" href="../css/Oyamadaprofile.css">
-    <link rel="stylesheet" href="../css/scrollable.css">
+    <link rel="stylesheet" href="../css/scrollable2.css">
 </head>
 <body>
     <?php
