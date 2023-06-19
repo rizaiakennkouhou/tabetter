@@ -120,12 +120,12 @@
     <div class="border"></div>
  
     <div class="navigation">
-     <a class="list-link" href="#" onclick="changeImage(this, 'Oyamadatime.php')">
+     <a class="list-link" href="#" onclick="changeImage(this, 'timeLine.php')">
      <i class="icon">
      <img src="../svg/time2.svg" class="image-size">
      </i>
      </a>
-     <a class="list-link" href="#" onclick="changeImage2(this, 'Oyamadaforum.html')">
+     <a class="list-link" href="#" onclick="changeImage2(this, 'forum.php')">
      <i class="icon">
      <img src="../svg/forum.svg" class="image-size1">
      </i>
@@ -135,7 +135,7 @@
      <img src="../svg/post.svg" class="image-size">
      </i>
      </a>
-     <a class="list-link" href="#" onclick="changeImage4(this, 'Oyamadaprofile.php')">
+     <a class="list-link" href="#" onclick="changeImage4(this, 'myProfile.php')">
      <i class="icon">
      <img src="../svg/profile.svg" class="image-size">
      </i>

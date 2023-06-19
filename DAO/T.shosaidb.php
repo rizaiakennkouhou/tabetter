@@ -23,5 +23,16 @@
                 return $result;
             }
         }
+        public function getPostImgByPostId($postId){
+            $pdo = $this->dbConnect();
+            $sql = "SELECT * FROM post_images WHERE post_id = ? ";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindValue(1, $postId, PDO::PARAM_INT);
+            $stmt->execute();
+            $image = $stmt->fetchAll();
+            if($image){
+                return $image;
+            }
+        }
     }
 ?>
