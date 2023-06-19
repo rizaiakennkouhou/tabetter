@@ -28,10 +28,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/Bar4.css">
+    <link rel="stylesheet" href="../css/Bar3.css">
     <link rel="stylesheet" href="../css/profile2.css">
-    <!-- <link rel="stylesheet" href="../css/OyamadaBar.css"> -->
-    <!-- <link rel="stylesheet" href="../css/Oyamadaprofile.css"> -->
     <link rel="stylesheet" href="../css/modal.css">
     <link rel="stylesheet" href="../css/scrollable.css">
 </head>
@@ -65,6 +63,8 @@
   </header>
   
   <!-- ヘッダー↑ -->
+  <div class="scrollable">
+  <div style="height: 800px;">
   <div id="app">
     <div class="profile_icon">
     <button v-on:click="openModal" class="photo-button">
@@ -108,6 +108,7 @@
     <p id="bio"><?= $userdao->getUserBio($_SESSION['user_id']); ?></p>
     </div>
     </div>
+</div>
    <!-- モーダル -->
 <!-- <div id="modal" class="modal">
     <div class="modal-content">
@@ -145,14 +146,15 @@
     </div>
 
 </div>
+</div>
 
 
 
-    <!-- navigationBar -->
+ <!-- navigationBar -->
  <div class="border"></div>
 
 <div class="navigation">
-    <a class="list-link" href="timeLine.php">
+    <a class="list-link" href="timeLine2.php">
         <i class="icon">
             <img src="../svg/time.svg" class="image-size">
         </i>
@@ -167,7 +169,7 @@
             <img src="../svg/post.svg" class="image-size">
         </i>
     </a>
-    <a class="list-link" href="myProfile.php">
+    <a class="list-link" href="myProfile2.php">
         <i class="icon">
             <img src="../svg/profile2.svg" class="image-size">
         </i>

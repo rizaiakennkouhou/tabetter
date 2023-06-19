@@ -74,6 +74,14 @@
             </div>
         </form>
     </open-modal>
+
+    <?php if(isset($_REQUEST['forumid'])){
+        echo $_GET['forumid'];
+            }else{
+                echo 'エラー';
+            }
+                ?>
+        
     
     <button v-on:click="openModal" class="button-style">オープン</button>
 </div>
