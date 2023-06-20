@@ -78,7 +78,7 @@
                         </div>
                         <div class="offset-3 col-3">
                             <button class="d-flex justify-content-center" id="buttonStyle">
-                                <a href="./forumDetail.php?postid=<?= $postId ?>"><img src="../svg/dust.svg" id="commentButton"></a>
+                                <a href="../DAO/deletePost.php?postid=<?= $postId ?>"><img src="../svg/dust.svg" id="commentButton"></a>
                             </button>
                         </div>                                                    
                     </div>
@@ -126,7 +126,7 @@
                         </div>
                         <div class="offset-3 col-3">
                             <button class="d-flex justify-content-center" id="buttonStyle">
-                                <a href="./forumDetail.php?commentid=<?= $commentId ?>"><img src="../svg/dust.svg" id="commentButton"></a>
+                                <a href="../DAO/deleteComment.php?commentid=<?= $commentId ?>"><img src="../svg/dust.svg"></a>
                             </button>
                         </div>                                                    
                     </div>
@@ -173,7 +173,7 @@
                         </div>
                         <div class="offset-3 col-3">
                             <button class="d-flex justify-content-center" id="buttonStyle">
-                                <a href="./forumDetail.php?commentid=<?= $commentId ?>"><img src="../svg/dust.svg" id="commentButton"></a>
+                                <a href="../DAO/deleteForum.php?forumid=<?= $forumId ?>"><img src="../svg/dust.svg"></a>
                             </button>
                         </div>                                                    
                     </div>
@@ -196,7 +196,7 @@
         $forumcommentIds = array();
         $forumcommentIds = $daoUserDb->getUserForumCommentIds($_SESSION['user_id']);
         
-        if(isset($forumcomentIds)){
+        if(isset($forumcommentIds)){
         foreach($forumcommentIds as $forumcommentId){
 
         ?>
@@ -218,7 +218,7 @@
                         </div>
                         <div class="offset-3 col-3">
                             <button class="d-flex justify-content-center" id="buttonStyle">
-                                <a href="./forumDetail.php?commentid=<?= $commentId ?>"><img src="../svg/dust.svg" id="commentButton"></a>
+                                <a href="../DAO/deleteForumComment.php?forumcommentid=<?= $forumcommentId ?>"><img src="../svg/dust.svg"></a>
                             </button>
                         </div>                                                    
                     </div>

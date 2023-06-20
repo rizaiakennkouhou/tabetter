@@ -82,12 +82,12 @@ class DAO_userTimedb{
                 $sql = "SELECT * FROM forum_comment WHERE forum_comment_id = ?";
         
                 $ps = $pdo->prepare($sql);
-                $ps->bindValue(1, $forumId, PDO::PARAM_INT);
+                $ps->bindValue(1, $forumcommentId, PDO::PARAM_INT);
                 $ps->execute();
                 $result = $ps->fetch(PDO::FETCH_ASSOC);
         
                 if($result) {
-                    return $result['title'];
+                    return $result['forum_comment_detail'];
                 }else{
                     echo 'データがありません';
                 }
