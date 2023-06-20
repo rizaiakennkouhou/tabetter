@@ -43,11 +43,16 @@ $pdo = new PDO('mysql:host=localhost; dbname=tabetterdb; charset=utf8',
 </script>
 
 <!-- 削除確認のアラートを表示する -->
-<div align="center">
-    <h1>データ削除</h1>
-    <button onclick="confirmDeletion()">削除する</button>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <div style="display: flex; flex-direction: column; align-items: center;">
+    <button onclick="confirmDeletion()" class="btn btn-danger btn-lg" style="background-color: #FF8A00; padding: 40px 80px; font-size: 30px; width: 400px;">削除する</button>
     <form id="deleteForm" method="post" style="display: none;">
         <input type="hidden" name="confirm" value="1">
     </form>
-    <button onclick="location.href='../html/userTime.php'">戻る</button>
+    <br>
+    <button onclick="location.href='../html/userTime.php'" class="btn btn-secondary btn-lg" style="padding: 40px 80px; font-size: 30px; width: 400px;">戻る</button>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</div>
 </div>

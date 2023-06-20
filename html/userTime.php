@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="../css/Bar4.css?<?php echo date('YmdHis'); ?>"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../css/Oyamadatime2.css?<?php echo date('YmdHis'); ?>"/>
+    <link rel="stylesheet" type="text/css" href="../css/scrollable.css?<?php echo date('YmdHis'); ?>"/>
 </head>
 <body>
     <?php
@@ -43,12 +44,13 @@
     </div>
   </header>
   <!-- ヘッダー↑ -->
+  <div class="scrollable">
+  <div style="height: 800px;">
     <div class="row">
         <h1 class="text-center">投稿</h1>
         <hr>
     </div>
 
-  <div class="scrollable">
   <div class="container-fluid">
     <div class="row">
 
@@ -92,7 +94,7 @@
     ?>
     </div>
 </div>
-</div>
+
 
     <div class="row">
         <hr>
@@ -230,6 +232,8 @@
         echo '投稿がありません' . '<hr>';
     }
     ?>
+    </div>
+</div>
 
 
     <!-- navigationBar -->
