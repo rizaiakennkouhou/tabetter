@@ -12,14 +12,32 @@
             border-radius: 14px;
         }
     </style>
-    <link rel="stylesheet" href="../css/modal.css">
+    <link rel="stylesheet" type="text/css" href="../css/modal.css?<?php echo date('YmdHis'); ?>"/>
+    <link rel="stylesheet" type="text/css" href="../css/Oyamadatime2.css?<?php echo date('YmdHis'); ?>"/>
+
 </head>
 <?php 
+    session_start();
     require_once '../DAO/forumdb.php';
     $forumdao = new DAO_forumdb();
 
     require_once '../DAO/rank.php';
     $rank = new DAO_rank();
+
+    require_once '../DAO/userdb.php';
+    $userdb = new DAO_userdb();
+
+    // ユーザーアイコンのSQL
+    $pdo = new PDO('mysql:host=localhost; dbname=tabetterdb; charset=utf8',
+    'webuser', 'abccsd2');
+
+    $sql = "SELECT * FROM user_image WHERE user_id = ? ";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindValue(1, 'maeda779', PDO::PARAM_STR);
+    $stmt->execute();
+    $image = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    $img = base64_encode($image['user_image']);
 ?>
 <body>
     <div class="container-fluid">
@@ -51,27 +69,51 @@
     <!-- open-modalの中身が表示される -->
     <open-modal v-show="showContent" v-on:from-child="closeModal">
         <form method="POST" action="../DAO/post_imagesdb.php" enctype="multipart/form-data">
-            <div>
-                <p>投稿詳細のテキストボックス</p>
-                <input type="text" name="detail">
-                <details>
-                <summary>詳細</summary>
-                    <p>店名のテキストボックス</p>
-                    <input type="text" name="store">
-                    <p>メニュー名のテキストボックス</p>
-                    <input type="text" name="menu">
-                    <p>価格のテキストボックス</p>
-                    <input type="text" name="price">
-                    <p>場所のテキストボックス</p>
-                    <input type="text" name="address">
+        <div class="row">
+           <div class="col-2">
+            <img src="data:<?php echo $image['image_type'] ?>;base64,<?php echo $img; ?> " class="profielIcon">
+            </div>
+            <div class="col-10 mr-5 pt-2">
+            <?= $userdb->getUserName('maeda779'); ?>
+            </div>
+            </div>
+            <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <textarea name="detail" class="form-control" id="exampleTextBox" rows="5"></textarea>
+                        </div>
+                    </div>
+            </div>
+            <div class="row">
+                <div class="col-10">
+                    <details>
+                        <summary class="float-right mr-3">詳細</summary>
+                            <input type="text" name="store" id="textboxstyle" placeholder="店名" class="text-center">
+                            <input type="text" name="menu" id="textboxstyle" placeholder="メニュー名" class="text-center">
+                            <input type="text" name="price" id="textboxstyle" placeholder="価格" class="text-center">
+                            <input type="text" name="address" id="textboxstyle" placeholder="場所" class="text-center">
                     </details>
+                </div>
+
+                <div class="col-2">
+                    <label class="float-right mr-3">
+                        <span class="filelabel">
+                            <img src="../svg/imagefile.svg" alt="" id="file-iamge">
+                        </span>
+                        <input type="file" name="image[]" multiple id="file-send" class="filesend">
+                        <input type="hidden" name="userid" value="<?= $_SESSION['user_id']?>">
+                    </label>
+                </div>
             </div>
-            <div>
-                <p>画像を最大４枚まで選択</p>
-                <input type="file" name="image[]" multiple>
-                <input type="text" name="userid">
-                <input type="submit" value="送信！">
+
+            <div class="row">
+                <div class="col-10"></div>
+                <div class="col-2 mt-2">
+                <input type="submit" value="送信" class="buttonsubmit">
+                </div>
             </div>
+            
+            
         </form>
     </open-modal>
 
