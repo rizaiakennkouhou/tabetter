@@ -9,7 +9,7 @@ class DAO_search{
     }
 
     //投稿詳細をライク検索する関数
-    public function getPostDetail($key){
+    public function getSearchPost($key){
         $pdo = $this -> dbConnect();
 
         //SQLの生成　入力を受け取る部分は”？”
@@ -25,7 +25,35 @@ class DAO_search{
         $ps->execute();
         $result = $ps->fetchAll(PDO::FETCH_ASSOC);
 
+        if(isset($result)){
+
+        foreach($result as $row){
+            $postIds[] = $row['post_id'];
+        }
+
         return $result;
+        
+        }else{
+            echo '見つかりませんでした';
+        }
+    }
+
+    //投稿情報を全件取得
+    public function getPostIds(){
+        $pdo = $this->dbConnect();
+
+        $sql = "SELECT * FROM post";
+
+        $ps = $pdo->prepare($sql);
+
+        $ps->execute();
+        $result = $ps->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach($result as $row){
+            $postIds[] = $row['post_id'];
+        }
+
+        return $postIds;
     }
 }
 ?>
