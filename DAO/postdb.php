@@ -109,21 +109,24 @@ class DAO_post{
         return $count;
     }
 
-    public function getPostImageByPostId(){
+    public function getPostImageByPostId($postId){
         $pdo = $this->dbConnect();
 
-        $sql = "SELECT * FROM post_images";
+        $sql = "SELECT * FROM post_images WHERE post_id = ?";
 
         $ps = $pdo->prepare($sql);
-        
+        $ps->bindValue(1, $postId, PDO::PARAM_INT);
+
         $ps->execute();
         $result = $ps->fetchAll(PDO::FETCH_ASSOC);
 
+        $imageIds = array();
+
         foreach($result as $row){
-            $postIds[] = $row['post_id'];
+            $imageIds[] = $row['post_id'];
         }
 
-        return $postIds;
+        return $imageIds;
     }
 }
 

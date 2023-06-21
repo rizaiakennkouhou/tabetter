@@ -54,11 +54,10 @@
         $postIds = $daoPostDb->getPostIds();
         $userIds = array();
         $imageIds = array();
-        $imageIds = $daoPostDb->getPostImageByPostId();
-        
 
         foreach($postIds as $postId){
             $userIds = $daoPostDb->getUserIdsByPostId($postId);
+            $imageIds = $daoPostDb->getPostImageByPostId($postId);
 
             // ユーザーアイコンのSQL
             $pdo = new PDO('mysql:host=localhost; dbname=tabetterdb; charset=utf8',
@@ -71,34 +70,37 @@
             $image = $stmt->fetch(PDO::FETCH_ASSOC);
 
             $img = base64_encode($image['user_image']);
-
-            echo '
+    ?>
             <!-- 投稿のカード -->
             <form action="T.syosai.php" method="get">
+            <input type="hidden" name="id" value="<?=($postIds)?>">
             <div class="card">
-            <input type="hidden" name="id" value="',($postIds),'">
                 <div class="card-body">
                     <div class="box">
                         <form action="userProfile.php" method="get">
-                            <input type="image" src="data:',$image['image_type'],';base64,',$img,'" class="profielIcon" />
-                            <input type="hidden" name="id" value="',($userIds),'">
+                            <input type="image" src="data:<?=$image['image_type']?>;base64,<?=$img?>" class="profielIcon" />
+                            <input type="hidden" name="id" value="<?=($userIds)?>">
                         </form>
-                        <p class="userName">',$daoUserDb->getUserName($userIds),'</p>
+                        <p class="userName"><?= $daoUserDb->getUserName($userIds)?></p>
                         <p class="userComment">
-                        '
-                        ,$daoPostDb->getPostDetail($postId),
-                        '
+                        <?= $daoPostDb->getPostDetail($postId)?>
                         </p>
-                            <img src="../DAO/display.php?id=',($postId),'" width="100" class="postImage">
+                        <?php
+                        if(isset($postId)){
+                        ?>
+                            <img src="../DAO/display.php?id=<?=($postId)?>" width="100" class="postImage">
+                        <?php
+                        }
+                        ?>
                     </div>
                     <div class="row row-eq-height">
                         <div class="col-6">
                             <div class="d-flex justify-content-end">
                                 <div class="likeButton">
-                                <input type="checkbox" checked id="',($postId),'" name="likeButton"><label for="',($postId),'"><img src="../svg/Like-black.png" class="likeButtonImg"/></label>
+                                <input type="checkbox" checked id="<?= ($postId)?>" name="likeButton"><label for="<?= ($postId)?>"><img src="../svg/Like-black.png" class="likeButtonImg"/></label>
                                 </div>
                                 <div class="like" id="likeCnt">
-                                    ',$daoPostDb->getPostCount($postId),'
+                                    <?= $daoPostDb->getPostCount($postId)?>
                                 </div>
                             </div>
                         </div>
@@ -106,7 +108,7 @@
                             <div class="d-flex justify-content-center">
                                 <a href="Oyamadatokou.html"><img src="../svg/comment.svg" id="commentButton"></a>
                                 <div class="comment">
-                                    ',$daoPostDb->getPostCommentCount($postId),'
+                                    <?= $daoPostDb->getPostCommentCount($postId)?>
                                 </div>
                             </div>
                         </div>                                                    
@@ -114,9 +116,9 @@
                 </div>
             </div>
             </form>
-            ';
+        <?php
         }
-    ?>
+        ?>
     </div>
 </div>
 </div>
