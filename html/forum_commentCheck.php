@@ -1,4 +1,7 @@
 <script>
-    alert("コメントを入力して下さい！")
-    location.href="https://localhost/tabetter/html/forum_commentdb.php";
+    alert("コメントを入力してください！");
+    var urlParams = new URLSearchParams(window.location.search);
+    var forumid = urlParams.get('forumid');
+    var redirectUrl = "http://localhost/tabetter/html/forumDetail.php?forumid=" + encodeURIComponent(forumid);
+    location.href = redirectUrl;
 </script>
