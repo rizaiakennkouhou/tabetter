@@ -45,7 +45,7 @@ $sql = 'INSERT INTO post(post_detail, post_date, user_id, store, menu, price, ad
             }
     }
 
-    header('Location: https://localhost/tabetter/html/M.test.php');
+    header('Location: https://localhost/tabetter/html/timeLine.php');
 }else{
     header('Location: https://localhost/tabetter/html/postImageCheck.php');
 }
