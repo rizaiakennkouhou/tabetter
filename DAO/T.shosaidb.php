@@ -47,10 +47,11 @@
                 return $image;
             }
         }
+        //コメント取得　post_idで comment_id降順
         public function getCommentByPostId($postId){
             $pdo = $this->dbConnect();
 
-            $sql = "SELECT * FROM post_comment WHERE post_id = ?";
+            $sql = "SELECT * FROM post_comment WHERE post_id = ? ORDER BY comment_id DESC";
 
             $ps = $pdo->prepare($sql);
 
@@ -61,6 +62,23 @@
 
             if($result) {
                 return $result;
+            }
+        }
+        //リプライユーザーID取得　comment_idで
+        public function getCommentUserIdByComId($comment_id){
+            $pdo = $this->dbConnect();
+
+            $sql = "SELECT user_id FROM post_comment WHERE comment_id = ?";
+
+            $ps = $pdo->prepare($sql);
+
+            $ps->bindValue(1, $comment_id, PDO::PARAM_INT);
+
+            $ps->execute();
+            $result = $ps->fetch(PDO::FETCH_ASSOC);
+
+            if($result) {
+                return $result['user_id'];
             }
         }
     }

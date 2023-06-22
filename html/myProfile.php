@@ -76,12 +76,19 @@
     </div>
     <!-- open-modalの中身が表示される -->
     <open-modal v-show="showContent" v-on:from-child="closeModal">
-        <form method="POST" action="../DAO/newuserimagedb.php" enctype="multipart/form-data">
-                <div>
-                <input type="file" name="image">
+        <h2>プロフィール画像を変更</h2>
+        <form method="POST" action="../DAO/newuserimagedb.php" enctype="multipart/form-data" class="image_modal">
+            <div>
+            <label class="float-right mr-3">
+                        <span class="filelabel">
+                            <img src="../svg/imagefile.svg" alt="" id="file-iamge">
+                        </span>
+                        <h6>画像を変更</h6>
+                <input type="file" name="image" class="filesend">
                 <input type="hidden" name="id" value="<?= $_SESSION['user_id']?>">
-                <input type="submit" value="送信！">
+            </label>
             </div>
+                <input type="submit" value="送信！">
         </form>
     </open-modal>
 

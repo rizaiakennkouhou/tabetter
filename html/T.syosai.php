@@ -14,6 +14,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/Oyamadatime2.css">
     <link rel="stylesheet" href="../css/T.syosai.css">
+    <link rel="stylesheet" href="../css/modal.css">
+    <link rel="stylesheet" href="../css/Oyamadaprofile.css">
 </head>
 <body>
     <?php
@@ -81,6 +83,7 @@
                 </div>
                 </section>';    
         }
+        //投稿ユーザー画像取得
         $userImg = $daoTshosaiDb -> getUserImgByUserId($userIds);
         $userImgBace = base64_encode($userImg['user_image']);
         echo '
@@ -125,8 +128,11 @@
                     </div>
                     <div class="col-4">
                         <div class="d-flex justify-content-center">
-                            <a href="Oyamadatokou.html"><img src="../svg/comment.svg" id="commentButton"></a>
-                            <div class="comment">
+                        ';?>
+                        <!-- コメント投稿モーダル -->
+                            <img src="../svg/comment.svg" id="commentButton" onclick="openModal()">
+                        <?php 
+                        echo    '<div class="comment">
                                 ',$daoPostDb->getPostCommentCount($postId),'
                             </div>
                         </div>
@@ -150,54 +156,68 @@
             </div>
         </div>
         ';
-
-        // foreach($postIds as $postId){
-        //     $userIds = $daoPostDb->getUserIdsByPostId($postId);
-
-        //     echo '
-        //     <!-- 投稿のカード -->
-        //     <div class="card">
-        //         <div class="card-body">
-        //             <div class="box">
-        //                 <form action="Oyamadaprofile.php" method="get">
-        //                     <input type="image" src="data:',$image['image_type'],';base64,',$img,'" class="profielIcon" />
-        //                     <input type="hidden" name="id" value="',($userIds),'">
-        //                 </form>
-        //                 <p class="userName">',$daoUserDb->getUserName($userIds),'</p>
-        //                 <p class="userComment">
-        //                 '
-        //                 ,$daoPostDb->getPostDetail($postId),
-        //                 '
-        //                 </p>
-        //             </div>
-        //             <div class="row row-eq-height">
-        //                 <div class="col-6">
-        //                     <div class="d-flex justify-content-end">
-        //                         <div class="likeButton">
-        //                         <input type="checkbox" checked id="',($postId),'" name="likeButton"><label for="',($postId),'"><img src="../svg/Like-black.png" class="likeButtonImg"/></label>
-        //                         </div>
-        //                         <div class="like" id="likeCnt">
-        //                             ',$daoPostDb->getPostCount($postId),'
-        //                         </div>
-        //                     </div>
-        //                 </div>
-        //                 <div class="col-6">
-        //                     <div class="d-flex justify-content-center">
-        //                         <a href="Oyamadatokou.html"><img src="../svg/comment.svg" id="commentButton"></a>
-        //                         <div class="comment">
-        //                             ',$daoPostDb->getPostCommentCount($postId),'
-        //                         </div>
-        //                     </div>
-        //                 </div>                                                    
-        //             </div>
-        //         </div>
-        //     </div>
-        //     ';
-        // }
+        //コメント取得
+        $commentArray = $daoTshosaiDb->getCommentByPostId($postId);
+        //コメントがあれば
+        if(count($commentArray)>=1){
+            foreach($commentArray as $row){
+                $userIds = $row['user_id'];
+                $replyId ="";
+                //コメントユーザー画像取得
+                $userImg = $daoTshosaiDb -> getUserImgByUserId($userIds);
+                $userImgBace = base64_encode($userImg['user_image']);
+                //リプライIdがあれば　リプライID取得
+                if(is_null($row['reply_id'])==false){
+                    $replyId = 'コメント先:'.$daoTshosaiDb->getCommentUserIdByComId($row['reply_id']);
+                }
+                echo '
+                <!-- 投稿のカード -->
+                <div class="card">
+                    <div class="card-body">
+                        <div class="box">
+                            <form action="userProfile.php" method="get">
+                            <input type="image" src="data:',$userImg['image_type'],';base64,',$userImgBace,'" class="profielIcon" />
+                            <input type="hidden" name="id" value="',($userIds),'">
+                            </form>
+                            <p class="userName">',$daoUserDb->getUserName($userIds),'<br>',
+                            //リプライID
+                            $replyId,
+                            '</p>
+                            <p class="userComment">',
+                            //コメント内容
+                            $row['comment_detail'],
+                            '</p>
+                        </div>
+                        
+                    </div>
+                </div>
+                ';
+            }
+        }
     ?>
-   
+
     </div>
     </div>
+    </div>
+    <!-- コメント投稿モーダル -->
+    <div id="modal" class="modal">
+        <div id="overlay" class="modal-content">
+            <div id="content" class="content">
+            <form method="POST" action="../DAO/comment.php" enctype="multipart/form-data">
+            <h2>キャンセル</h2>
+            <div class="icon-image">
+                    <img src="data:<?php echo $image['image_type'] ?>;base64,<?php echo $img; ?>">
+            </div>
+            <p>コメント先:</p>
+                
+                <input type="text" name="comment_detail" id="edit-username">
+                
+                <input type="hidden" name="user_id" value="<?= $_POST['user_id']?>">
+                <button onclick="saveChanges()" type="submit">保存</button>
+            </form>
+            <button onclick="closeModal()">キャンセル</button>
+            </div>
+        </div>
     </div>
 </div>
     <!-- navigationBar -->
@@ -229,6 +249,8 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <script src="../js/OyamadaBar.js"></script>
     <script src="../js/time.js"></script>    
+    <script src="../js/MaedaTest.js"></script>
+    <script src="../js/Oyamadaprofile.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <!-- splide -->
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js" integrity="sha256-FZsW7H2V5X9TGinSjjwYJ419Xka27I8XPDmWryGlWtw=" crossorigin="anonymous"></script>

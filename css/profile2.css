@@ -1,3 +1,44 @@
+/* 画像モーダル */
+.image_modal {
+  /* ここにスタイルのプロパティと値を追加してください */
+  /* 例: */
+  width: 300px;
+  padding: 20px;
+  background-color: #ffff;
+  border: 5px solid #e78610;
+  border-radius: 8px;
+  box-shadow: 0 9px 4px rgba(0, 0, 0, 0.1);
+}
+
+.image_modal input[type="file"],
+.image_modal input[type="hidden"],
+.image_modal input[type="submit"] {
+  /* ここにフォーム要素のスタイルを追加してください */
+  /* 例: */
+  margin-bottom: 10px;
+}
+
+.image_modal input[type="submit"] {
+  /* 送信ボタンのスタイルを追加してください */
+  /* 例: */
+  display: flex;
+  background-color: #e78610;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 60%;
+  margin-right: 40%;
+}
+
+/* 必要に応じて他の要素のスタイルを追加してください */
+
+
+
+
+
+
 /* 編集 */
 .edit{
     display: flex;
