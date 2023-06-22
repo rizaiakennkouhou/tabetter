@@ -106,8 +106,107 @@ class DAO_userdb{
                     return 'ユーザーIDが見つかりませんでした';
                 }
     
-                }    
-            
+                }
+                
+            //投稿情報を全件取得
+            public function getUserPostIds($userId){
+                $pdo = $this->dbConnect();
+
+                $sql = "SELECT * FROM post WHERE user_id = ?";
+
+                $ps = $pdo->prepare($sql);
+                $ps->bindValue(1,$userId,PDO::PARAM_STR);
+
+                $ps->execute();
+                $result = $ps->fetchAll(PDO::FETCH_ASSOC);
+
+                if($result){
+
+                    foreach($result as $row){
+                    $userIds[] = $row['post_id'];
+                    }
+
+                return $userIds;
+
+                }else{
+                    echo '';
+                }
             }
+
+            //コメント情報を全件取得
+            public function getUserCommentIds($userId){
+                $pdo = $this->dbConnect();
+
+                $sql = "SELECT * FROM post_comment WHERE user_id = ?";
+
+                $ps = $pdo->prepare($sql);
+                $ps->bindValue(1,$userId,PDO::PARAM_STR);
+
+                $ps->execute();
+                $result = $ps->fetchAll(PDO::FETCH_ASSOC);
+
+                if($result){
+
+                    foreach($result as $row){
+                    $userIds[] = $row['comment_id'];
+                    }
+
+                return $userIds;
+
+                }else{
+                    echo '';
+                }
+            }
+
+            //フォーラム情報を全件取得
+            public function getUserForumIds($userId){
+                $pdo = $this->dbConnect();
+
+                $sql = "SELECT * FROM forum WHERE user_id = ?";
+
+                $ps = $pdo->prepare($sql);
+                $ps->bindValue(1,$userId,PDO::PARAM_STR);
+
+                $ps->execute();
+                $result = $ps->fetchAll(PDO::FETCH_ASSOC);
+
+                if($result){
+
+                    foreach($result as $row){
+                    $userIds[] = $row['forum_id'];
+                    }
+
+                return $userIds;
+
+                }else{
+                    echo '';
+                }
+            }
+
+            public function getUserForumCommentIds($userId){
+                $pdo = $this->dbConnect();
+
+                $sql = "SELECT * FROM forum_comment WHERE user_id = ?";
+
+                $ps = $pdo->prepare($sql);
+                $ps->bindValue(1,$userId,PDO::PARAM_STR);
+
+                $ps->execute();
+                $result = $ps->fetchAll(PDO::FETCH_ASSOC);
+
+                if($result){
+
+                    foreach($result as $row){
+                    $userIds[] = $row['forum_comment_id'];
+                    }
+
+                return $userIds;
+
+                }else{
+                    echo '';
+                }
+            }
+            
+}
         
  
