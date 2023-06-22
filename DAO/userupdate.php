@@ -8,7 +8,7 @@
             $name=$_POST['user_name'];
 
             if(strlen($name)< 1 || strlen($name)> 30){
-                header('Location: https://localhost/tabetter/html/profileCheck.php');
+                header('Location: http://localhost/tabetter/html/profileCheck.php');
             }else{
                 $sql = 'UPDATE user
                     SET user_name = ?,bio = ?
@@ -19,6 +19,6 @@
                     $stmt->bindValue(3, $_POST['id'], PDO::PARAM_STR);
                     $stmt->execute();
             
-                    header('Location: https://localhost/tabetter/html/myProfile.php');
+                    header('Location: http://localhost/tabetter/html/myProfile.php');
             } 
 // ?>
