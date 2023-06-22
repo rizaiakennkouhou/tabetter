@@ -236,31 +236,31 @@
 </div>
 
 
-    <!-- navigationBar -->
-    <div class="border"></div>
- 
-    <div class="navigation">
-     <a class="list-link" href="#" onclick="changeImage(this, 'timeLine.php')">
-     <i class="icon">
-     <img src="../svg/time2.svg" class="image-size">
-     </i>
-     </a>
-     <a class="list-link" href="#" onclick="changeImage2(this, 'forum.php')">
-     <i class="icon">
-     <img src="../svg/forum.svg" class="image-size1">
-     </i>
-     </a>
-     <a class="list-link" href="#" onclick="changeImage3(this, 'Oyamadatokou.html')">
-     <i class="icon">
-     <img src="../svg/post.svg" class="image-size">
-     </i>
-     </a>
-     <a class="list-link" href="#" onclick="changeImage4(this, 'myProfile.php')">
-     <i class="icon">
-     <img src="../svg/profile.svg" class="image-size">
-     </i>
-     </a>
-    </div>
+ <!-- navigationBar -->
+ <div class="border"></div>
+
+<div class="navigation">
+    <a class="list-link" href="timeLine.php">
+        <i class="icon">
+            <img src="../svg/time.svg" class="image-size">
+        </i>
+    </a>
+    <a class="list-link" href="forum.php">
+        <i class="icon">
+            <img src="../svg/forum.svg" class="image-size1">
+        </i>
+    </a>
+    <a class="list-link">
+        <i class="icon">
+            <img src="../svg/post.svg" class="image-size" onclick="openModal()">
+        </i>
+    </a>
+    <a class="list-link" href="myProfile.php">
+        <i class="icon">
+            <img src="../svg/profile2.svg" class="image-size">
+        </i>
+    </a>
+</div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="../js/OyamadaBar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
