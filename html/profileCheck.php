@@ -22,7 +22,7 @@
     function closeModal() {
   var modal = document.getElementById('custom-modal');
   modal.style.display = 'none';
-  location.href = "https://localhost/tabetter/html/myProfile.php";
+  location.href = "http://localhost/tabetter/html/myProfile.php";
 }
 
 window.addEventListener('DOMContentLoaded', function() {
