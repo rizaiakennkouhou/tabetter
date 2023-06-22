@@ -5,17 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>画面一覧</title>
-    <link rel="stylesheet" href="../css/OyamadaBar.css">
+    <link rel="stylesheet" type="text/css" href="../css/Bar4.css?<?php echo date('YmdHis'); ?>"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/Oyamadatime2.css">
+    <link rel="stylesheet" type="text/css" href="../css/Oyamadatime2.css?<?php echo date('YmdHis'); ?>"/>
+    <link rel="stylesheet" type="text/css" href="../css/scrollable.css?<?php echo date('YmdHis'); ?>"/>
 </head>
 <body>
     <?php
         session_start();
-        require_once '../DAO/userTime.php';
+        require_once '../DAO/postdb.php';
         require_once '../DAO/userdb.php';
-        $daoUserTime = new DAO_userTimedb();
+        require_once '../DAO/userTimedb.php';
+        $daoPostDb = new DAO_post();
         $daoUserDb = new DAO_userdb();
+        $daoUserTimeDb = new DAO_userTimedb();
     ?>
     <div id="app">
     <!-- ヘッダー -->
@@ -41,60 +44,196 @@
     </div>
   </header>
   <!-- ヘッダー↑ -->
-
   <div class="scrollable">
+  <div style="height: 800px;">
+    <div class="row">
+        <h1 class="text-center">投稿</h1>
+        <hr>
+    </div>
+
   <div class="container-fluid">
     <div class="row">
 
     <?php
-        $userIds = array();
-        $userIds = $daoUserDb->getUserIds($_SESSION['user_id']);
+        $postIds = array();
+        $postIds = $daoUserDb->getUserPostIds($_SESSION['user_id']);
         
+        if(isset($postIds)){
+        foreach($postIds as $postId){
 
-        foreach($userIds as $userId){
-            echo '
+        ?>
             <!-- 投稿のカード -->
             <div class="card">
                 <div class="card-body">
                     <div class="box">
-                        <p class="userName">',$daoUserDb->getUserName($_SESSION['user_id']),'</p>
+                        <p class="userName"> <?=$daoUserDb->getUserName($_SESSION['user_id']) ?></p>
                         <p class="userComment">
-                        '
-                        ,$daoUserDb->getUserDetail($_SESSION['user_id']),
-                        '
+                        
+                        <?= $daoPostDb->getPostDetail($postId) ?>
+                        
                         </p>
                     </div>
                     <div class="row row-eq-height">
                         <div class="col-6">
                             <div class="d-flex justify-content-end">
-                                <div class="likeButton">
-                                <input type="checkbox" checked id="',($userId),'" name="likeButton"><label for="',($postId),'"><img src="../svg/Like-black.png" class="likeButtonImg"/></label>
-                                </div>
-                                <div class="like" id="likeCnt">
-                                    ',$daoPostDb->getPostCount($_SESSION['user_id']),'
-                                </div>
                             </div>
                         </div>
-                        <div class="col-6">
-                            <div class="d-flex justify-content-center">
-                                <a href="Oyamadatokou.html"><img src="../svg/comment.svg" id="commentButton"></a>
-                                <div class="comment">
-                                    ',$daoPostDb->getPostCommentCount($_SESSION['user_id']),'
-                                </div>
-                            </div>
+                        <div class="offset-3 col-3">
+                            <button class="d-flex justify-content-center" id="buttonStyle">
+                                <a href="../DAO/deletePost.php?postid=<?= $postId ?>"><img src="../svg/dust.svg" id="commentButton"></a>
+                            </button>
                         </div>                                                    
                     </div>
                 </div>
             </div>
-            ';
+        <?php
         }
+    }else{
+        echo '投稿がありません' . '<hr>';
+    }
     ?>
     </div>
 </div>
+
+
+    <div class="row">
+        <hr>
+        <h1 class="text-center">投稿コメント</h1>
+        <hr>
+    </div>
+
+    <?php
+        $commentIds = array();
+        $commentIds = $daoUserDb->getUserCommentIds($_SESSION['user_id']);
+        
+        if(isset($commentIds)){
+        foreach($commentIds as $commentId){
+
+        ?>
+            <!-- 投稿のカード -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="box">
+                        <p class="userName"> <?=$daoUserDb->getUserName($_SESSION['user_id']) ?></p>
+                        <p class="userComment">
+                        
+                        <?= $daoUserTimeDb->getCommentDetail($commentId) ?>
+                        
+                        </p>
+                    </div>
+                    <div class="row row-eq-height">
+                        <div class="col-6">
+                            <div class="d-flex justify-content-end">
+                            </div>
+                        </div>
+                        <div class="offset-3 col-3">
+                            <button class="d-flex justify-content-center" id="buttonStyle">
+                                <a href="../DAO/deleteComment.php?commentid=<?= $commentId ?>"><img src="../svg/dust.svg"></a>
+                            </button>
+                        </div>                                                    
+                    </div>
+                </div>
+            </div>
+        <?php
+        }
+    }else{
+        echo '投稿がありません' . '<hr>';
+    }
+    ?>
+
+    <h1> </h1>
+
+    <div class="row">
+        <hr>
+        <h1 class="text-center">フォーラム</h1>
+        <hr>
+    </div>
+
+    <?php
+        $forumIds = array();
+        $forumIds = $daoUserDb->getUserForumIds($_SESSION['user_id']);
+        
+        if(isset($forumIds)){
+        foreach($forumIds as $forumId){
+
+        ?>
+            <!-- 投稿のカード -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="box">
+                        <p class="userName"> <?=$daoUserDb->getUserName($_SESSION['user_id']) ?></p>
+                        <p class="userComment">
+                        
+                        <?= $daoUserTimeDb->getForumDetail($forumId) ?>
+                        
+                        </p>
+                    </div>
+                    <div class="row row-eq-height">
+                        <div class="col-6">
+                            <div class="d-flex justify-content-end">
+                            </div>
+                        </div>
+                        <div class="offset-3 col-3">
+                            <button class="d-flex justify-content-center" id="buttonStyle">
+                                <a href="../DAO/deleteForum.php?forumid=<?= $forumId ?>"><img src="../svg/dust.svg"></a>
+                            </button>
+                        </div>                                                    
+                    </div>
+                </div>
+            </div>
+        <?php
+        }
+    }else{
+        echo '投稿がありません' . '<hr>';
+    }
+    ?>
+
+    <div class="row">
+        <hr>
+        <h1 class="text-center">フォーラムコメント</h1>
+        <hr>
+    </div>
+
+    <?php
+        $forumcommentIds = array();
+        $forumcommentIds = $daoUserDb->getUserForumCommentIds($_SESSION['user_id']);
+        
+        if(isset($forumcommentIds)){
+        foreach($forumcommentIds as $forumcommentId){
+
+        ?>
+            <!-- 投稿のカード -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="box">
+                        <p class="userName"> <?=$daoUserDb->getUserName($_SESSION['user_id']) ?></p>
+                        <p class="userComment">
+                        
+                        <?= $daoUserTimeDb->getForumCommentDetail($forumcommentId) ?>
+                        
+                        </p>
+                    </div>
+                    <div class="row row-eq-height">
+                        <div class="col-6">
+                            <div class="d-flex justify-content-end">
+                            </div>
+                        </div>
+                        <div class="offset-3 col-3">
+                            <button class="d-flex justify-content-center" id="buttonStyle">
+                                <a href="../DAO/deleteForumComment.php?forumcommentid=<?= $forumcommentId ?>"><img src="../svg/dust.svg"></a>
+                            </button>
+                        </div>                                                    
+                    </div>
+                </div>
+            </div>
+        <?php
+        }
+    }else{
+        echo '投稿がありません' . '<hr>';
+    }
+    ?>
+    </div>
 </div>
-
-
-
 
 
     <!-- navigationBar -->

@@ -24,3 +24,29 @@
     padding: 1em;
     background:#fff;
   }
+
+  .buttonsubmit{
+    font-weight:bold;
+    text-align: center;
+    text-decoration: none;
+    background-color: #ffac4a; /* ボタンの背景色 */
+    color: #000000; /* ボタンのテキストカラー */
+    font-size: 13px; /* ボタンのテキストサイズ */
+    padding: 5px 10px; /* 上下左右のパディングを調整する */
+    border: none;
+    border-radius: 50px 55px 55px 50px; /* 左上と左下の角を10ピクセルの丸角にする */
+  }
+
+  .filesend{
+    display: none;
+  }
+
+ #textboxstyle{
+  display: inline-block;
+  margin-top: 5px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  background-color: #d3d3d3;
+  border:none;
+  box-shadow: 1px 3px 4px rgb(170,170,170);
+ }
