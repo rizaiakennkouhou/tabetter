@@ -63,5 +63,21 @@
                 return $result;
             }
         }
+        public function getCommentUserIdByComId($comment_id){
+            $pdo = $this->dbConnect();
+
+            $sql = "SELECT user_id FROM post_comment WHERE comment_id = ?";
+
+            $ps = $pdo->prepare($sql);
+
+            $ps->bindValue(1, $comment_id, PDO::PARAM_INT);
+
+            $ps->execute();
+            $result = $ps->fetch(PDO::FETCH_ASSOC);
+
+            if($result) {
+                return $result;
+            }
+        }
     }
 ?>
