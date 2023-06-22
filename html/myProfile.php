@@ -28,12 +28,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/Bar4.css">
-    <link rel="stylesheet" href="../css/profile2.css">
-    <!-- <link rel="stylesheet" href="../css/OyamadaBar.css"> -->
-    <!-- <link rel="stylesheet" href="../css/Oyamadaprofile.css"> -->
-    <link rel="stylesheet" href="../css/modal.css">
-    <link rel="stylesheet" href="../css/scrollable2.css">
+    <link rel="stylesheet" href="../css/Bar4.css?<?php echo date('YmdHis'); ?>"/>
+    <link rel="stylesheet" href="../css/profile2.css?<?php echo date('YmdHis'); ?>"/>
+    <link rel="stylesheet" href="../css/modal.css?<?php echo date('YmdHis'); ?>"/>
+    <link rel="stylesheet" href="../css/scrollable2.css?<?php echo date('YmdHis'); ?>"/>
 </head>
 
 
@@ -144,7 +142,9 @@
     </div>
 </div>
     <div class="toukou">
-        <button class="button">投稿一覧</button>
+        <form action="./userTime.php">
+        <button class="button" type="submit">投稿一覧</button>
+        </form>
     </div>
 
 </div>

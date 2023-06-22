@@ -11,7 +11,7 @@
 
     $sql = "SELECT * FROM user_image WHERE user_id = ? ";
     $stmt = $pdo->prepare($sql);
-    $stmt->bindValue(1, $_POST['user_id'], PDO::PARAM_STR);
+    $stmt->bindValue(1, $_SESSION['user_id'], PDO::PARAM_STR);
     $stmt->execute();
     $image = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -100,7 +100,7 @@
                         
                         <input type="text" name="forum_comment_detail" id="edit-username">
                         
-                        <input type="hidden" name="user_id" value="<?= $_POST['user_id']?>">
+                        <input type="hidden" name="user_id" value="<?= $_SESSION['user_id']?>">
                         <button onclick="saveChanges()" type="submit">保存</button>
                     </form>
                     <button onclick="closeModal()">キャンセル</button>
