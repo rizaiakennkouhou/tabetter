@@ -7,6 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="../css/Bar4.css">
     <!-- <link rel="stylesheet" href="../css/OyamadaBar.css"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" integrity="sha256-5uKiXEwbaQh9cgd2/5Vp6WmMnsUr3VZZw0a8rKnOKNU=" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/Oyamadatime2.css">
     <link rel="stylesheet" href="../css/modal.css">
@@ -54,10 +55,14 @@
         $postIds = $daoPostDb->getPostIds();
         $userIds = array();
         $imageIds = array();
+        $postDate = array();
 
         foreach($postIds as $postId){
             $userIds = $daoPostDb->getUserIdsByPostId($postId);
             $imageIds = $daoPostDb->getPostImageByPostId($postId);
+            $postDate = $daoPostDb->getPostDateByPostId($postId);
+            $postImgLiTag ="";
+            $postImgCarousel ="";
 
             // ユーザーアイコンのSQL
             $pdo = new PDO('mysql:host=localhost; dbname=tabetterdb; charset=utf8',
@@ -72,8 +77,6 @@
             $img = base64_encode($image['user_image']);
     ?>
             <!-- 投稿のカード -->
-            <form action="T.syosai.php" method="get">
-            <input type="hidden" name="id" value="<?=($postIds)?>">
             <div class="card">
                 <div class="card-body">
                     <div class="box">
@@ -82,14 +85,16 @@
                             <input type="hidden" name="id" value="<?=($userIds)?>">
                         </form>
                         <p class="userName"><?= $daoUserDb->getUserName($userIds)?></p>
-                        <p class="userComment">
-                        <?= $daoPostDb->getPostDetail($postId)?>
-                        </p>
+                        <p class="userComment"><?= $daoPostDb->getPostDetail($postId)?></p>
                         <?php
-                        if(isset($postId)){
+                        if(count($imageIds)>= 1){
+                            foreach($imageIds as $row){
                         ?>
-                            <img src="../DAO/display.php?id=<?=($postId)?>" width="100" class="postImage">
+                                <li class="splide__slide">
+                                <img src="../DAO/display.php?id=<?=$postId?>" width="100" class="postImage">
+                                </li>
                         <?php
+                            }
                         }
                         ?>
                     </div>
@@ -111,11 +116,13 @@
                                     <?= $daoPostDb->getPostCommentCount($postId)?>
                                 </div>
                             </div>
-                        </div>                                                    
+                        </div>                                           
+                    </div>
+                    <div class="postDate">
+                        <?= ($postDate) ?>
                     </div>
                 </div>
             </div>
-            </form>
         <?php
         }
         ?>
@@ -154,6 +161,7 @@
     <script src="../js/Oyamadaprofile.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <!-- <script src="../js/OyamadaBar.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js" integrity="sha256-FZsW7H2V5X9TGinSjjwYJ419Xka27I8XPDmWryGlWtw=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <script src="../js/time.js"></script>
 </body>
