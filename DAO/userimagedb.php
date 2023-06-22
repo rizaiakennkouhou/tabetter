@@ -15,5 +15,5 @@
                     $stmt->bindValue(2, $_POST['id'], PDO::PARAM_STR);
                     $stmt->execute();
 
-                    header('Location: https://localhost/tabetter/html/Oyamadaprofile.php');
+                    header('Location: https://localhost/tabetter/html/myProfile.php');
 ?>
