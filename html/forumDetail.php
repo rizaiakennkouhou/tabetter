@@ -1,7 +1,9 @@
 <?php 
     session_start();
     require_once '../DAO/forumdb.php';
+    require_once '../DAO/forumcommentdb.php';
     $forumdao = new DAO_forumdb();
+    $forumCommentDao = new DAO_forumcommentdb();
 
 
 
@@ -119,6 +121,35 @@
     <div class = "top_row row ms-1">
         コメント
     </div>
+
+    
+<?php
+    $commentIds = array();
+    $commentIds = $forumCommentDao->getCommentIds($_GET['forumid']);
+    foreach($commentIds as $commentId){
+?>
+    <div class="container-fluid">
+
+        <div class="card mt-2">
+            <div class="top_row row ms-1">
+                <p class="title col mb-0" style="font-size: 16px;">
+                <?= $forumCommentDao->getForumCommentDetail($commentId); ?>
+                </p>
+            </div>
+            <hr class="custom-hr">
+
+            <div class="bottom_row row mx-1 mb-1">
+                <p class="col mb-0 text-end">
+                    <!-- 投稿時間 -->
+                    <?= $forumCommentDao->getForumCommentDate($commentId); ?>分前
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <?php
+        }
+        ?>
 
     <script src="../js/Oyamadaprofile.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
