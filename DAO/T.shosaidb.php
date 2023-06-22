@@ -47,6 +47,7 @@
                 return $image;
             }
         }
+        //コメント取得　post_idで comment_id降順
         public function getCommentByPostId($postId){
             $pdo = $this->dbConnect();
 
@@ -63,6 +64,7 @@
                 return $result;
             }
         }
+        //リプライユーザーID取得　comment_idで
         public function getCommentUserIdByComId($comment_id){
             $pdo = $this->dbConnect();
 
@@ -76,7 +78,7 @@
             $result = $ps->fetch(PDO::FETCH_ASSOC);
 
             if($result) {
-                return $result;
+                return $result['user_id'];
             }
         }
     }
