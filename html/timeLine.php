@@ -18,8 +18,10 @@
     <?php
         require_once '../DAO/postdb.php';
         require_once '../DAO/userdb.php';
+        require_once '../DAO/T.shosaidb.php';
         $daoPostDb = new DAO_post();
         $daoUserDb = new DAO_userdb();
+        $daoTshosaiDb = new DAO_Tshosaidb();
     ?>
     <div id="app">
     <!-- ヘッダー -->
@@ -61,6 +63,8 @@
             $userIds = $daoPostDb->getUserIdsByPostId($postId);
             $imageIds = $daoPostDb->getPostImageByPostId($postId);
             $postDate = $daoPostDb->getPostDateByPostId($postId);
+            $imageIds = array();
+            // $postImgs = $daoTshosaiDb->getPostImgByPostId($postId);
             $postImgLiTag ="";
             $postImgCarousel ="";
 
@@ -75,6 +79,7 @@
             $image = $stmt->fetch(PDO::FETCH_ASSOC);
 
             $img = base64_encode($image['user_image']);
+
     ?>
             <!-- 投稿のカード -->
             <div class="card">
@@ -88,13 +93,23 @@
                         <p class="userComment"><?= $daoPostDb->getPostDetail($postId)?></p>
                         <?php
                         if(count($imageIds)>= 1){
-                            foreach($imageIds as $row){
                         ?>
-                                <li class="splide__slide">
-                                <img src="../DAO/display.php?id=<?=$postId?>" width="100" class="postImage">
-                                </li>
+                            <section id="image-carousel" class="splide" aria-label="投稿画像">
+                                <div class="splide__track">
+                                    <ul class="splide__list">
                         <?php
-                            }
+                                    foreach($imageIds as $row){
+                        ?>
+                                        <li class="splide__slide">
+                                            <img src="../DAO/display.php?id=<?= $row['post_id']?>" width="100" class="postImage">
+                                        </li>
+                        <?php
+                                    }
+                        ?>
+                                    </ul>
+                                </div>
+                            </section>
+                        <?php
                         }
                         ?>
                     </div>
