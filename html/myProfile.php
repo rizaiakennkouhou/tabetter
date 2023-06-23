@@ -28,12 +28,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/Bar4.css">
-    <link rel="stylesheet" href="../css/profile2.css">
-    <!-- <link rel="stylesheet" href="../css/OyamadaBar.css"> -->
-    <!-- <link rel="stylesheet" href="../css/Oyamadaprofile.css"> -->
-    <link rel="stylesheet" href="../css/modal.css">
-    <link rel="stylesheet" href="../css/scrollable2.css">
+    <link rel="stylesheet" href="../css/Bar4.css?<?php echo date('YmdHis'); ?>"/>
+    <link rel="stylesheet" href="../css/profile2.css?<?php echo date('YmdHis'); ?>"/>
+    <link rel="stylesheet" href="../css/modal.css?<?php echo date('YmdHis'); ?>"/>
+    <link rel="stylesheet" href="../css/scrollable2.css?<?php echo date('YmdHis'); ?>"/>
 </head>
 
 
@@ -78,12 +76,19 @@
     </div>
     <!-- open-modalの中身が表示される -->
     <open-modal v-show="showContent" v-on:from-child="closeModal">
-        <form method="POST" action="../DAO/newuserimagedb.php" enctype="multipart/form-data">
-                <div>
-                <input type="file" name="image">
+        <h2>プロフィール画像を変更</h2>
+        <form method="POST" action="../DAO/newuserimagedb.php" enctype="multipart/form-data" class="image_modal">
+            <div>
+            <label class="float-right mr-3">
+                        <span class="filelabel">
+                            <img src="../svg/imagefile.svg" alt="" id="file-iamge">
+                        </span>
+                        <h6>画像を変更</h6>
+                <input type="file" name="image" class="filesend">
                 <input type="hidden" name="id" value="<?= $_SESSION['user_id']?>">
-                <input type="submit" value="送信！">
+            </label>
             </div>
+                <input type="submit" value="送信！">
         </form>
     </open-modal>
 
@@ -144,7 +149,9 @@
     </div>
 </div>
     <div class="toukou">
-        <button class="button">投稿一覧</button>
+        <form action="./userTime.php">
+        <button class="button" type="submit">投稿一覧</button>
+        </form>
     </div>
 
 </div>

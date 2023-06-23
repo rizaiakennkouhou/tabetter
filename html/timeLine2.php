@@ -5,19 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/Bar3.css">
+    <link rel="stylesheet" href="../css/Bar4.css?<?php echo date('YmdHis'); ?>"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/Oyamadatime2.css">
-    <link rel="stylesheet" href="../css/modal.css">
-    <link rel="stylesheet" href="../css/Oyamadaprofile.css">
-    <link rel="stylesheet" href="../css/scrollable.css">
+    <link rel="stylesheet" href="../css/Oyamadatime2.css?<?php echo date('YmdHis'); ?>"/>
+    <link rel="stylesheet" type="text/css" href="../css/modal.css?<?php echo date('YmdHis'); ?>"/>
+    <link rel="stylesheet" href="../css/Oyamadaprofile.css?<?php echo date('YmdHis'); ?>"/>
+    <link rel="stylesheet" href="../css/scrollable.css?<?php echo date('YmdHis'); ?>"/>
 </head>
 <body>
     <?php
+        session_start();
         require_once '../DAO/postdb.php';
         require_once '../DAO/userdb.php';
         $daoPostDb = new DAO_post();
         $daoUserDb = new DAO_userdb();
+
+            // ユーザーアイコンのSQL
+        $pdo = new PDO('mysql:host=localhost; dbname=tabetterdb; charset=utf8',
+        'webuser', 'abccsd2');
+
+        $sql2 = "SELECT * FROM user_image WHERE user_id = ? ";
+        $stmt2 = $pdo->prepare($sql2);
+        $stmt2->bindValue(1, $_SESSION['user_id'], PDO::PARAM_STR);
+        $stmt2->execute();
+        $image2 = $stmt2->fetch(PDO::FETCH_ASSOC);
+
+        $img2 = base64_encode($image2['user_image']);
     ?>
     <div id="app">
     <!-- ヘッダー -->
@@ -120,27 +133,51 @@
     <div id="overlay" class="modal-content">
     <div id="content" class="content">
     <form method="POST" action="../DAO/post_imagesdb.php" enctype="multipart/form-data">
-            <div>
-                <p>投稿詳細のテキストボックス</p>
-                <input type="text" name="detail">
-                <details>
-                <summary>詳細</summary>
-                    <p>店名のテキストボックス</p>
-                    <input type="text" name="store">
-                    <p>メニュー名のテキストボックス</p>
-                    <input type="text" name="menu">
-                    <p>価格のテキストボックス</p>
-                    <input type="text" name="price">
-                    <p>場所のテキストボックス</p>
-                    <input type="text" name="address">
+        <div class="row">
+           <div class="col-2">
+            <img src="data:<?php echo $image2['image_type'] ?>;base64,<?php echo $img2; ?> " class="profielIcon">
+            </div>
+            <div class="col-10 mr-5 pt-2">
+            <?= $daoUserDb->getUserName($_SESSION['user_id']); ?>
+            </div>
+            </div>
+            <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <textarea name="detail" class="form-control" id="exampleTextBox" rows="5"></textarea>
+                        </div>
+                    </div>
+            </div>
+            <div class="row">
+                <div class="col-10">
+                    <details>
+                        <summary class="float-right mr-3">詳細</summary>
+                            <input type="text" name="store" id="textboxstyle" placeholder="店名" class="text-center">
+                            <input type="text" name="menu" id="textboxstyle" placeholder="メニュー名" class="text-center">
+                            <input type="text" name="price" id="textboxstyle" placeholder="価格" class="text-center">
+                            <input type="text" name="address" id="textboxstyle" placeholder="場所" class="text-center">
                     </details>
+                </div>
+
+                <div class="col-2">
+                    <label class="float-right mr-3">
+                        <span class="filelabel">
+                            <img src="../svg/imagefile.svg" alt="" id="file-iamge">
+                        </span>
+                        <input type="file" name="image[]" multiple id="file-send" class="filesend">
+                        <input type="hidden" name="userid" value="<?= $_SESSION['user_id']?>">
+                    </label>
+                </div>
             </div>
-            <div>
-                <p>画像を最大４枚まで選択</p>
-                <input type="file" name="image[]" multiple>
-                <input type="text" name="userid">
-                <input type="submit" value="送信！">
+
+            <div class="row">
+                <div class="col-10"></div>
+                <div class="col-2 mt-2">
+                <input type="submit" value="送信" class="buttonsubmit">
+                </div>
             </div>
+            
+            
         </form>
     <button onclick="closeModal()">キャンセル</button>
     </div>
@@ -150,7 +187,7 @@
  <!-- navigationBar -->
 <div class="navigation">
 <div class="border"></div>
-    <a class="list-link" href="timeLine2.php">
+    <a class="list-link" href="timeLine.php">
         <i class="icon">
             <img src="../svg/time2.svg" class="image-size">
         </i>
@@ -165,7 +202,7 @@
             <img src="../svg/post.svg" class="image-size">
         </i>
     </a>
-    <a class="list-link" href="myProfile2.php">
+    <a class="list-link" href="myProfile.php">
         <i class="icon">
             <img src="../svg/profile.svg" class="image-size">
         </i>

@@ -25,16 +25,16 @@ class DAO_search{
         $ps->execute();
         $result = $ps->fetchAll(PDO::FETCH_ASSOC);
 
-        if(isset($result)){
+        if(!empty($result)){
 
         foreach($result as $row){
             $postIds[] = $row['post_id'];
         }
 
-        return $result;
+        return $postIds;
         
         }else{
-            echo '見つかりませんでした';
+            echo '';
         }
     }
 

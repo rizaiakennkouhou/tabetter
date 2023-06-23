@@ -7,7 +7,6 @@
     <title>Document</title>
     <link rel="stylesheet" href="../css/Bar4.css">
     <!-- <link rel="stylesheet" href="../css/OyamadaBar.css"> -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" integrity="sha256-5uKiXEwbaQh9cgd2/5Vp6WmMnsUr3VZZw0a8rKnOKNU=" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/Oyamadatime2.css">
     <link rel="stylesheet" href="../css/modal.css">
@@ -18,8 +17,10 @@
     <?php
         require_once '../DAO/postdb.php';
         require_once '../DAO/userdb.php';
+        require_once '../DAO/search.php';
         $daoPostDb = new DAO_post();
         $daoUserDb = new DAO_userdb();
+        $daoSearch = new DAO_search();
     ?>
     <div id="app">
     <!-- ヘッダー -->
@@ -47,22 +48,25 @@
   <!-- ヘッダー↑ -->
 
   <div class="scrollable">
-  <div class="container-fluid">
+
+
+<?php 
+if(isset($_GET['key'])){
+?>
+
+<div class="container-fluid">
     <div class="row">
 
     <?php
-        $postIds = array();
-        $postIds = $daoPostDb->getPostIds();
+        $searchPostIds = array();
+        $searchPostIds = $daoSearch->getSearchPost($_GET['key']);
+        if(!empty($searchPostIds)){
         $userIds = array();
         $imageIds = array();
-        $postDate = array();
 
-        foreach($postIds as $postId){
-            $userIds = $daoPostDb->getUserIdsByPostId($postId);
-            $imageIds = $daoPostDb->getPostImageByPostId($postId);
-            $postDate = $daoPostDb->getPostDateByPostId($postId);
-            $postImgLiTag ="";
-            $postImgCarousel ="";
+        foreach($searchPostIds as $searchId){
+            $userIds = $daoPostDb->getUserIdsByPostId($searchId);
+            $imageIds = $daoPostDb->getPostImageByPostId($searchId);
 
             // ユーザーアイコンのSQL
             $pdo = new PDO('mysql:host=localhost; dbname=tabetterdb; charset=utf8',
@@ -77,6 +81,8 @@
             $img = base64_encode($image['user_image']);
     ?>
             <!-- 投稿のカード -->
+            <form action="T.syosai.php" method="get">
+            <input type="hidden" name="id" value="<?=($searchId)?>">
             <div class="card">
                 <div class="card-body">
                     <div class="box">
@@ -85,16 +91,105 @@
                             <input type="hidden" name="id" value="<?=($userIds)?>">
                         </form>
                         <p class="userName"><?= $daoUserDb->getUserName($userIds)?></p>
-                        <p class="userComment"><?= $daoPostDb->getPostDetail($postId)?></p>
+                        <p class="userComment">
+                        <?= $daoPostDb->getPostDetail($searchId)?>
+                        </p>
                         <?php
-                        if(count($imageIds)>= 1){
-                            foreach($imageIds as $row){
+                        if(isset($searchId)){
                         ?>
-                                <li class="splide__slide">
-                                <img src="../DAO/display.php?id=<?=$postId?>" width="100" class="postImage">
-                                </li>
+                            <img src="../DAO/display.php?id=<?=($searchId)?>" width="100" class="postImage">
                         <?php
-                            }
+                        }
+                        ?>
+                    </div>
+                    <div class="row row-eq-height">
+                        <div class="col-6">
+                            <div class="d-flex justify-content-end">
+                                <div class="likeButton">
+                                <input type="checkbox" checked id="<?= ($searchId)?>" name="likeButton"><label for="<?= ($searchId)?>"><img src="../svg/Like-black.png" class="likeButtonImg"/></label>
+                                </div>
+                                <div class="like" id="likeCnt">
+                                    <?= $daoPostDb->getPostCount($searchId)?>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex justify-content-center">
+                                <a href="Oyamadatokou.html"><img src="../svg/comment.svg" id="commentButton"></a>
+                                <div class="comment">
+                                    <?= $daoPostDb->getPostCommentCount($searchId)?>
+                                </div>
+                            </div>
+                        </div>                                                    
+                    </div>
+                </div>
+            </div>
+            </form>
+        <?php
+        }
+        ?>
+    </div>
+</div>
+
+<?php
+}else{
+?>
+
+<h6 class="text-center mt-5">「<?= $_GET['key']; ?>」の検索結果はありません</h6>
+
+
+<?php
+
+}
+
+}else{
+
+?>
+
+  <div class="container-fluid">
+    <div class="row">
+
+    <?php
+        $postIds = array();
+        $postIds = $daoPostDb->getPostIds();
+        $userIds = array();
+        $imageIds = array();
+
+        foreach($postIds as $postId){
+            $userIds = $daoPostDb->getUserIdsByPostId($postId);
+            $imageIds = $daoPostDb->getPostImageByPostId($postId);
+
+            // ユーザーアイコンのSQL
+            $pdo = new PDO('mysql:host=localhost; dbname=tabetterdb; charset=utf8',
+            'webuser', 'abccsd2');
+
+            $sql = "SELECT * FROM user_image WHERE user_id = ? ";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindValue(1, $userIds, PDO::PARAM_STR);
+            $stmt->execute();
+            $image = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $img = base64_encode($image['user_image']);
+    ?>
+            <!-- 投稿のカード -->
+            <form action="T.syosai.php" method="get">
+            <input type="hidden" name="id" value="<?=($postIds)?>">
+            <div class="card">
+                <div class="card-body">
+                    <div class="box">
+                        <form action="userProfile.php" method="get">
+                            <input type="image" src="data:<?=$image['image_type']?>;base64,<?=$img?>" class="profielIcon" />
+                            <input type="hidden" name="id" value="<?=($userIds)?>">
+                        </form>
+                        <p class="userName"><?= $daoUserDb->getUserName($userIds)?></p>
+                        <p class="userComment">
+                        <?= $daoPostDb->getPostDetail($postId)?>
+                        </p>
+                        <?php
+                        if(isset($postId)){
+                        ?>
+                            <img src="../DAO/display.php?id=<?=($postId)?>" width="100" class="postImage">
+                        <?php
                         }
                         ?>
                     </div>
@@ -116,18 +211,23 @@
                                     <?= $daoPostDb->getPostCommentCount($postId)?>
                                 </div>
                             </div>
-                        </div>                                           
-                    </div>
-                    <div class="postDate">
-                        <?= ($postDate) ?>
+                        </div>                                                    
                     </div>
                 </div>
             </div>
+            </form>
         <?php
         }
         ?>
     </div>
 </div>
+
+<?php 
+
+}
+
+
+?>
 </div>
 
 
@@ -158,10 +258,15 @@
         </i>
     </a>
 </div>
+
+
+
+
+
+
     <script src="../js/Oyamadaprofile.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <!-- <script src="../js/OyamadaBar.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js" integrity="sha256-FZsW7H2V5X9TGinSjjwYJ419Xka27I8XPDmWryGlWtw=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <script src="../js/time.js"></script>
 </body>

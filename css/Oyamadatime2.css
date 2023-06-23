@@ -74,6 +74,11 @@ div .d-flex.justify-content-center {
     padding-left: 15%;
 }
 
+.postDate {
+    padding-top: 5%;
+    padding-left: 50%;
+}
+
 .userName {
     display: inline-block;
     vertical-align: auto;
