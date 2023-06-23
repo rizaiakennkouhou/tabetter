@@ -11,7 +11,7 @@ class DAO_forumcommentdb{
     public function getCommentIds($forumid){
         $pdo = $this->dbConnect();
 
-        $sql = "SELECT * FROM forum_comment WHERE forum_id = ?";
+        $sql = "SELECT * FROM forum_comment WHERE forum_id = ? ORDER BY forum_comment_id DESC";
 
         $ps = $pdo->prepare($sql);
         $ps->bindValue(1,$forumid,PDO::PARAM_INT);
