@@ -13,9 +13,9 @@
     <link rel="stylesheet" href="../css/OyamadaBar.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/Oyamadatime2.css">
-    <link rel="stylesheet" href="../css/T.syosai.css">
     <link rel="stylesheet" href="../css/modal.css">
     <link rel="stylesheet" href="../css/Oyamadaprofile.css">
+    <link rel="stylesheet" href="../css/T.syosai.css">
 </head>
 <body>
     <?php
@@ -206,10 +206,12 @@
             <form method="POST" action="../DAO/comment.php" enctype="multipart/form-data">
             <h2>キャンセル</h2>
             <div class="icon-image">
-                    <img src="data:<?php echo $image['image_type'] ?>;base64,<?php echo $img; ?>">
+                    <img src="data:<?php echo $userImg['image_type'] ?>;base64,<?php echo $userImgBace; ?>">
             </div>
-            <p>コメント先:</p>
-                
+            <!-- <select name="" id="">
+
+            </select> -->
+            
                 <input type="text" name="comment_detail" id="edit-username">
                 
                 <input type="hidden" name="user_id" value="<?= $_POST['user_id']?>">
