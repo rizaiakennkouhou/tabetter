@@ -114,7 +114,7 @@
                 </div>
                 <p class="col mb-0 text-end">
                     <!-- 投稿時間 -->
-                    <?= $forumdao->getForumDate($_GET['forumid']); ?>分前
+                    <?= $forumdao->getForumDate($_GET['forumid']); ?>
                 </p>
             </div>
         </div>
@@ -129,6 +129,7 @@
 <?php
     $commentIds = array();
     $commentIds = $forumCommentDao->getCommentIds($_GET['forumid']);
+    if(isset($commentIds)){
     foreach($commentIds as $commentId){
 ?>
     <div class="container-fluid">
@@ -144,7 +145,7 @@
             <div class="bottom_row row mx-1 mb-1">
                 <p class="col mb-0 text-end">
                     <!-- 投稿時間 -->
-                    <?= $forumCommentDao->getForumCommentDate($commentId); ?>分前
+                    <?= $forumCommentDao->getForumCommentDate($commentId); ?>
                 </p>
             </div>
         </div>
@@ -152,6 +153,9 @@
     </div>
     <?php
         }
+    }else{
+        echo '投稿がありません' . '<hr>';
+    }
         ?>
         </div>
     </div>
