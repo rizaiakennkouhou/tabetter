@@ -1,7 +1,46 @@
-<script>
+<!-- <script>
     alert("コメントを入力してください！");
     var urlParams = new URLSearchParams(window.location.search);
     var forumid = urlParams.get('forumid');
     var redirectUrl = "http://localhost/tabetter/html/forumDetail.php?forumid=" + encodeURIComponent(forumid);
     location.href = redirectUrl;
+</script> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/profileCheck.css?<?php echo date('YmdHis'); ?>"/>
+</head>
+<body>
+<div id="custom-modal">
+  <div class="modal-content">
+    <p>コメントを入力してください！</p>
+    <button onclick="closeModal()">OK</button>
+  </div>
+</div>
+
+<script>
+    function closeModal() {
+  var modal = document.getElementById('custom-modal');
+  modal.style.display = 'none';
+  var urlParams = new URLSearchParams(window.location.search);
+    var forumid = urlParams.get('forumid');
+    var redirectUrl = "http://localhost/tabetter/html/forumDetail.php?forumid=" + encodeURIComponent(forumid);
+    location.href = redirectUrl;
+}
+
+window.addEventListener('DOMContentLoaded', function() {
+  var modal = document.getElementById('custom-modal');
+  modal.style.display = 'flex';
+});
+
+// window.addEventListener('DOMContentLoaded', function() {
+//   alert("ユーザー名は1文字以上10文字以下で入力してください。");
+//   location.href = "https://localhost/tabetter/html/myProfile.php";
+// });
 </script>
+</body>
+</html>
