@@ -37,7 +37,7 @@
     }
     </style>
     <link rel="stylesheet" href="../css/forum.css?<?php echo date('YmdHis'); ?>"/>
-    <link rel="stylesheet" href="../css/modal.css?<?php echo date('YmdHis'); ?>"/>
+    <link rel="stylesheet" href="../css/forummodal.css?<?php echo date('YmdHis'); ?>"/>
     <link rel="stylesheet" href="../css/Oyamadaprofile.css?<?php echo date('YmdHis'); ?>"/>
     <link rel="stylesheet" href="../css/scrollable2.css?<?php echo date('YmdHis'); ?>"/>
     <link rel="stylesheet" href="../css/Bar4.css?<?php echo date('YmdHis'); ?>"/>
@@ -105,10 +105,10 @@
                     <textarea name="forum_comment_detail" type="text" id="edit-username"></textarea>                       
                         <input type="hidden" name="user_id" value="<?= $_SESSION['user_id']?>">
                         <input type="hidden" name="forum_id" value="<?= $_GET['forumid']?>">
-                        <button onclick="saveChanges()" type="submit">保存</button>
+                        <button onclick="saveChanges()" type="submit" class="buttonsubmit">保存</button>
                     </form>
-                </div>
                     <button onclick="closeModal()" class="cancel_button">キャンセル</button>
+                    </div>
                     </div>
                     </div>
                 </div>
