@@ -90,7 +90,7 @@
         </div> 
         
         <div class="fogetPassDiv col">
-        <a href="rogin.html" class="fogetPass">アカウントをすでに登録済みの方</a>
+        <a href="login.php" class="fogetPass">アカウントをすでに登録済みの方</a>
         </div>
     </div>
     

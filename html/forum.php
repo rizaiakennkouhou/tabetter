@@ -16,7 +16,7 @@
         <!-- <link rel="stylesheet" href="../css/OyamadaBar.css"> -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link rel="stylesheet" href="../css/forum1.css?<?php echo date('YmdHis'); ?>"/>
-        <link rel="stylesheet" href="../css/modal.css?<?php echo date('YmdHis'); ?>"/>
+        <!-- <link rel="stylesheet" href="../css/modal.css?<?php echo date('YmdHis'); ?>"/> -->
         <link rel="stylesheet" href="../css/Oyamadaprofile.css?<?php echo date('YmdHis'); ?>"/>
         <form method="GET" action="../DAO/forumDetail.php" enctype="multipart/form-data">
         <link rel="stylesheet" href="../css/scrollable2.css?<?php echo date('YmdHis'); ?>"/>
@@ -111,11 +111,11 @@
     <form method="POST" action="../DAO/forumInsert.php" enctype="multipart/form-data">
     <h2>プロフィール編集</h2>
         <p>タイトル</p>
-        <input type="text" name="title" id="edit-username">
+        <input type="text" name="title" id="edit-username" class="textboxstyle">
         <p>投稿内容</p>
-        <textarea name="detail" type="text2" id="edit-bio"></textarea>
+        <textarea name="detail" type="text2" id="edit-bio" class="textboxstyle"></textarea>
         <input type="hidden" name="userid" value="<?= $_SESSION['user_id']?>">
-        <button onclick="saveChanges()" type="submit">保存</button>
+        <button onclick="saveChanges()" type="submit" class="buttonsubmit">保存</button>
     </form>
     </div>
     <button onclick="closeModal()" class="cancel_button">キャンセル</button>
