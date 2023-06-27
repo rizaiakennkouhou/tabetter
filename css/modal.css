@@ -17,31 +17,32 @@
   
   }
   
-  #content{
-    z-index:6;
-    width:90%;
-    height:80%;
+  #content {
+    z-index: 6;
+    width: 90%;
+    max-width: 600px;
+    height: 80vh;
     padding: 1em;
-    background:#fff;
+    background: #fff;
   }
 
-  .buttonsubmit{
-    font-weight:bold;
-    text-align: center;
-    text-decoration: none;
-    background-color: #ffac4a; /* ボタンの背景色 */
-    color: #000000; /* ボタンのテキストカラー */
-    font-size: 13px; /* ボタンのテキストサイズ */
-    padding: 5px 10px; /* 上下左右のパディングを調整する */
+  /* .textboxstyle {
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    background-color: #d3d3d3;
     border: none;
-    border-radius: 50px 55px 55px 50px; /* 左上と左下の角を10ピクセルの丸角にする */
-  }
+    box-shadow: 1px 3px 4px rgb(170, 170, 170);
+  } */
+  
 
   .filesend{
     display: none;
   }
 
- #textboxstyle{
+
+ /* #textboxstyle{
   display: inline-block;
   margin-top: 5px;
   margin-right: 20px;
@@ -49,4 +50,4 @@
   background-color: #d3d3d3;
   border:none;
   box-shadow: 1px 3px 4px rgb(170,170,170);
- }
+ } */
