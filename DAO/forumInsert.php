@@ -11,9 +11,9 @@ $sql = 'INSERT INTO forum(forum_detail, title, forum_date, user_id)
                     $stmt->bindValue(2, $_POST['title'], PDO::PARAM_STR);
                     $stmt->bindValue(3, $_POST['userid'], PDO::PARAM_STR);
                     $stmt->execute();
-    header('Location: https://localhost/tabetter/html/forum.php');
+    header('Location: http://localhost/tabetter/html/forum.php');
 }else{
-    header('Location: https://localhost/tabetter/html/forumCheck.php');
+    header('Location: http://localhost/tabetter/html/forumCheck.php');
 }
 
         

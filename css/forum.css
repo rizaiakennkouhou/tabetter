@@ -1,19 +1,18 @@
 /* 画像モーダル */
 .image_modal {
-  width: 300px;
+  max-width: 90%;
   padding: 20px;
   background-color: #ffff;
   border: 5px solid #e78610;
   border-radius: 8px;
-  margin-left: 8%;
-  margin-right: 8%;
+  margin: 0 auto;
 }
 
 .image_modal input[type="text"],
-.image_modal input[type="hidden"],
-.image_modal button[type="submit"] {
+.image_modal input[type="hidden"] {
 
   margin-bottom: 10px;
+  width: 100%;
 }
 
 /* テキストボックス */
@@ -24,32 +23,31 @@
   border: 1px solid #e78610;
   padding: 10px 20px;
   border-radius: 4px;
-  height: 300px; /* 適宜調整してください */
-  width: 250px;
+  height: 35vh; /* 適宜調整してください */
+  width: 100%;
 }
 /* 保存ボタン */
-.image_modal button[type="submit"] {
-  display: flex;
+.buttonsubmit {
+  display: block;
   background-color: #e78610;
   color: white;
   border: none;
   padding: 10px 20px;
   border-radius: 4px;
-  margin-top: 25%;
-  margin-left: 70%;
-  margin-right: 1%;
+  margin-left: 60%;
+  margin-top: 10%;
 }
 
 .cancel_button {
-  display: flex;
-  background-color: #e78610; /* 背景色を変更 */
+  display: block;
+  background-color: #a9a7a6; /* 背景色を変更 */
   color: white; /* 文字色を変更 */
   border: none;
-  padding: 4px 6px; /* パディングを調整 */
+  padding: 4px 6px;
   border-radius: 4px;
-  font-size: 16px; /* フォントサイズを指定 */
+  font-size: 15px;
   cursor: pointer;
-  margin-top: 10%;
+  margin-right: 60%;
 }
 
 
