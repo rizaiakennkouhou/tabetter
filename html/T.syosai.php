@@ -10,12 +10,12 @@
     <title>投稿詳細</title>
     <!-- splide -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" integrity="sha256-5uKiXEwbaQh9cgd2/5Vp6WmMnsUr3VZZw0a8rKnOKNU=" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/OyamadaBar.css">
+    <link rel="stylesheet" href="../css/OyamadaBar.css?<?php echo date('YmdHis'); ?>"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/Oyamadatime2.css">
-    <link rel="stylesheet" href="../css/modal.css">
-    <link rel="stylesheet" href="../css/Oyamadaprofile.css">
-    <link rel="stylesheet" href="../css/T.syosai.css">
+    <link rel="stylesheet" href="../css/Oyamadatime2.css?<?php echo date('YmdHis'); ?>"/>
+    <link rel="stylesheet" href="../css/modal.css?<?php echo date('YmdHis'); ?>"/>
+    <link rel="stylesheet" href="../css/Oyamadaprofile.css?<?php echo date('YmdHis'); ?>"/>
+    <link rel="stylesheet" href="../css/T.syosai.css?<?php echo date('YmdHis'); ?>"/>
 </head>
 <body>
     <?php
@@ -209,7 +209,7 @@
                     <img src="data:<?php echo $userImg['image_type'] ?>;base64,<?php echo $userImgBace; ?>">
             </div>
             <!-- <select name="" id="">
-
+                <option value=""></option>
             </select> -->
             
                 <input type="text" name="comment_detail" id="edit-username">
