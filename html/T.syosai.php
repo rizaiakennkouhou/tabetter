@@ -10,12 +10,12 @@
     <title>投稿詳細</title>
     <!-- splide -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" integrity="sha256-5uKiXEwbaQh9cgd2/5Vp6WmMnsUr3VZZw0a8rKnOKNU=" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/OyamadaBar.css">
+    <link rel="stylesheet" href="../css/Bar4.css?<?php echo date('YmdHis'); ?>">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/Oyamadatime2.css">
-    <link rel="stylesheet" href="../css/modal.css">
-    <link rel="stylesheet" href="../css/Oyamadaprofile.css">
-    <link rel="stylesheet" href="../css/T.syosai.css">
+    <link rel="stylesheet" href="../css/Oyamadatime2.css?<?php echo date('YmdHis'); ?>"/>
+    <link rel="stylesheet" href="../css/modal.css?<?php echo date('YmdHis'); ?>"/>
+    <link rel="stylesheet" href="../css/Oyamadaprofile.css?<?php echo date('YmdHis'); ?>"/>
+    <link rel="stylesheet" href="../css/T.syosai.css?<?php echo date('YmdHis'); ?>"/>
 </head>
 <body>
     <?php
@@ -57,7 +57,7 @@
     <?php
         //post_id GETで受け取りたい
         $postId = 5;
-        $userIds = array();
+        // $userIds = array();
         $userIds = $daoPostDb->getUserIdsByPostId($postId);
         //投稿詳細情報（店名など）取得
         $postInfo = $daoTshosaiDb -> getPostInfoByPostId($postId);
@@ -86,6 +86,9 @@
         //投稿ユーザー画像取得
         $userImg = $daoTshosaiDb -> getUserImgByUserId($userIds);
         $userImgBace = base64_encode($userImg['user_image']);
+        //投稿日付
+        $postDate = array();
+        $postDate = $daoPostDb->getPostDateByPostId($postId);
         echo '
         <!-- 投稿のカード -->
         <div class="card">
@@ -115,49 +118,58 @@
                     $postImgCarousel,
                     '
                 </div>
-                <div class="row row-eq-height mt-1">
-                    <div class="col-4">
-                        <div class="d-flex justify-content-end">
-                            <div class="likeButton">
-                            <input type="checkbox" checked id="',($postId),'" name="likeButton"><label for="',($postId),'"><img src="../svg/Like-black.png" class="likeButtonImg"/></label>
-                            </div>
-                            <div class="like" id="likeCnt">
-                                ',$daoPostDb->getPostCount($postId),'
-                            </div>
-                        </div>
+                
+                
+            </div>
+        </div>
+        <div class="row row-eq-height mt-1">
+            <div class="col-6">
+                <div class="d-flex justify-content-end">
+                    <div class="likeButton">
+                    <input type="checkbox" checked id="',($postId),'" name="likeButton"><label for="',($postId),'"><img src="../svg/Like-black.png" class="likeButtonImg"/></label>
                     </div>
-                    <div class="col-4">
-                        <div class="d-flex justify-content-center">
-                        ';?>
-                        <!-- コメント投稿モーダル -->
-                            <img src="../svg/comment.svg" id="commentButton" onclick="openModal()">
-                        <?php 
-                        echo    '<div class="comment">
-                                ',$daoPostDb->getPostCommentCount($postId),'
-                            </div>
-                        </div>
-                    </div>     
-                <!-- 詳細トグルボタン -->       
-                    <button class="detailsBtn navbar-toggler col-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"
-                    style="box-shadow:none;">
-                        <svg width="19" height="12" viewBox="0 0 19 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9.5 12L18.5933 0.75H0.406734L9.5 12Z" fill="#D9D9D9"/>
-                        </svg>
-                        詳細
-                    </button>
-                <!-- 詳細トグルボタン内容 -->    
-                    <div class="postInfo collapse" id="navbarToggleExternalContent">
-                        <P>店名:' ,$postInfo['store'], '</P>
-                        <P>メニュー:' ,$postInfo['menu'], ' </P>
-                        <P>料金 :' ,$postInfo['price'], '</P>
-                        <P>場所:' ,$postInfo['address'], '</P>
-                    </div>                   
+                    <div class="like" id="likeCnt">
+                        ',$daoPostDb->getPostCount($postId),'
+                    </div>
                 </div>
             </div>
+            <div class="col-6">
+                <div class="d-flex justify-content-center">
+                ';?>
+                <!-- コメント投稿モーダル -->
+                    <img src="../svg/comment.svg" id="commentButton" onclick="openModal()">
+                <?php 
+                echo    '<div class="comment">
+                        ',$daoPostDb->getPostCommentCount($postId),'
+                    </div>
+                </div>
+            </div>
+            <!-- 日付 -->   
+            <span class="col-6"></span>
+            <div class="postDate col-6">
+                ',$postDate,'
+            </div>     
+            <!-- 詳細トグルボタン -->       
+            <button class="detailsBtn navbar-toggler offset-8 col-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"
+            style="box-shadow:none;">
+                <svg width="19" height="12" viewBox="0 0 19 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.5 12L18.5933 0.75H0.406734L9.5 12Z" fill="#D9D9D9"/>
+                </svg>
+                詳細
+            </button>
+            <!-- 詳細トグルボタン内容 -->    
+            <div class="postInfo collapse" id="navbarToggleExternalContent">
+                <P>店名:' ,$postInfo['store'], '</P>
+                <P>メニュー:' ,$postInfo['menu'], ' </P>
+                <P>料金 :' ,$postInfo['price'], '</P>
+                <P>場所:' ,$postInfo['address'], '</P>
+            </div>                   
         </div>
         ';
         //コメント取得
         $commentArray = $daoTshosaiDb->getCommentByPostId($postId);
+        //モーダル コメント送信先候補セレクトボックス用の配列
+        $comUserIdArray = array();
         //コメントがあれば
         if(count($commentArray)>=1){
             foreach($commentArray as $row){
@@ -192,8 +204,19 @@
                     </div>
                 </div>
                 ';
+                //ログインユーザーと一致しなかったら
+                if($row['user_id']!=$_SESSION['user_id']){
+                    //送信先候補　comment_idをキーにuser_idを入れる
+                    $comUserIdArray += array($row['comment_id'] => $row['user_id']);
+                }
             }
         }
+        //送信先候補　重複をなくす
+        $comUserIdArray = array_unique($comUserIdArray);
+        //ログインしているユーザー画像取得
+        $loginUserImg = $daoTshosaiDb -> getUserImgByUserId($_SESSION['user_id']);
+        $loginUserImgBace = base64_encode($userImg['user_image']);
+        
     ?>
 
     </div>
@@ -203,54 +226,65 @@
     <div id="modal" class="modal">
         <div id="overlay" class="modal-content">
             <div id="content" class="content">
-            <form method="POST" action="../DAO/comment.php" enctype="multipart/form-data">
-            <h2>キャンセル</h2>
-            <div class="icon-image">
-                    <img src="data:<?php echo $userImg['image_type'] ?>;base64,<?php echo $userImgBace; ?>">
-            </div>
-            <!-- <select name="" id="">
-
-            </select> -->
-            
-                <input type="text" name="comment_detail" id="edit-username">
-                
-                <input type="hidden" name="user_id" value="<?= $_POST['user_id']?>">
-                <button onclick="saveChanges()" type="submit">保存</button>
-            </form>
-            <button onclick="closeModal()">キャンセル</button>
+            <button onclick="closeModal()" id="closeBtn" ><h1>キャンセル</h1></button>
+                <form method="POST" action="../DAO/comment.php" enctype="multipart/form-data">
+                <div class="row">
+                    <!-- ログインユーザー画像 -->
+                    <div class="icon-image col-6">
+                            <img src="data:<?php echo $loginUserImg['image_type'] ?>;base64,<?php echo $loginUserImgBace; ?>">
+                    </div>
+                    <!-- 送信先セレクトボックス -->
+                    <select class="replySelect form-select col-6 ms-2" aria-label="Default select example" name="reply_id">
+                        <option value="null" selected>未選択</option>
+                        <?php
+                        //comment_idをvalueに user_idをoption
+                        foreach ($comUserIdArray as $reply => $comUserSelect) {
+                            echo '<option value="' .$reply. '">' .$comUserSelect . ' </option>';
+                        }
+                        ?>
+                    </select>
+                    <!-- コメント内容 -->
+                    <textarea name="comment_detail" id="edit-username" class="modalComment_datail mt-2" placeholder="コメント"></textarea>
+                    <!-- post_id -->
+                    <input type="hidden" name="post_id" value="<?php echo $postId;?>">
+                    <!-- user_id -->
+                    <input type="hidden" name="user_id" value="<?php echo $_SESSION['user_id'];?>">
+                    <button onclick="saveChanges()" type="submit" class="commentSaveBtn offset-8 col-3 mt-5">送信</button>  
+                </div>                  
+                </form>
+                <!-- <button onclick="closeModal()" id="closeBtnHidden" >キャンセル</button> -->
             </div>
         </div>
     </div>
 </div>
     <!-- navigationBar -->
-    <div class="border"></div>
- 
     <div class="navigation">
-     <a class="list-link" href="#" onclick="changeImage(this, 'Oyamadatime.html')">
-     <i class="icon">
-     <img src="../svg/time2.svg" class="image-size">
-     </i>
-     </a>
-     <a class="list-link" href="#" onclick="changeImage2(this, 'Oyamadaforum.html')">
-     <i class="icon">
-     <img src="../svg/forum.svg" class="image-size1">
-     </i>
-     </a>
-     <a class="list-link" href="#" onclick="changeImage3(this, 'Oyamadatokou.html')">
-     <i class="icon">
-     <img src="../svg/post.svg" class="image-size">
-     </i>
-     </a>
-     <a class="list-link" href="#" onclick="changeImage4(this, 'Oyamadaprofile.html')">
-     <i class="icon">
-     <img src="../svg/profile.svg" class="image-size">
-     </i>
-     </a>
-    </div>
+<div class="border"></div>
+    <a class="list-link" href="timeLine.php">
+        <i class="icon">
+            <img src="../svg/time2.svg" class="image-size">
+        </i>
+    </a>
+    <a class="list-link" href="forum.php">
+        <i class="icon">
+            <img src="../svg/forum.svg" class="image-size1">
+        </i>
+    </a>
+    <a class="list-link" onclick="openModal()">
+        <i class="icon">
+            <img src="../svg/post.svg" class="image-size">
+        </i>
+    </a>
+    <a class="list-link" href="myProfile.php">
+        <i class="icon">
+            <img src="../svg/profile.svg" class="image-size">
+        </i>
+    </a>
+</div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <script src="../js/OyamadaBar.js"></script>
-    <script src="../js/time.js"></script>    
+    <!-- <script src="../js/time.js"></script>     -->
     <script src="../js/MaedaTest.js"></script>
     <script src="../js/Oyamadaprofile.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
