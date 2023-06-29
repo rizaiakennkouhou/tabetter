@@ -106,3 +106,7 @@ div .d-flex.justify-content-center {
   -webkit-appearance: none;
   cursor: pointer;
 }
+
+.splide__slide img {
+    object-fit: cover;
+}
