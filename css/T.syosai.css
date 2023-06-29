@@ -17,6 +17,7 @@ header {
 .postInfo>p{
     margin-bottom: 8px;
 }
+/* コメントモーダルアイコン */
 .icon-image {
     width: 4rem; /* アイコンの幅 */
     height: 4rem; /* アイコンの高さ */
@@ -24,4 +25,32 @@ header {
   .icon-image img {
   max-height: 100%;
   width: auto;
+}
+/* モーダル　送信先選択 */
+.replySelect{
+    width: 75%;
+}
+/* モーダルコメント送信ボタン */
+.commentSaveBtn{
+    background-color: #FFAC4A;
+    border: none;
+    border-radius: 15px;
+    height: 2rem;
+}
+/* モーダルキャンセルボタン */
+#closeBtn{
+    background-color: #fff;
+    border: none;
+    color: #B8B5B5;
+}
+/* モーダル　コメントテキストボックス */
+.modalComment_datail{
+    border: none;
+    height: 10rem;
+}
+.modalComment_datail:focus{
+    outline: none;
+}
+.navigation{
+    position: sticky;
 }
