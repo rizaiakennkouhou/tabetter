@@ -88,7 +88,9 @@
                             <input type="hidden" name="id" value="<?=($userIds)?>">
                         </form>
                         <p class="userName"><?= $daoUserDb->getUserName($userIds)?></p>
+                        <a class="link-style" href="./forumDetail.php?forumid=<?= $forumId ?>">
                         <p class="userComment"><?= $daoPostDb->getPostDetail($postId)?></p>
+                        </a>
                         <?php
                         if(!empty($postImgs)){
                             echo '<div id="splider',($postId),'" class="splide">';
