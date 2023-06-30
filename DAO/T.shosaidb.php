@@ -81,5 +81,21 @@
                 return $result['user_id'];
             }
         }
+        public function getLikeUserId($post_id ,$user_id){
+            $pdo = $this->dbConnect();
+
+            $sql = "SELECT * FROM likes WHERE  post_id = ? AND user_id = ?";
+
+            $ps = $pdo->prepare($sql);
+
+            $ps->bindValue(1, $post_id, PDO::PARAM_INT);
+            $ps->bindValue(2, $user_id, PDO::PARAM_STR);
+            $ps->execute();
+            $result = $ps->fetch(PDO::FETCH_ASSOC);
+
+            if($result) {
+                return $result;
+            }
+        }
     }
 ?>

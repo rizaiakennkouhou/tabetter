@@ -56,6 +56,7 @@
     <div class="row">     
     <?php
         //post_id GETで受け取りたい
+        // $postId = $_GET['post_id'];
         $postId = 5;
         // $userIds = array();
         $userIds = $daoPostDb->getUserIdsByPostId($postId);
@@ -65,6 +66,7 @@
         $postImgs = $daoTshosaiDb -> getPostImgByPostId($postId);
         $postImgLiTag ="";
         $postImgCarousel ="";
+        //投稿画像があれば  
         if(count($postImgs)>=1){
             //画像の数だけLiタグ作成
             foreach($postImgs as $row){
@@ -89,6 +91,19 @@
         //投稿日付
         $postDate = array();
         $postDate = $daoPostDb->getPostDateByPostId($postId);
+        $likeCheck = $daoTshosaiDb ->getLikeUserId($postId,$_SESSION['user_id']);
+        if (is_countable($likeCheck) ? count($likeCheck) : 0 != 0) {
+            $likeImg = "Like-orange.png";
+        }else{
+            $likeImg = "Like-black.png";
+        }
+        // if(isset($_POST['likeBtn'])){
+        //     if (count($likeCheck) >= 1) {
+        //         $daoTshosaiDb ->getLikeUserId(1,"tamanegi");
+        //     }else{
+        //         $daoTshosaiDb ->getLikeUserId(1,"tamanegi");
+        //     }    
+        // }
         echo '
         <!-- 投稿のカード -->
         <div class="card">
@@ -126,7 +141,11 @@
             <div class="col-6">
                 <div class="d-flex justify-content-end">
                     <div class="likeButton">
-                    <input type="checkbox" checked id="',($postId),'" name="likeButton"><label for="',($postId),'"><img src="../svg/Like-black.png" class="likeButtonImg"/></label>
+                    <form method="post">
+                        <button type="submit" name="likeBtn">
+                            <label for="',($postId),'"><img src="../svg/',$likeImg,'" class="likeButtonImg"/></label>
+                        </button>
+                    </form>
                     </div>
                     <div class="like" id="likeCnt">
                         ',$daoPostDb->getPostCount($postId),'
