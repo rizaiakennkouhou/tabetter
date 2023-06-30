@@ -104,7 +104,7 @@ class DAO_forumdb{
         
             $sql = "SELECT * FROM forum WHERE forum_id = ?";
             $ps = $pdo->prepare($sql);
-            $ps->bindValue(1, $forumId, PDO::PARAM_STR);
+            $ps->bindValue(1, $forumId, PDO::PARAM_INT);
             $ps->execute();
         
             $result = $ps->fetch(PDO::FETCH_ASSOC);
@@ -116,6 +116,59 @@ class DAO_forumdb{
                 return 'ユーザー名が見つかりませんでした';
             }
         }
+
+        public function getforumcommentuserId($forumId) {
+            $pdo = $this->dbConnect();
+        
+            $sql = "SELECT * FROM forum_comment WHERE forum_comment_id = ?";
+            $ps = $pdo->prepare($sql);
+            $ps->bindValue(1, $forumId, PDO::PARAM_INT);
+            $ps->execute();
+        
+            $result = $ps->fetch(PDO::FETCH_ASSOC);
+        
+            if ($result) {
+                return $result['user_id'];
+
+            } else {
+                return 'ユーザー名が見つかりませんでした';
+            }
+        }
+
+        // ユーザー名
+        public function getUserName($userId) {
+            $pdo = $this->dbConnect();
+        
+            $sql = "SELECT * FROM user WHERE user_id = ?";
+            $ps = $pdo->prepare($sql);
+            $ps->bindValue(1, $userId, PDO::PARAM_STR);
+            $ps->execute();
+        
+            $result = $ps->fetch(PDO::FETCH_ASSOC);
+        
+            if ($result) {
+                return $result['user_name'];
+
+            } else {
+                return 'ユーザー名が見つかりませんでした';
+            }
+        }
+
+        // コメント件数カウント
+        public function getforumCommentCount($forumId){
+            $pdo = $this->dbConnect();
+    
+            $sql = "SELECT * FROM forum_comment WHERE forum_id = ?";
+    
+            $ps = $pdo->prepare($sql);
+            $ps->bindValue(1, $forumId, PDO::PARAM_INT);
+    
+            $ps->execute();
+            $count = $ps->rowCount();
+    
+            return $count;
+        }
+
 
         // フォーラム全件検索
         public function getForumIds(){

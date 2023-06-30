@@ -50,7 +50,8 @@
                         </svg>
                         
                     <!-- ID登録         8文字限定-->
-                    <input type="text" name="userId" placeholder="ID登録" class="formInput text-center    " required>
+                    <input type="text" name="userId" placeholder="ID登録" id="myInput" maxlength="8" class="formInput text-center    " required>
+                    <span id="charCount"></span>
                 </div>
 
                 <div class="form col text-center" id="">

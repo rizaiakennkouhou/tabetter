@@ -60,7 +60,7 @@
         
         if(isset($postIds)){
         foreach($postIds as $postId){
-
+        $postDate = $daoPostDb->getPostDateByPostId($postId);
         ?>
             <!-- 投稿のカード -->
             <div class="card">
@@ -85,6 +85,9 @@
                         </div>                                                    
                     </div>
                 </div>
+                <div class="postDate">
+                    <?= $postDate; ?>
+                </div>
             </div>
         <?php
         }
@@ -108,7 +111,7 @@
         
         if(isset($commentIds)){
         foreach($commentIds as $commentId){
-
+        $commentDate = $daoUserTimeDb->getCommentDateByCommentId($commentId);
         ?>
             <!-- 投稿のカード -->
             <div class="card">
@@ -133,6 +136,9 @@
                         </div>                                                    
                     </div>
                 </div>
+            <div class="postDate">
+                <?= ($commentDate) ?>
+            </div>
             </div>
         <?php
         }
@@ -155,7 +161,7 @@
         
         if(isset($forumIds)){
         foreach($forumIds as $forumId){
-
+        $forumDate = $daoUserTimeDb->getForumDateByForumId($forumId);
         ?>
             <!-- 投稿のカード -->
             <div class="card">
@@ -180,6 +186,9 @@
                         </div>                                                    
                     </div>
                 </div>
+            <div class="postDate">
+                <?= ($forumDate) ?>
+            </div>
             </div>
         <?php
         }
@@ -200,7 +209,7 @@
         
         if(isset($forumcommentIds)){
         foreach($forumcommentIds as $forumcommentId){
-
+        $forumCommentDate = $daoUserTimeDb->getForumCommentDateByForumCommentId($forumcommentId);
         ?>
             <!-- 投稿のカード -->
             <div class="card">
@@ -225,6 +234,9 @@
                         </div>                                                    
                     </div>
                 </div>
+            <div class="postDate">
+                <?= ($forumCommentDate) ?>
+            </div>
             </div>
         <?php
         }

@@ -1,9 +1,12 @@
 <?php 
     session_start();
+    require_once '../DAO/postdb.php';
     require_once '../DAO/forumdb.php';
     require_once '../DAO/forumcommentdb.php';
+    $daoPostDb = new DAO_post();
     $forumdao = new DAO_forumdb();
     $forumCommentDao = new DAO_forumcommentdb();
+    
 
 
 
@@ -18,6 +21,19 @@
     $image = $stmt->fetch(PDO::FETCH_ASSOC);
 
     $img = base64_encode($image['user_image']);
+
+    // ユーザーアイコンのSQL
+    $pdo = new PDO('mysql:host=localhost; dbname=tabetterdb; charset=utf8',
+    'webuser', 'abccsd2');
+     $forumimg = $forumdao->getUserId($_GET['forumid']);
+
+    $sql2 = "SELECT * FROM user_image WHERE user_id = ? ";
+    $stmt2 = $pdo->prepare($sql2);
+    $stmt2->bindValue(1, $forumimg, PDO::PARAM_STR);
+    $stmt2->execute();
+    $image2 = $stmt2->fetch(PDO::FETCH_ASSOC);
+
+    $img2 = base64_encode($image2['user_image']);
 
 
 
@@ -72,8 +88,23 @@
   <div class="scrollable">
   <div style="height: 800px;">
     <div class="container-fluid">
-
         <div class="card mt-2">
+            <div class="row">
+        <div class="col-1">
+        <?php $forumuser = $forumdao->getUserIdsByForumId($_GET['forumid']);?>
+            <a href="userProfile.php?id=<?= $forumuser ?>" class="a_tag">
+                <div class="icon-image3">
+                    <img src="data:<?php echo $image2['image_type'] ?>;base64,<?php echo $img2; ?>">
+                </div>
+            </a>
+        </div>
+        <div class="col-11">
+        <div class="user_name">
+        <?= $forumdao->getUserName($forumimg) ?>
+        </div>
+        </div>
+        </div>
+
             <div class="top_row row ms-1">
                 <h5 class="title col mb-0">
                 <?= $forumdao->getForumTitle($_GET['forumid']); ?>
@@ -86,13 +117,7 @@
                 </p>
             </div>
             <hr class="custom-hr">
-
-            <div class="bottom_row row mx-1 mb-1">
-                <p class="col mb-0">
-                <img src="../svg/comment.svg" onclick="openModal()">
-                    <!-- コメント数 -->
-                    件のコメント
-                </p>
+            <div class="row">
                 <div id="modal" class="modal">
                     <div id="overlay" class="modal-content">
                     <div id="content" class="content">
@@ -112,13 +137,12 @@
                     </div>
                     </div>
                 </div>
-                <p class="col mb-0 text-end">
+            <div class="post_time">
                     <!-- 投稿時間 -->
-                    <?= $forumdao->getForumDate($_GET['forumid']); ?>
-                </p>
-            </div>
-        </div>
-
+                <?= $forumdao->getForumDate($_GET['forumid']); ?>   
+                </div>
+    </div>
+    </div>
     </div>
 
     <div class = "top_row row ms-1">
@@ -131,11 +155,42 @@
     $commentIds = $forumCommentDao->getCommentIds($_GET['forumid']);
     if(isset($commentIds)){
     foreach($commentIds as $commentId){
+        $userIds = $forumCommentDao->getUserIdsByPostId($commentId);
+        $forumcommentimg = $forumdao->getforumcommentuserId($commentId);
+        // ユーザーアイコンのSQL
+        $pdo = new PDO('mysql:host=localhost; dbname=tabetterdb; charset=utf8',
+        'webuser', 'abccsd2');
+
+        $sql3 = "SELECT * FROM user_image WHERE user_id = ? ";
+        $stmt3 = $pdo->prepare($sql);
+        $stmt3->bindValue(1, $userIds, PDO::PARAM_STR);
+        $stmt3->execute();
+        $image3 = $stmt3->fetch(PDO::FETCH_ASSOC);
+
+        $img3 = base64_encode($image3['user_image']);
 ?>
     <div class="container-fluid">
 
         <div class="card mt-2">
-            <div class="top_row row ms-1">
+            <!-- <div class="top_row row ms-1"> -->
+            <div class="row">
+                <div class="col-1">
+        <a href="userProfile.php?id=<?= $forumcommentimg ?>" class="a_tag">
+        <div class="icon-image4">
+       
+        <img src="data:<?php echo $image3['image_type'] ?>;base64,<?php echo $img3; ?>">
+        
+       
+        </div>
+        </a>
+        </div>
+        <div class="col-11">
+        <div class="user_name">
+        <?= $forumdao->getUserName($forumcommentimg) ?>
+        </div>
+        </div>
+        <!-- </div> -->
+
                 <p class="title col mb-0" style="font-size: 16px;">
                 <?= $forumCommentDao->getForumCommentDetail($commentId); ?>
                 </p>
@@ -179,7 +234,7 @@
     </a>
     <a class="list-link">
         <i class="icon">
-            <img src="../svg/post.svg" class="image-size">
+            <img src="../svg/post.svg" class="image-size" onclick="openModal()">
         </i>
     </a>
     <a class="list-link" href="myProfile.php">
