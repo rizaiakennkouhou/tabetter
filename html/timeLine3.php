@@ -7,7 +7,9 @@
     <title>Document</title>
     <link rel="stylesheet" href="../css/Bar4.css">
     <!-- <link rel="stylesheet" href="../css/OyamadaBar.css"> -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" integrity="sha256-5uKiXEwbaQh9cgd2/5Vp6WmMnsUr3VZZw0a8rKnOKNU=" crossorigin="anonymous">
+    <!-- slickのCSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/Oyamadatime2.css">
     <link rel="stylesheet" href="../css/modal.css">
@@ -91,26 +93,18 @@
                         <p class="userComment"><?= $daoPostDb->getPostDetail($postId)?></p>
                         <?php
                         if(!empty($postImgs)){
-                            echo '<div id="splider',($postId),'" class="splide">';
-                            echo '<div class="splide__track">';
-                            echo '<ul class="splide__list">';
-                        
-                                foreach($postImgs as $postImg){
-                                echo '<li class="splide__slide">';
-                                echo '<img src="../DAO/display.php?id=',$postImg['post_id'],'" width="100" class="postImage">';
-                                echo '</li>';
-                                echo '<li class="splide__slide">';
-                                echo '<img src="../DAO/display.php?id=',$postImg['post_id'],'" width="100" class="postImage">';
-                                echo '</li>';
-                                }
-                        
-                            echo '</ul>';
-                            echo '</div>';
-                            echo '</div>';
+                            foreach($postImgs as $postImg){
+                                echo '<div class="slider" id="',($postId),'">';
+                                echo '<div class="slide"><img src="../DAO/display.php?id=',$postImg['post_id'],'" width="100" class="postImage"></div>';
+                                echo '<div class="slide"><img src="../DAO/display.php?id=',$postImg['post_id'],'" width="100" class="postImage"></div>';
+                                echo '</div>';
+                            }
                         }
                         ?>
                         <script>
-                            new Splide( '#',($postId),'' ).mount();
+                            $(function () {
+                            $('#',($postId),'').slick();
+                            });
                         </script>
                     </div>
                     <div class="row row-eq-height">
@@ -176,7 +170,10 @@
     <script src="../js/Oyamadaprofile.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <!-- <script src="../js/OyamadaBar.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js" integrity="sha256-FZsW7H2V5X9TGinSjjwYJ419Xka27I8XPDmWryGlWtw=" crossorigin="anonymous"></script>
+    <!-- jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+    <!-- slickのJavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <script src="../js/time.js"></script>
 </body>
