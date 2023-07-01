@@ -5,23 +5,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/Bar4.css">
-    <!-- <link rel="stylesheet" href="../css/OyamadaBar.css"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" integrity="sha256-5uKiXEwbaQh9cgd2/5Vp6WmMnsUr3VZZw0a8rKnOKNU=" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/Oyamadatime2.css">
-    <link rel="stylesheet" href="../css/modal.css">
-    <link rel="stylesheet" href="../css/Oyamadaprofile.css">
-    <link rel="stylesheet" href="../css/scrollable2.css">
+    <link rel="stylesheet" href="../css/Bar4.css?<?php echo date('YmdHis'); ?>"/>
+    <link rel="stylesheet" href="../css/Oyamadatime2.css?<?php echo date('YmdHis'); ?>"/>
+    <link rel="stylesheet" type="text/css" href="../css/modal.css?<?php echo date('YmdHis'); ?>"/>
+    <link rel="stylesheet" href="../css/Oyamadaprofile.css?<?php echo date('YmdHis'); ?>"/>
+    <link rel="stylesheet" href="../css/scrollable.css?<?php echo date('YmdHis'); ?>"/>
 </head>
 <body>
     <?php
+        session_start();
         require_once '../DAO/postdb.php';
         require_once '../DAO/userdb.php';
         require_once '../DAO/T.shosaidb.php';
         $daoPostDb = new DAO_post();
         $daoUserDb = new DAO_userdb();
         $daoTshosaiDb = new DAO_Tshosaidb();
+
+        // ユーザーアイコンのSQL
+        $pdo = new PDO('mysql:host=localhost; dbname=tabetterdb; charset=utf8',
+        'webuser', 'abccsd2');
+
+        $sql2 = "SELECT * FROM user_image WHERE user_id = ? ";
+        $stmt2 = $pdo->prepare($sql2);
+        $stmt2->bindValue(1, $_SESSION['user_id'], PDO::PARAM_STR);
+        $stmt2->execute();
+        $image2 = $stmt2->fetch(PDO::FETCH_ASSOC);
+
+        $img2 = base64_encode($image2['user_image']);
     ?>
     <div id="app">
     <!-- ヘッダー -->
@@ -90,17 +102,18 @@
                         <p class="userName"><?= $daoUserDb->getUserName($userIds)?></p>
                         <p class="userComment"><?= $daoPostDb->getPostDetail($postId)?></p>
                         <?php
+
                         if(!empty($postImgs)){
                             echo '<div id="splider',($postId),'" class="splide">';
                             echo '<div class="splide__track">';
                             echo '<ul class="splide__list">';
                         
                                 foreach($postImgs as $postImg){
+                                $img = base64_encode($postImg['post_image']);
                                 echo '<li class="splide__slide">';
-                                echo '<img src="../DAO/display.php?id=',$postImg['post_id'],'" width="100" class="postImage">';
-                                echo '</li>';
-                                echo '<li class="splide__slide">';
-                                echo '<img src="../DAO/display.php?id=',$postImg['post_id'],'" width="100" class="postImage">';
+                                echo '<a href="T.syosai.php?post_id='.$postId. '">';
+                                echo '<img src="data:' .$postImg['image_type'] .';base64,'.$img.'" width="100" class="postImage">';
+                                echo '</a>';
                                 echo '</li>';
                                 }
                         
@@ -116,17 +129,28 @@
                     <div class="row row-eq-height">
                         <div class="col-6">
                             <div class="d-flex justify-content-end">
+                                <?php
+                                $flg = $daoPostDb->getLikeDetail($postId,$_SESSION['user_id']);
+                                if($flg == 'true'){ ?>
                                 <div class="likeButton">
-                                <input type="checkbox" checked id="<?= ($postId)?>" name="likeButton"><label for="<?= ($postId)?>"><img src="../svg/Like-black.png" class="likeButtonImg"/></label>
+                                <a href="T.syosai.php?post_id=<?= $postId ?>"><img src="../svg/Like-orange.png" class="likeButtonImg"/></a>
                                 </div>
                                 <div class="like" id="likeCnt">
                                     <?= $daoPostDb->getPostCount($postId)?>
                                 </div>
+                                <?php } else { ?>
+                                    <div class="likeButton">
+                                <a href="T.syosai.php?post_id=<?= $postId ?>"><img src="../svg/Like-black.png" class="likeButtonImg"/></a>
+                                </div>
+                                <div class="like" id="likeCnt">
+                                    <?= $daoPostDb->getPostCount($postId)?>
+                                </div>
+                                <?php } ?>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="d-flex justify-content-center">
-                                <a href="Oyamadatokou.html"><img src="../svg/comment.svg" id="commentButton"></a>
+                                <a href="T.syosai.php?post_id=<?= $postId ?>"><img src="../svg/comment.svg" id="commentButton"></a>
                                 <div class="comment">
                                     <?= $daoPostDb->getPostCommentCount($postId)?>
                                 </div>
@@ -145,6 +169,62 @@
 </div>
 </div>
 
+
+
+<div id="modal" class="modal">
+    <div id="overlay" class="modal-content">
+    <div id="content" class="content">
+    <form method="POST" action="../DAO/post_imagesdb.php" enctype="multipart/form-data">
+        <div class="row">
+           <div class="col-2">
+            <img src="data:<?php echo $image2['image_type'] ?>;base64,<?php echo $img2; ?> " class="profielIcon">
+            </div>
+            <div class="col-10 mr-5 pt-2">
+            <?= $daoUserDb->getUserName($_SESSION['user_id']); ?>
+            </div>
+            </div>
+            <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <textarea name="detail" class="form-control" id="exampleTextBox" rows="5"></textarea>
+                        </div>
+                    </div>
+            </div>
+            <div class="row">
+                <div class="col-10">
+                    <details>
+                        <summary class="float-right mr-3">詳細</summary>
+                            <input type="text" name="store" id="textboxstyle" placeholder="店名" class="text-center">
+                            <input type="text" name="menu" id="textboxstyle" placeholder="メニュー名" class="text-center">
+                            <input type="text" name="price" id="textboxstyle" placeholder="価格" class="text-center">
+                            <input type="text" name="address" id="textboxstyle" placeholder="場所" class="text-center">
+                    </details>
+                </div>
+
+                <div class="col-2">
+                    <label class="float-right mr-3">
+                        <span class="filelabel">
+                            <img src="../svg/imagefile.svg" alt="" id="file-iamge">
+                        </span>
+                        <input type="file" name="image[]" multiple id="file-send" class="filesend">
+                        <input type="hidden" name="userid" value="<?= $_SESSION['user_id']?>">
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-10"></div>
+                <div class="col-2 mt-2">
+                <input type="submit" value="送信" class="buttonsubmit">
+                </div>
+            </div>
+            
+            
+        </form>
+    <button onclick="closeModal()">キャンセル</button>
+    </div>
+    </div>
+</div>
 
 
 

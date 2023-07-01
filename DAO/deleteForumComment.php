@@ -32,12 +32,12 @@ $pdo = new PDO('mysql:host=localhost; dbname=tabetterdb; charset=utf8',
 
 <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
     <div style="display: flex; flex-direction: column; align-items: center;">
-    <button onclick="confirmDeletion()" class="btn btn-danger btn-lg" style="background-color: #FF8A00; padding: 40px 80px; font-size: 30px; width: 400px;">削除する</button>
+    <button onclick="confirmDeletion()" class="btn btn-danger btn-lg" style="background-color: #FF8A00; padding: 20px 40px; font-size: 15px; width: 200px;">削除する</button>
     <form id="deleteForm" method="post" style="display: none;">
         <input type="hidden" name="confirm" value="1">
     </form>
     <br>
-    <button onclick="location.href='../html/userTime.php'" class="btn btn-secondary btn-lg" style="padding: 40px 80px; font-size: 30px; width: 400px;">戻る</button>
+    <button onclick="location.href='../html/userTime.php'" class="btn btn-secondary btn-lg" style="padding: 20px 40px; font-size: 15px; width: 200px;">戻る</button>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </div>
 </div>

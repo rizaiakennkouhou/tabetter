@@ -38,7 +38,7 @@
 
         </div>
         <div class="collapse navbar-collapse" id="navbarsExample05">
-            <form wtx-context="0C9FB6AB-0B58-4B25-A43A-44B7ADC851E5" action="./searchresult.php" class="mx-4" id="search" method="post">
+            <form id="search" wtx-context="0C9FB6AB-0B58-4B25-A43A-44B7ADC851E5" action="./searchresult.php" class="mx-4" method="get">
               <input class="form-control text-center mb-3" type="text" placeholder="キーワードを入力" aria-label="Search" wtx-context="AA84657A-0F9B-4A04-B5FA-D24659B477FD"
               style="height: 34px;
               border: 3px solid #FFAC4A; 
@@ -62,8 +62,6 @@
         foreach($forumIds as $forumId){
             ?>
     <div class="container-fluid">
-    <form method="GET" action="./M.test.php" enctype="multipart/form-data">
-        <input type="hidden" name="formuid" value="<?= $forumId ?>">
         <div class="card mt-2">
             <div class="top_row row ms-1">
             <a class="link-style" href="./forumDetail.php?forumid=<?= $forumId ?>">
@@ -97,7 +95,6 @@
                 </p>
             </div>
         </div>
-    </form>
     </div>
       <?php } ?>
 
