@@ -19,6 +19,19 @@
 
     $img = base64_encode($image['user_image']);
 
+    // ユーザーアイコンのSQL
+    $pdo = new PDO('mysql:host=localhost; dbname=tabetterdb; charset=utf8',
+    'webuser', 'abccsd2');
+     $forumimg = $forumdao->getUserId($_GET['forumid']);
+
+    $sql2 = "SELECT * FROM user_image WHERE user_id = ? ";
+    $stmt2 = $pdo->prepare($sql2);
+    $stmt2->bindValue(1, $forumimg, PDO::PARAM_STR);
+    $stmt2->execute();
+    $image2 = $stmt2->fetch(PDO::FETCH_ASSOC);
+
+    $img2 = base64_encode($image2['user_image']);
+
 
 
 
@@ -72,8 +85,20 @@
   <div class="scrollable">
   <div style="height: 800px;">
     <div class="container-fluid">
-
         <div class="card mt-2">
+            <div class="row">
+                <div class="col-1">
+        <div class="icon-image3">
+            <img src="data:<?php echo $image2['image_type'] ?>;base64,<?php echo $img2; ?>">
+        </div>
+        </div>
+        <div class="col-11">
+        <div class="user_name">
+        <?= $forumdao->getUserName($forumimg) ?>
+        </div>
+        </div>
+        </div>
+
             <div class="top_row row ms-1">
                 <h5 class="title col mb-0">
                 <?= $forumdao->getForumTitle($_GET['forumid']); ?>
@@ -86,13 +111,12 @@
                 </p>
             </div>
             <hr class="custom-hr">
-
-            <div class="bottom_row row mx-1 mb-1">
-                <p class="col mb-0">
-                <img src="../svg/comment.svg" onclick="openModal()">
-                    <!-- コメント数 -->
-                    件のコメント
-                </p>
+            <div class="row">
+                <div class="col-6">
+                <div class="post_time">
+                    <!-- 投稿時間 -->
+                <?= $forumdao->getForumDate($_GET['forumid']); ?>   
+                </div>
                 <div id="modal" class="modal">
                     <div id="overlay" class="modal-content">
                     <div id="content" class="content">
@@ -112,13 +136,15 @@
                     </div>
                     </div>
                 </div>
-                <p class="col mb-0 text-end">
-                    <!-- 投稿時間 -->
-                    <?= $forumdao->getForumDate($_GET['forumid']); ?>
-                </p>
             </div>
-        </div>
-
+            <div class="col-6">
+                <p class="comment_img">
+                    <!-- コメント画像 -->               
+                <img src="../svg/comment.svg" onclick="openModal()">
+                </p>
+    </div>
+    </div>
+    </div>
     </div>
 
     <div class = "top_row row ms-1">
