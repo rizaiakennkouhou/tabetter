@@ -130,21 +130,23 @@
                         <div class="col-6">
                             <div class="d-flex justify-content-end">
                                 <?php
+                                //自分が投稿にいいねしていたらtrueを返すフラグ
                                 $flg = $daoPostDb->getLikeDetail($postId,$_SESSION['user_id']);
+                                //trueだったらオレンジのいいねボタンを適用
                                 if($flg == 'true'){ ?>
-                                <div class="likeButton">
-                                <a href="T.syosai.php?post_id=<?= $postId ?>"><img src="../svg/Like-orange.png" class="likeButtonImg"/></a>
-                                </div>
-                                <div class="like" id="likeCnt">
-                                    <?= $daoPostDb->getPostCount($postId)?>
-                                </div>
-                                <?php } else { ?>
                                     <div class="likeButton">
-                                <a href="T.syosai.php?post_id=<?= $postId ?>"><img src="../svg/Like-black.png" class="likeButtonImg"/></a>
-                                </div>
-                                <div class="like" id="likeCnt">
-                                    <?= $daoPostDb->getPostCount($postId)?>
-                                </div>
+                                        <a href="T.syosai.php?post_id=<?= $postId ?>"><img src="../svg/Like-orange.png" class="likeButtonImg"/></a>
+                                    </div>
+                                    <div class="like" id="likeCnt">
+                                        <?= $daoPostDb->getPostCount($postId)?>
+                                    </div>
+                                    <?php } else { ?>
+                                        <div class="likeButton">
+                                    <a href="T.syosai.php?post_id=<?= $postId ?>"><img src="../svg/Like-black.png" class="likeButtonImg"/></a>
+                                    </div>
+                                    <div class="like" id="likeCnt">
+                                        <?= $daoPostDb->getPostCount($postId)?>
+                                    </div>
                                 <?php } ?>
                             </div>
                         </div>

@@ -3,9 +3,11 @@
     require_once '../DAO/postdb.php';
     require_once '../DAO/userdb.php';
     require_once '../DAO/rank.php';
+    require_once '../DAO/T.shosaidb.php';
     $daoPostDb = new DAO_post();
     $daoUserDb = new DAO_userdb();
     $rank = new DAO_rank();
+    $daoTshosaiDb = new DAO_Tshosaidb();
     //$user_id = isset($_POST['user_id']) ? $_POST['user_id'] : '';
 
 
@@ -17,9 +19,9 @@
      $stmt = $pdo->prepare($sql);
      $stmt->bindValue(1, $_GET['id'], PDO::PARAM_STR);
      $stmt->execute();
-     $image = $stmt->fetch(PDO::FETCH_ASSOC);
+     $image2 = $stmt->fetch(PDO::FETCH_ASSOC);
  
-     $img = base64_encode($image['user_image']);
+     $img2 = base64_encode($image2['user_image']);
 ?>
 
 
@@ -80,7 +82,7 @@
   <!--画像 -->
   <div class="profile_icon">
   <div class="icon-image">
-            <img src="data:<?php echo $image['image_type'] ?>;base64,<?php echo $img; ?>">
+            <img src="data:<?php echo $image2['image_type'] ?>;base64,<?php echo $img2; ?>">
   </div>
   </div>
     <div class="account">
@@ -112,6 +114,7 @@
         $postIds = $daoUserDb->getUserPostIds($_GET['id']);
 
         foreach($postIds as $postId){
+            $postImgs = $daoTshosaiDb->getPostImgByPostId($postId);
     ?>
             <!-- 投稿のカード -->
             <form action="T.syosai.php" method="get">
@@ -128,22 +131,52 @@
                         <?= $daoPostDb->getPostDetail($postId)?>
                         </p>
                         <?php
-                        if(isset($postId)){
-                        ?>
-                            <img src="../DAO/display.php?id=<?=($postId)?>" width="100" class="postImage">
-                        <?php
+                        if(!empty($postImgs)){
+                            echo '<div id="splider',($postId),'" class="splide">';
+                            echo '<div class="splide__track">';
+                            echo '<ul class="splide__list">';
+                        
+                                foreach($postImgs as $postImg){
+                                $img = base64_encode($postImg['post_image']);
+                                echo '<li class="splide__slide">';
+                                echo '<a href="T.syosai.php?post_id='.$postId. '">';
+                                echo '<img src="data:' .$postImg['image_type'] .';base64,'.$img.'" width="100" class="postImage">';
+                                echo '</a>';
+                                echo '</li>';
+                                }
+                        
+                            echo '</ul>';
+                            echo '</div>';
+                            echo '</div>';
                         }
                         ?>
+                        <script>
+                            new Splide( '#',($postId),'' ).mount();
+                        </script>
                     </div>
                     <div class="row row-eq-height">
                         <div class="col-6">
                             <div class="d-flex justify-content-end">
                                 <div class="likeButton">
-                                <input type="checkbox" checked id="<?= ($postId)?>" name="likeButton"><label for="<?= ($postId)?>"><img src="../svg/Like-black.png" class="likeButtonImg"/></label>
-                                </div>
-                                <div class="like" id="likeCnt">
-                                    <?= $daoPostDb->getPostCount($postId)?>
-                                </div>
+                                <?php
+                                //自分が投稿にいいねしていたらtrueを返すフラグ
+                                $flg = $daoPostDb->getLikeDetail($postId,$_SESSION['user_id']);
+                                //trueだったらオレンジのいいねボタンを適用
+                                if($flg == 'true'){ ?>
+                                    <div class="likeButton">
+                                        <a href="T.syosai.php?post_id=<?= $postId ?>"><img src="../svg/Like-orange.png" class="likeButtonImg"/></a>
+                                    </div>
+                                    <div class="like" id="likeCnt">
+                                        <?= $daoPostDb->getPostCount($postId)?>
+                                    </div>
+                                    <?php } else { ?>
+                                        <div class="likeButton">
+                                    <a href="T.syosai.php?post_id=<?= $postId ?>"><img src="../svg/Like-black.png" class="likeButtonImg"/></a>
+                                    </div>
+                                    <div class="like" id="likeCnt">
+                                        <?= $daoPostDb->getPostCount($postId)?>
+                                    </div>
+                                <?php } ?>
                             </div>
                         </div>
                         <div class="col-6">
