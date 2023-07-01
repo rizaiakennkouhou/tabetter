@@ -146,6 +146,24 @@ class DAO_post{
 
         return $postDate;
     }
+
+    public function getLikeDetail($postId,$userId){
+        $pdo = $this->dbConnect();
+
+        $sql = "SELECT * FROM likes WHERE post_id = ? AND user_id = ?";
+
+        $ps = $pdo->prepare($sql);
+        $ps->bindValue(1, $postId, PDO::PARAM_INT);
+        $ps->bindValue(2, $userId, PDO::PARAM_STR);
+
+        $ps->execute();
+        $result = $ps->fetchAll(PDO::FETCH_ASSOC);
+        if($result){
+            return 'true';
+        }else{
+            return 'false';
+        }   
+    }
 }
 
 ?>
