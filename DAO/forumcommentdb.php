@@ -32,6 +32,25 @@ class DAO_forumcommentdb{
         }
     }
 
+    public function getUserIdsByPostId($postId){
+        $pdo = $this->dbConnect();
+
+        $sql = "SELECT * FROM forum_comment WHERE forum_comment_id = ?";
+
+        $ps = $pdo->prepare($sql);
+
+        $ps->bindValue(1, $postId, PDO::PARAM_INT);
+
+        $ps->execute();
+        $result = $ps->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach($result as $row){
+            $userIds=$row['user_id'];
+        }
+
+        return $userIds;
+    }
+
     // 詳細を出す
     public function getForumCommentDetail($forumId) {
         $pdo = $this->dbConnect();
