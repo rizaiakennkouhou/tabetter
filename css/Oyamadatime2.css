@@ -44,7 +44,8 @@ div .d-flex.justify-content-center {
     border-radius: 5%;
     object-fit: cover;
     width: 85%;
-    margin-left: 15%;
+    margin-left: 10%;
+    margin-right:10%;
     margin-bottom: 5%;
 }
 
@@ -110,3 +111,7 @@ div .d-flex.justify-content-center {
 .splide__slide img {
     object-fit: cover;
 }
+
+.submitdisplay{
+    display:none;
+ }

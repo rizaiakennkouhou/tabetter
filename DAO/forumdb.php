@@ -104,13 +104,32 @@ class DAO_forumdb{
         
             $sql = "SELECT * FROM forum WHERE forum_id = ?";
             $ps = $pdo->prepare($sql);
-            $ps->bindValue(1, $forumId, PDO::PARAM_STR);
+            $ps->bindValue(1, $forumId, PDO::PARAM_INT);
             $ps->execute();
         
             $result = $ps->fetch(PDO::FETCH_ASSOC);
         
             if ($result) {
                 return $result['user_id'];
+
+            } else {
+                return 'ユーザー名が見つかりませんでした';
+            }
+        }
+
+        // ユーザー名
+        public function getUserName($userId) {
+            $pdo = $this->dbConnect();
+        
+            $sql = "SELECT * FROM user WHERE user_id = ?";
+            $ps = $pdo->prepare($sql);
+            $ps->bindValue(1, $userId, PDO::PARAM_STR);
+            $ps->execute();
+        
+            $result = $ps->fetch(PDO::FETCH_ASSOC);
+        
+            if ($result) {
+                return $result['user_name'];
 
             } else {
                 return 'ユーザー名が見つかりませんでした';

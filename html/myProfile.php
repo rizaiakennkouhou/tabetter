@@ -52,15 +52,16 @@
 
         </div>
         <div class="collapse navbar-collapse" id="navbarsExample05">
-            <form wtx-context="0C9FB6AB-0B58-4B25-A43A-44B7ADC851E5" class="mx-4">
-              <input class="form-control text-center mb-3" type="text" placeholder="キーワードを入力" aria-label="Search" wtx-context="AA84657A-0F9B-4A04-B5FA-D24659B477FD"
+            <form id="search" wtx-context="0C9FB6AB-0B58-4B25-A43A-44B7ADC851E5" action="./searchresult.php" class="mx-4" method="get">
+              <input class="form-control text-center mb-3" type="text"  name="key" placeholder="キーワードを入力" aria-label="Search" wtx-context="AA84657A-0F9B-4A04-B5FA-D24659B477FD"
               style="height: 34px;
               border: 3px solid #FFAC4A; 
               box-shadow: none;">
+               <input type="submit" style="height:50px; width:50px;" form="search">
             </form>
         </div>
     </div>
-  </header>
+    </header>
   
   <!-- ヘッダー↑ -->
   <div class="scrollable">
