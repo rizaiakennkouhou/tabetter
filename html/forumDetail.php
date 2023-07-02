@@ -6,6 +6,7 @@
     $daoPostDb = new DAO_post();
     $forumdao = new DAO_forumdb();
     $forumCommentDao = new DAO_forumcommentdb();
+    
 
 
 
@@ -89,10 +90,13 @@
     <div class="container-fluid">
         <div class="card mt-2">
             <div class="row">
-                <div class="col-1">
-        <div class="icon-image3">
-            <img src="data:<?php echo $image2['image_type'] ?>;base64,<?php echo $img2; ?>">
-        </div>
+        <div class="col-1">
+        <?php $forumuser = $forumdao->getUserIdsByForumId($_GET['forumid']);?>
+            <a href="userProfile.php?id=<?= $forumuser ?>" class="a_tag">
+                <div class="icon-image3">
+                    <img src="data:<?php echo $image2['image_type'] ?>;base64,<?php echo $img2; ?>">
+                </div>
+            </a>
         </div>
         <div class="col-11">
         <div class="user_name">
@@ -114,11 +118,6 @@
             </div>
             <hr class="custom-hr">
             <div class="row">
-                <div class="col-6">
-                <div class="post_time">
-                    <!-- 投稿時間 -->
-                <?= $forumdao->getForumDate($_GET['forumid']); ?>   
-                </div>
                 <div id="modal" class="modal">
                     <div id="overlay" class="modal-content">
                     <div id="content" class="content">
@@ -138,13 +137,10 @@
                     </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-6">
-                <p class="comment_img">
-                    <!-- コメント画像 -->               
-                <img src="../svg/comment.svg" onclick="openModal()">
-                </p>
-    </div>
+            <div class="post_time">
+                    <!-- 投稿時間 -->
+                <?= $forumdao->getForumDate($_GET['forumid']); ?>   
+                </div>
     </div>
     </div>
     </div>
@@ -238,7 +234,7 @@
     </a>
     <a class="list-link">
         <i class="icon">
-            <img src="../svg/post.svg" class="image-size">
+            <img src="../svg/post.svg" class="image-size" onclick="openModal()">
         </i>
     </a>
     <a class="list-link" href="myProfile.php">

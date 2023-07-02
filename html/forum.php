@@ -88,6 +88,7 @@
                     <rect x="15" y="9" width="2" height="2" fill="#424242"/>
                     </svg>
                     <!-- コメント数 -->
+                <?= $forumdao->getforumCommentCount($forumId)?>
                     件のコメント
                 </p>
                 <p class="col mb-0 text-end">
