@@ -20,3 +20,4 @@ function registClick() {
         document.registForm.requestSubmit();
     }
 }
+
