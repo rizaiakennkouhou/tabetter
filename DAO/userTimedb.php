@@ -92,6 +92,62 @@ class DAO_userTimedb{
                     echo 'データがありません';
                 }
             }
+            //コメントの日付
+            public function getCommentDateByCommentId($postId){
+                $pdo = $this->dbConnect();
+        
+                $sql = "SELECT * FROM post_comment WHERE comment_id = ?";
+        
+                $ps = $pdo->prepare($sql);
+                $ps->bindValue(1, $postId, PDO::PARAM_INT);
+        
+                $ps->execute();
+                $result = $ps->fetchAll(PDO::FETCH_ASSOC);
+        
+                foreach($result as $row){
+                    $postDate = $row['comment_date'];
+                }
+        
+                return $postDate;
+            }
+
+            //コメントの日付
+            public function getForumDateByForumId($postId){
+                $pdo = $this->dbConnect();
+        
+                $sql = "SELECT * FROM forum WHERE forum_id = ?";
+        
+                $ps = $pdo->prepare($sql);
+                $ps->bindValue(1, $postId, PDO::PARAM_INT);
+        
+                $ps->execute();
+                $result = $ps->fetchAll(PDO::FETCH_ASSOC);
+        
+                foreach($result as $row){
+                    $postDate = $row['forum_date'];
+                }
+        
+                return $postDate;
+            }
+
+            //コメントの日付
+            public function getForumCommentDateByForumCommentId($postId){
+                $pdo = $this->dbConnect();
+        
+                $sql = "SELECT * FROM forum_comment WHERE forum_comment_id = ?";
+        
+                $ps = $pdo->prepare($sql);
+                $ps->bindValue(1, $postId, PDO::PARAM_INT);
+        
+                $ps->execute();
+                $result = $ps->fetchAll(PDO::FETCH_ASSOC);
+        
+                foreach($result as $row){
+                    $postDate = $row['forum_comment_date'];
+                }
+        
+                return $postDate;
+            }
             
 }
         

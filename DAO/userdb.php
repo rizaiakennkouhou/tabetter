@@ -112,7 +112,7 @@ class DAO_userdb{
             public function getUserPostIds($userId){
                 $pdo = $this->dbConnect();
 
-                $sql = "SELECT * FROM post WHERE user_id = ?";
+                $sql = "SELECT * FROM post WHERE user_id = ? ORDER BY post_id DESC";
 
                 $ps = $pdo->prepare($sql);
                 $ps->bindValue(1,$userId,PDO::PARAM_STR);
@@ -137,7 +137,7 @@ class DAO_userdb{
             public function getUserCommentIds($userId){
                 $pdo = $this->dbConnect();
 
-                $sql = "SELECT * FROM post_comment WHERE user_id = ?";
+                $sql = "SELECT * FROM post_comment WHERE user_id = ? GROUP BY comment_id DESC";
 
                 $ps = $pdo->prepare($sql);
                 $ps->bindValue(1,$userId,PDO::PARAM_STR);
@@ -162,7 +162,7 @@ class DAO_userdb{
             public function getUserForumIds($userId){
                 $pdo = $this->dbConnect();
 
-                $sql = "SELECT * FROM forum WHERE user_id = ?";
+                $sql = "SELECT * FROM forum WHERE user_id = ? ORDER BY forum_id DESC";
 
                 $ps = $pdo->prepare($sql);
                 $ps->bindValue(1,$userId,PDO::PARAM_STR);
@@ -186,7 +186,7 @@ class DAO_userdb{
             public function getUserForumCommentIds($userId){
                 $pdo = $this->dbConnect();
 
-                $sql = "SELECT * FROM forum_comment WHERE user_id = ?";
+                $sql = "SELECT * FROM forum_comment WHERE user_id = ? ORDER BY forum_comment_id DESC";
 
                 $ps = $pdo->prepare($sql);
                 $ps->bindValue(1,$userId,PDO::PARAM_STR);
