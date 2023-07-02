@@ -1,7 +1,9 @@
 <?php 
     session_start();
+    require_once '../DAO/postdb.php';
     require_once '../DAO/forumdb.php';
     require_once '../DAO/forumcommentdb.php';
+    $daoPostDb = new DAO_post();
     $forumdao = new DAO_forumdb();
     $forumCommentDao = new DAO_forumcommentdb();
 
@@ -157,11 +159,42 @@
     $commentIds = $forumCommentDao->getCommentIds($_GET['forumid']);
     if(isset($commentIds)){
     foreach($commentIds as $commentId){
+        $userIds = $forumCommentDao->getUserIdsByPostId($commentId);
+        $forumcommentimg = $forumdao->getforumcommentuserId($commentId);
+        // ユーザーアイコンのSQL
+        $pdo = new PDO('mysql:host=localhost; dbname=tabetterdb; charset=utf8',
+        'webuser', 'abccsd2');
+
+        $sql3 = "SELECT * FROM user_image WHERE user_id = ? ";
+        $stmt3 = $pdo->prepare($sql);
+        $stmt3->bindValue(1, $userIds, PDO::PARAM_STR);
+        $stmt3->execute();
+        $image3 = $stmt3->fetch(PDO::FETCH_ASSOC);
+
+        $img3 = base64_encode($image3['user_image']);
 ?>
     <div class="container-fluid">
 
         <div class="card mt-2">
-            <div class="top_row row ms-1">
+            <!-- <div class="top_row row ms-1"> -->
+            <div class="row">
+                <div class="col-1">
+        <a href="userProfile.php?id=<?= $forumcommentimg ?>" class="a_tag">
+        <div class="icon-image4">
+       
+        <img src="data:<?php echo $image3['image_type'] ?>;base64,<?php echo $img3; ?>">
+        
+       
+        </div>
+        </a>
+        </div>
+        <div class="col-11">
+        <div class="user_name">
+        <?= $forumdao->getUserName($forumcommentimg) ?>
+        </div>
+        </div>
+        <!-- </div> -->
+
                 <p class="title col mb-0" style="font-size: 16px;">
                 <?= $forumCommentDao->getForumCommentDetail($commentId); ?>
                 </p>
