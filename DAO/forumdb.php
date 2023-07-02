@@ -154,6 +154,21 @@ class DAO_forumdb{
             }
         }
 
+        // コメント件数カウント
+        public function getforumCommentCount($forumId){
+            $pdo = $this->dbConnect();
+    
+            $sql = "SELECT * FROM forum_comment WHERE forum_id = ?";
+    
+            $ps = $pdo->prepare($sql);
+            $ps->bindValue(1, $forumId, PDO::PARAM_INT);
+    
+            $ps->execute();
+            $count = $ps->rowCount();
+    
+            return $count;
+        }
+
 
         // フォーラム全件検索
         public function getForumIds(){
