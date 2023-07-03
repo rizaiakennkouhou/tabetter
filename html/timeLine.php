@@ -55,7 +55,7 @@
               <input class="form-control text-center mb-3" type="text" name="key" placeholder="キーワードを入力" aria-label="Search" wtx-context="AA84657A-0F9B-4A04-B5FA-D24659B477FD"
               style="height: 34px;
               border: 3px solid #FFAC4A; 
-              box-shadow: none;">
+              box-shadow: none;" required>
               <input type="submit" style="height:50px; width:50px;" form="search">
             </form>
         </div>
@@ -66,7 +66,7 @@
   <div class="scrollable">
 
   <?php 
-if(isset($_GET['key'])){
+if(!empty($_GET['key'])){
 ?>
 
 <div class="container-fluid">
@@ -83,6 +83,7 @@ if(isset($_GET['key'])){
             $userIds = $daoPostDb->getUserIdsByPostId($searchId);
             $imageIds = $daoPostDb->getPostImageByPostId($searchId);
             $postDate = $daoPostDb->getPostDateByPostId($searchId);
+            $postImgs = $daoTshosaiDb->getPostImgByPostId($searchId);
 
             // ユーザーアイコンのSQL
             $pdo = new PDO('mysql:host=localhost; dbname=tabetterdb; charset=utf8',
@@ -114,11 +115,11 @@ if(isset($_GET['key'])){
                             echo '<div class="splide__track">';
                             echo '<ul class="splide__list">';
                         
-                                foreach($postImgs as $postImg){
-                                $img = base64_encode($postImg['post_image']);
+                                foreach($postImgs as $Img){
+                                $img = base64_encode($Img['post_image']);
                                 echo '<li class="splide__slide">';
-                                echo '<a href="T.syosai.php?post_id='.$postId. '">';
-                                echo '<img src="data:' .$postImg['image_type'] .';base64,'.$img.'" width="100" class="postImage">';
+                                echo '<a href="T.syosai.php?post_id='.$searchId. '">';
+                                echo '<img src="data:' .$Img['image_type'] .';base64,'.$img.'" width="100" class="postImage">';
                                 echo '</a>';
                                 echo '</li>';
                                 }
