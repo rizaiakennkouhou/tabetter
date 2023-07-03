@@ -142,15 +142,21 @@
     <div id="overlay" class="modal-content">
     <div id="content" class="content">
     <form method="POST" action="../DAO/userupdate.php" enctype="multipart/form-data">
-    <h2>プロフィール編集</h2>
+    <h2 >プロフィール編集</h2>
+    <div class="user">
         <p>ユーザー名:</p>
-        <input type="text" name="user_name" id="edit-username" value="<?= $userdao->getUserName($_SESSION['user_id'])?>">
-        <p>自己紹介文:</p>
-        <input type="text" name="bio" id="edit-bio" value="<?= $userdao->getUserBio($_SESSION['user_id'])?>">
-        <input type="hidden" name="id" value="<?= $_SESSION['user_id']?>">
-        <button onclick="saveChanges()" type="submit">保存</button>
+        <input type="text" name="user_name" class="user_eria"id="edit-username" value="<?= $userdao->getUserName($_SESSION['user_id'])?>">
+    </div>
+    <div class="pr">
+        <p class="jikosyoukai">自己紹介文:</p>
+        <textarea name="bio" class="j_pr fixed-textarea" id="edit-bio"><?= $userdao->getUserBio($_SESSION['user_id'])?></textarea>
+    <input type="hidden" name="id" value="<?= $_SESSION['user_id']?>">
+    </div>
+    <div class="decision">
+        <button class="button-right" onclick="saveChanges()" type="submit">保存</button>
+        <button  class="button-left " onclick="closeModal()">キャンセル</button>
+    </div>
     </form>
-    <button onclick="closeModal()">キャンセル</button>
     </div>
     </div>
 </div>
