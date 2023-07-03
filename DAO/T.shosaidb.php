@@ -81,5 +81,32 @@
                 return $result['user_id'];
             }
         }
+        //いいねついか　
+        public function insertLike($post_id ,$user_id){
+            $pdo = $this->dbConnect();
+
+            $sql = "insert into likes values (?,?);";
+
+            $ps = $pdo->prepare($sql);
+
+            $ps->bindValue(1, $post_id, PDO::PARAM_INT);
+            $ps->bindValue(2, $user_id, PDO::PARAM_STR);
+            $ps->execute();
+            // $result = $ps->fetch(PDO::FETCH_ASSOC);
+
+        }
+        //いいね削除
+        public function deleteLike($post_id ,$user_id){
+            $pdo = $this->dbConnect();
+
+            $sql = "DELETE FROM likes WHERE post_id = ? AND user_id = ?";
+
+            $ps = $pdo->prepare($sql);
+
+            $ps->bindValue(1, $post_id, PDO::PARAM_INT);
+            $ps->bindValue(2, $user_id, PDO::PARAM_STR);
+            $ps->execute();
+            // $result = $ps->fetch(PDO::FETCH_ASSOC);
+        }
     }
 ?>

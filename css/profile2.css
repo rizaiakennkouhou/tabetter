@@ -178,4 +178,49 @@
     z-index: 9999;
   }
   
-  
+
+  .user{
+    border-bottom: 1px solid #dcdcdc;
+}
+.user_eria{
+    margin-bottom: 12px;
+}
+.jikosyoukai{
+    margin-top: 12px;  
+}
+.pr{
+    border-bottom: 1px solid #dcdcdc;
+}
+.j_pr{
+    margin-bottom: 12px;
+    resize: none;
+    width: 80vw;
+    height: 20vh;
+}
+
+.decision{
+margin-top: 12px;
+}
+.button-left {
+    float: left;
+    padding: 5px 10px; /* ボタン内の余白 */
+    font-size: 16px; /* フォントサイズ */
+    cursor: pointer; /* カーソルをポインターに変更 */
+    border: none; /* ボーダーをなしに設定 */
+    border-radius: 5px; /* 角丸にする */
+    transition: background-color 0.3s ease; /* 背景色の変化をスムーズにする */
+    background-color: #808080; /* キャンセルボタンの背景色 */
+    color: #fff; /* 文字色を白に設定 */
+}
+
+.button-right {
+    float: right;
+    padding: 5px 10px; /* ボタン内の余白 */
+    font-size: 16px; /* フォントサイズ */
+    cursor: pointer; /* カーソルをポインターに変更 */
+    border: none; /* ボーダーをなしに設定 */
+    border-radius: 5px; /* 角丸にする */
+    transition: background-color 0.3s ease; /* 背景色の変化をスムーズにする */
+    background-color: #e78610; /* 決定ボタンの背景色 */
+    color: #fff; /* 文字色を白に設定 */
+}
