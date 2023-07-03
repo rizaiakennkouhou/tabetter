@@ -116,6 +116,14 @@
         <img src="../svg/trophy.svg" alt="トロフィー" class="trophy">
         <p id="r_name"><?= $rank->userRank($_SESSION['user_id']); ?></p>
     </div>
+    <!-- ゲージ -->
+    <?php
+    if()
+    <meter min="0" max="100" value="100" class="geji"></meter>
+
+    ?>
+
+
     <div class="waku">
     <div class="frame">
     <p id="bio"><?= $userdao->getUserBio($_SESSION['user_id']); ?></p>
