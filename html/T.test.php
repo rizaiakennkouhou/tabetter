@@ -46,6 +46,12 @@
         ul.store{
         }
         ul.store li{
+                        font-size: 16px;        
+            text-align:justify;
+            text-align-last:justify;
+            text-justify:inter-ideograph;
+            /* margin-right: 15px; 
+            margin-bottom: 30px; */
             color: #898989;
             list-style: none;
             padding-left: 0;
@@ -55,12 +61,11 @@
             align-items: center;
             justify-content: center;
         } */
-        .a{
-            font-size: 20px;        
-            display: inline-block;
+        .c{
+            /* font-size: 16px;        
             text-align:justify;
             text-align-last:justify;
-            text-justify:inter-ideograph;
+            text-justify:inter-ideograph; */
             /* margin-right: 15px; 
             margin-bottom: 30px; */
         }
@@ -176,25 +181,25 @@
                             </div>
                         </ul> -->
                             <li>
-                                <div class="">
+                                <div class="c">
                                     <span>店名:</span>
                                     <input type="text" name="store"class="s_syosai">
                                 </div>
                             </li>
                             <li>
-                                <div>
+                                <div class="c">
                                     <span>メニュー:</span>
                                     <input type="text" name="store"class="s_syosai">
                                 </div>
                             </li>
                             <li>
-                                <div>
+                                <div class="c">
                                     <span>価格:</span>
                                     <input type="text" name="store"class="s_syosai">
                                 </div>
                             </li>
                             <li>
-                                <div>
+                                <div class="c">
                                     <span>場所:</span>
                                     <input type="text" name="store"class="s_syosai">
                                 </div>
