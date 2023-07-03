@@ -52,12 +52,17 @@
 
         </div>
         <div class="collapse navbar-collapse" id="navbarsExample05">
-            <form id="search" wtx-context="0C9FB6AB-0B58-4B25-A43A-44B7ADC851E5" action="./searchresult.php" class="mx-4" method="get">
-              <input class="form-control text-center mb-3" type="text"  name="key" placeholder="キーワードを入力" aria-label="Search" wtx-context="AA84657A-0F9B-4A04-B5FA-D24659B477FD"
-              style="height: 34px;
+            <form id="search" wtx-context="0C9FB6AB-0B58-4B25-A43A-44B7ADC851E5" action="./timeLine.php" class="mx-4" method="get">
+            <div class="input-group">
+              <input class="form-control text-center mb-3" type="search"  name="key" placeholder="キーワードを入力" aria-label="Search" wtx-context="AA84657A-0F9B-4A04-B5FA-D24659B477FD"
+              style="height: 50px;
               border: 3px solid #FFAC4A; 
               box-shadow: none;">
-               <input type="submit" style="height:50px; width:50px;" form="search">
+               <button  type="submit" class="" id="btnstyle" type="button"   style="height: 50px; background-color: #ffac4a; color: #ffffff;">
+                検索 
+                </button>
+                
+                </div>
             </form>
         </div>
     </div>
@@ -137,15 +142,21 @@
     <div id="overlay" class="modal-content">
     <div id="content" class="content">
     <form method="POST" action="../DAO/userupdate.php" enctype="multipart/form-data">
-    <h2>プロフィール編集</h2>
+    <h2 >プロフィール編集</h2>
+    <div class="user">
         <p>ユーザー名:</p>
-        <input type="text" name="user_name" id="edit-username" value="<?= $userdao->getUserName($_SESSION['user_id'])?>">
-        <p>自己紹介文:</p>
-        <input type="text" name="bio" id="edit-bio" value="<?= $userdao->getUserBio($_SESSION['user_id'])?>">
-        <input type="hidden" name="id" value="<?= $_SESSION['user_id']?>">
-        <button onclick="saveChanges()" type="submit">保存</button>
+        <input type="text" name="user_name" class="user_eria"id="edit-username" value="<?= $userdao->getUserName($_SESSION['user_id'])?>">
+    </div>
+    <div class="pr">
+        <p class="jikosyoukai">自己紹介文:</p>
+        <textarea name="bio" class="j_pr fixed-textarea" id="edit-bio"><?= $userdao->getUserBio($_SESSION['user_id'])?></textarea>
+    <input type="hidden" name="id" value="<?= $_SESSION['user_id']?>">
+    </div>
+    <div class="decision">
+        <button class="button-right" onclick="saveChanges()" type="submit">保存</button>
+        <button  class="button-left " onclick="closeModal()">キャンセル</button>
+    </div>
     </form>
-    <button onclick="closeModal()">キャンセル</button>
     </div>
     </div>
 </div>

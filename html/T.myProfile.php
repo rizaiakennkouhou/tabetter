@@ -190,7 +190,6 @@
     </div>
     <div class="pr">
         <p class="jikosyoukai">自己紹介文:</p>
-        <form action="texteria"></form>
         <textarea name="bio" class="j_pr fixed-textarea" id="edit-bio"><?= $userdao->getUserBio($_SESSION['user_id'])?></textarea>
     <input type="hidden" name="id" value="<?= $_SESSION['user_id']?>">
     </div>
