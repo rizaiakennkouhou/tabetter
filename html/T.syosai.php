@@ -56,7 +56,8 @@
     <div class="row">     
     <?php
         //post_id GETで受け取りたい
-        $postId = 5;
+        $postId = $_GET['post_id'];
+        // $postId = 5;
         // $userIds = array();
         $userIds = $daoPostDb->getUserIdsByPostId($postId);
         //投稿詳細情報（店名など）取得
@@ -65,7 +66,8 @@
         $postImgs = $daoTshosaiDb -> getPostImgByPostId($postId);
         $postImgLiTag ="";
         $postImgCarousel ="";
-        if(count($postImgs)>=1){
+        //投稿画像があれば  
+        if(is_countable($postImgs) ? count($postImgs) : 0 != 0){
             //画像の数だけLiタグ作成
             foreach($postImgs as $row){
                 $img = base64_encode($row['post_image']);
@@ -89,6 +91,29 @@
         //投稿日付
         $postDate = array();
         $postDate = $daoPostDb->getPostDateByPostId($postId);
+        //ログインユーザーがいいねしてれば　true
+        $likeFlag = $daoPostDb->getLikeDetail($postId,$_SESSION['user_id']);
+        if ($likeFlag == 'true') {
+            $likeImg = "Like-orange.png";
+        }else{
+            $likeImg = "Like-black.png";
+        }
+        //いいねボタンおされたら
+        if(isset($_POST['likeBtn'])){
+            //今のURL取得
+            $pageUrl = $_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING'];
+            if ($likeFlag == 'true') {
+                //いいねされてれば　削除
+                $daoTshosaiDb->deleteLike($postId,$_SESSION['user_id']);
+                header("Location: $pageUrl");
+                exit();
+            }else{
+                //　いいね　追加
+                $daoTshosaiDb->insertLike($postId,$_SESSION['user_id']);            
+                header("Location: $pageUrl");
+                exit();
+            }    
+        }
         echo '
         <!-- 投稿のカード -->
         <div class="card">
@@ -126,7 +151,11 @@
             <div class="col-6">
                 <div class="d-flex justify-content-end">
                     <div class="likeButton">
-                    <input type="checkbox" checked id="',($postId),'" name="likeButton"><label for="',($postId),'"><img src="../svg/Like-black.png" class="likeButtonImg"/></label>
+                    <form method="post">
+                        <button type="submit" name="likeBtn" id="likeBtn">
+                            <label for="',($postId),'"><img src="../svg/',$likeImg,'" class="likeButtonImg"/></label>
+                        </button>
+                    </form>
                     </div>
                     <div class="like" id="likeCnt">
                         ',$daoPostDb->getPostCount($postId),'
@@ -171,7 +200,7 @@
         //モーダル コメント送信先候補セレクトボックス用の配列
         $comUserIdArray = array();
         //コメントがあれば
-        if(count($commentArray)>=1){
+        if(is_countable($commentArray) ? count($commentArray) : 0 != 0){
             foreach($commentArray as $row){
                 $userIds = $row['user_id'];
                 $replyId ="";
@@ -215,7 +244,7 @@
         $comUserIdArray = array_unique($comUserIdArray);
         //ログインしているユーザー画像取得
         $loginUserImg = $daoTshosaiDb -> getUserImgByUserId($_SESSION['user_id']);
-        $loginUserImgBace = base64_encode($userImg['user_image']);
+        $loginUserImgBace = base64_encode($loginUserImg['user_image']);
         
     ?>
 
@@ -223,7 +252,7 @@
     </div>
     </div>
     <!-- コメント投稿モーダル -->
-    <div id="modal" class="modal">
+    <div id="modal" class="modal" id="modal">
         <div id="overlay" class="modal-content">
             <div id="content" class="content">
             <button onclick="closeModal()" id="closeBtn" ><h1>キャンセル</h1></button>
