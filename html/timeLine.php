@@ -119,7 +119,7 @@ if(!empty($_GET['key'])){
                                 $img = base64_encode($Img['post_image']);
                                 echo '<li class="splide__slide">';
                                 echo '<a href="T.syosai.php?post_id='.$searchId. '">';
-                                echo '<img src="data:' .$Img['image_type'] .';base64,'.$img.'" width="100" class="postImage">';
+                                echo '<img src="data:' .$Img['image_type'] .';base64,'.$img.'" width="100">';
                                 echo '</a>';
                                 echo '</li>';
                                 }
