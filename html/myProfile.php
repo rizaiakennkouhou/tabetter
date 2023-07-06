@@ -118,8 +118,23 @@
     </div>
     <!-- ゲージ -->
     <?php
-    if()
-    <meter min="0" max="100" value="100" class="geji"></meter>
+    $likesum = $rank->userlikeCount($_SESSION['user_id']);
+    $platinum = 16;
+    $gold = 8;
+    $silver = 4;
+    $bronze = 0;
+    if ($likesum > $platinum) {
+        echo '<meter min="" max="2" value="100" class="geji"></meter>';
+    } elseif ($likesum > $gold) {
+        echo '<meter min="8" max="16" value="100" class="geji"></meter>';
+    } elseif ($likesum > $silver) {
+        echo '<meter min="4" max="8" value="100" class="geji"></meter>';
+    } elseif ($likesum > $bronze) {
+        echo '<meter min="0" max="4" value="100" class="geji" style="width:500px;"></meter>';
+    } else {
+        echo '<meter min="0" max="0" value="100" class="geji" style="height:50px;"></meter>';
+    }
+    
 
     ?>
 
