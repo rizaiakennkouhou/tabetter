@@ -23,7 +23,9 @@
     function closeModal() {
   var modal = document.getElementById('custom-modal');
   modal.style.display = 'none';
-  location.href="https://localhost/tabetter/html/T.syosai2.php";
+  //urlからGet 取得
+  const params = new URL(window.location.href).searchParams;
+  location.href="https://localhost/tabetter/html/T.syosai.php?post_id="+params.get('post_id');
 }
 
 window.addEventListener('DOMContentLoaded', function() {

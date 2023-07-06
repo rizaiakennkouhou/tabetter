@@ -10,11 +10,12 @@
     <title>投稿詳細</title>
     <!-- splide -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" integrity="sha256-5uKiXEwbaQh9cgd2/5Vp6WmMnsUr3VZZw0a8rKnOKNU=" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/Bar4.css?<?php echo date('YmdHis'); ?>">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/Bar4.css?<?php echo date('YmdHis'); ?>">
     <link rel="stylesheet" href="../css/Oyamadatime2.css?<?php echo date('YmdHis'); ?>"/>
     <link rel="stylesheet" href="../css/modal.css?<?php echo date('YmdHis'); ?>"/>
     <link rel="stylesheet" href="../css/Oyamadaprofile.css?<?php echo date('YmdHis'); ?>"/>
+    <link rel="stylesheet" href="../css/scrollable.css?<?php echo date('YmdHis'); ?>"/>
     <link rel="stylesheet" href="../css/T.syosai.css?<?php echo date('YmdHis'); ?>"/>
 </head>
 <body>
@@ -252,7 +253,7 @@
     </div>
     </div>
     <!-- コメント投稿モーダル -->
-    <div id="modal" class="modal" id="modal">
+    <div id="modal" class="modal">
         <div id="overlay" class="modal-content">
             <div id="content" class="content">
             <button onclick="closeModal()" id="closeBtn" ><h1>キャンセル</h1></button>
@@ -285,7 +286,63 @@
             </div>
         </div>
     </div>
+    <!-- 投稿モーダル -->
+    <div id="modalPost" class="modal">
+        <div id="overlay" class="modal-content">
+        <div id="content" class="content">
+        <form method="POST" action="../DAO/post_imagesdb.php" enctype="multipart/form-data">
+            <div class="row">
+            <div class="col-2">
+                <img src="data:<?php echo $loginUserImg['image_type'] ?>;base64,<?php echo $loginUserImgBace; ?>" class="profielIcon">
+                </div>
+                <div class="col-10 mr-5 pt-2">
+                <?= $daoUserDb->getUserName($_SESSION['user_id']); ?>
+                </div>
+                </div>
+                <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <textarea name="detail" class="form-control" id="exampleTextBox" rows="5"></textarea>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <div class="col-10">
+                        <details>
+                            <summary class="float-right mr-3">詳細</summary>
+                                <input type="text" name="store" id="textboxstyle" placeholder="店名" class="text-center">
+                                <input type="text" name="menu" id="textboxstyle" placeholder="メニュー名" class="text-center">
+                                <input type="text" name="price" id="textboxstyle" placeholder="価格" class="text-center">
+                                <input type="text" name="address" id="textboxstyle" placeholder="場所" class="text-center">
+                        </details>
+                    </div>
+
+                    <div class="col-2">
+                        <label class="float-right mr-3">
+                            <span class="filelabel">
+                                <img src="../svg/imagefile.svg" alt="" id="file-iamge">
+                            </span>
+                            <input type="file" name="image[]" multiple id="file-send" class="filesend">
+                            <input type="hidden" name="userid" value="<?= $_SESSION['user_id']?>">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-10"></div>
+                    <div class="col-2 mt-2">
+                    <input type="submit" value="送信" class="buttonsubmit">
+                    </div>
+                </div>
+                
+                
+            </form>
+        <button onclick="closeModalPost()">キャンセル</button>
+        </div>
+        </div>
+    </div>
 </div>
+    
     <!-- navigationBar -->
     <div class="navigation">
 <div class="border"></div>
@@ -299,7 +356,7 @@
             <img src="../svg/forum.svg" class="image-size1">
         </i>
     </a>
-    <a class="list-link" onclick="openModal()">
+    <a class="list-link" onclick="openModalPost()">
         <i class="icon">
             <img src="../svg/post.svg" class="image-size">
         </i>
@@ -319,7 +376,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <!-- splide -->
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js" integrity="sha256-FZsW7H2V5X9TGinSjjwYJ419Xka27I8XPDmWryGlWtw=" crossorigin="anonymous"></script>
-    <script src="../js/T.syosai.js"></script>  
+    <script src="../js/T.syosai.js?<?php echo date('YmdHis'); ?>"></script>  
 
 </body>
 </html>

@@ -3,14 +3,14 @@ header {
     position: sticky;
 }
 /* 画像スライダー */
-.splide__slide img {
+/* .splide__slide img {
     width: 85%;
     height: auto;
     object-fit: cover;
     margin-left: 10%;
     margin-right: 10%;
     border-radius: 5%;
-}
+} */
 /* 戻るボタン */
 .backBtn{
     background-color: #fff;
@@ -26,7 +26,7 @@ header {
     background-color: #fff;
 }
 /* コメントモーダル */
-#modal{
+.modal{
     display: none;
 }
 /* コメントモーダルアイコン */
@@ -63,6 +63,7 @@ header {
 .modalComment_datail:focus{
     outline: none;
 }
-.navigation{
+/* .navigation{
+    height: 10%;
     position: sticky;
-}
+} */
