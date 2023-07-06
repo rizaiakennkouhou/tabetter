@@ -45,10 +45,10 @@ class DAO_rank{
 
     public function userRank($userid){
         $count = $this -> userlikeCount($userid);
-        $platinum = 16;
-        $gold = 8;
-        $silver = 4;
-        $bronze = 0;
+        $platinum = 300;
+        $gold = 100;
+        $silver = 50;
+        $bronze = 10;
         if ($count > $platinum) {
             $rankText = $this->rankCss("ダイヤモンド", "color: #7EA2FF;");
             echo $rankText;
