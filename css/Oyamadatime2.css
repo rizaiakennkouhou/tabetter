@@ -17,7 +17,7 @@ div .card-body {
 
 div .col-6 {
     margin: 0;
-    padding: 0;
+    padding-right: 10%;
 }
 
 div .d-flex.justify-content-end {
@@ -38,16 +38,6 @@ div .d-flex.justify-content-center {
     object-fit: cover;
     float: left;
 }
-
-/* .postImage {
-    display: block;
-    border-radius: 5%;
-    object-fit: cover;
-    width: 85%;
-    margin-left: 10%;
-    margin-right:10%;
-    margin-bottom: 5%;
-} */
 
 .likeButton{
     display: flex;
