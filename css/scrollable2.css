@@ -3,6 +3,7 @@
         height: calc(80vh - 1px); /* 画面の高さの80%からナビゲーションバーの高さを差し引く */
         overflow: auto;
         margin-top: 10px; /* ナビゲーションバーの高さ */
+        overflow-x: hidden;
   }
   
   /* スクロールバーのトラック */
