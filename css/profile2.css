@@ -161,8 +161,8 @@
   
   .geji {
     display: flex;
-    margin-left: 40%;
-    margin-right: 60%;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 10%;
     /* justify-content: center; */
     /* align-items: center; */
