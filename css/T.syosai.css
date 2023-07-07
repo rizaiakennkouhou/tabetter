@@ -16,6 +16,10 @@ header {
     background-color: #fff;
     border: none;
 }
+/* .postDate{
+    text-align: end;
+    padding: 0%;
+} */
 /* 詳細トグルボタン内容 */
 .postInfo>p{
     margin-bottom: 8px;
