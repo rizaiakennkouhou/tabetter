@@ -17,6 +17,10 @@
     <link rel="stylesheet" href="../css/Oyamadaprofile.css?<?php echo date('YmdHis'); ?>"/>
     <link rel="stylesheet" href="../css/scrollable.css?<?php echo date('YmdHis'); ?>"/>
     <link rel="stylesheet" href="../css/T.syosai.css?<?php echo date('YmdHis'); ?>"/>
+    <!-- 画像拡大ポップアップ用 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>
 </head>
 <body>
     <?php
@@ -74,7 +78,9 @@
                 $img = base64_encode($row['post_image']);
                 $postImgLiTag = $postImgLiTag.
                 '<li class="splide__slide">
-                <img src="data:' .$row['image_type'] .';base64,'.$img.'" alt="画像">
+                <a href="data:' .$row['image_type'] .';base64,'.$img.'" data-lightbox="group">
+                <img src="data:' .$row['image_type'] .';base64,'.$img.'" alt="画像" width="300">
+                </a>
                 </li>';
             }
             //sectionタグなどとLiタグを合体
@@ -119,7 +125,7 @@
         <!-- 投稿のカード -->
         <div class="card">
         <!-- 戻るボタン -->
-        <button class="backBtn text-start" onclick="', "location.href='timeLine.php'" ,'">
+        <button class="backBtn text-start" onclick="history.back()">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd" d="M14.2931 5.29297L15.7073 6.70718L10.4144 12.0001L15.7073 17.293L14.2931 18.7072L7.58596 12.0001L14.2931 5.29297Z" fill="#424242"/>
         </svg>                    
@@ -174,9 +180,12 @@
                     </div>
                 </div>
             </div>
-            <!-- 日付 -->   
+            <!-- 日付 
+            <div class="postDate col">
+            -->   
             <span class="col-6"></span>
             <div class="postDate col-6">
+            
                 ',$postDate,'
             </div>     
             <!-- 詳細トグルボタン -->       
