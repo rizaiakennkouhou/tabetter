@@ -114,16 +114,16 @@
         //いいねボタンおされたら
         if(isset($_POST['likeBtn'])){
             //今のURL取得
-            $pageUrl = $_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING'];
+            // $pageUrl = $_SERVER['PHP_SELF'] . '?' . $_SERVER['QUERY_STRING'];
             if ($likeFlag == 'true') {
                 //いいねされてれば　削除
                 $daoTshosaiDb->deleteLike($postId,$_SESSION['user_id']);
-                header("Location: $pageUrl");
+                header("Location: likeCheck.php?post_id=$postId");
                 exit();
             }else{
                 //　いいね　追加
                 $daoTshosaiDb->insertLike($postId,$_SESSION['user_id']);            
-                header("Location: $pageUrl");
+                header("Location: likeCheck.php?post_id=$postId");
                 exit();
             }    
         }
@@ -187,10 +187,10 @@
                 </div>
             </div>
             <!-- 日付 
-            <div class="postDate col">
-            -->   
             <span class="col-6"></span>
             <div class="postDate col-6">
+            -->   
+            <div class="postDate col">
             
                 ',$postDate,'
             </div>     
