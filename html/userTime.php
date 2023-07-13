@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="../css/Bar4.css?<?php echo date('YmdHis'); ?>"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../css/Oyamadatime2.css?<?php echo date('YmdHis'); ?>"/>
-    <link rel="stylesheet" type="text/css" href="../css/scrollable.css?<?php echo date('YmdHis'); ?>"/>
+    <link rel="stylesheet" type="text/css" href="../css/scrollable2.css?<?php echo date('YmdHis'); ?>"/>
 </head>
 <body>
     <?php
@@ -29,9 +29,7 @@
             <img src="../svg/a.svg">
             </div>
     
-            <button class="navbar-toggler col-3 p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation" style="height: 50px; box-shadow: none;">
-                <img src="../svg/b.svg" width="50" height="50" viewBox="0 0 60 60" fill="none" > 
-            </button>
+            
         </div>
         <div class="collapse navbar-collapse" id="navbarsExample05">
             <form wtx-context="0C9FB6AB-0B58-4B25-A43A-44B7ADC851E5" class="mx-4">

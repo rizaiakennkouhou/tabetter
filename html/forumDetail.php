@@ -68,9 +68,7 @@
                 <img src="../svg/a.svg">
             </div>
 
-            <button class="navbar-toggler col-3 p-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation" style="height: 50px; box-shadow: none;">
-                <img src="../svg/b.svg">       
-            </button>
+            
 
         </div>
         <div class="collapse navbar-collapse" id="navbarsExample05">
@@ -162,7 +160,7 @@
         'webuser', 'abccsd2');
 
         $sql3 = "SELECT * FROM user_image WHERE user_id = ? ";
-        $stmt3 = $pdo->prepare($sql);
+        $stmt3 = $pdo->prepare($sql3);
         $stmt3->bindValue(1, $userIds, PDO::PARAM_STR);
         $stmt3->execute();
         $image3 = $stmt3->fetch(PDO::FETCH_ASSOC);

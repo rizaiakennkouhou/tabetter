@@ -119,20 +119,20 @@
     <!-- ゲージ -->
     <?php
     $likesum = $rank->userlikeCount($_SESSION['user_id']);
-    $platinum = 16;
-    $gold = 8;
-    $silver = 4;
-    $bronze = 0;
+    $platinum = 300;
+    $gold = 100;
+    $silver = 50;
+    $bronze = 10;
     if ($likesum > $platinum) {
-        echo '<meter min="" max="2" value="100" class="geji"></meter>';
+        echo '<div class="geji"> <meter min="301" max="999" value="' . $likesum . '" class="" style="height:50px; width:200px;"></meter> </div>';
     } elseif ($likesum > $gold) {
-        echo '<meter min="8" max="16" value="100" class="geji"></meter>';
+        echo '<div class="geji"> <meter min="101" max="300" value="' . $likesum . '" class="" style="height:50px; width:200px;"></meter> </div>';
     } elseif ($likesum > $silver) {
-        echo '<meter min="4" max="8" value="100" class="geji"></meter>';
+        echo '<div class="geji"> <meter min="51" max="100" value="' . $likesum . '" class="" style="height:50px; width:200px;"></meter> </div>';
     } elseif ($likesum > $bronze) {
-        echo '<meter min="0" max="4" value="100" class="geji" style="width:500px;"></meter>';
+        echo '<div class="geji"> <meter min="11" max="50" value="' . $likesum . '" class="" style="height:50px; width:200px;"></meter> </div>';
     } else {
-        echo '<meter min="0" max="0" value="100" class="geji" style="height:50px;"></meter>';
+        echo '<div class="geji"> <meter min="0" max="10" value="' . $likesum . '" class="" style="height:50px; width:200px;"></meter> </div>';
     }
     
 

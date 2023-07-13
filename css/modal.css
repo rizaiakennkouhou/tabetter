@@ -26,7 +26,7 @@
     background: #fff;
   }
 
-  /* .textboxstyle {
+  #textboxstyle {
     display: block;
     width: 100%;
     margin-top: 5px;
@@ -34,7 +34,7 @@
     background-color: #d3d3d3;
     border: none;
     box-shadow: 1px 3px 4px rgb(170, 170, 170);
-  } */
+  }
   
 
   .filesend{
