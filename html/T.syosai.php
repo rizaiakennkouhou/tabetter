@@ -1,5 +1,6 @@
 <?php
     session_start();
+    ob_start();
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -118,14 +119,12 @@
             if ($likeFlag == 'true') {
                 //いいねされてれば　削除
                 $daoTshosaiDb->deleteLike($postId,$_SESSION['user_id']);
-                header("Location: likeCheck.php?post_id=$postId");
-                exit();
             }else{
                 //　いいね　追加
                 $daoTshosaiDb->insertLike($postId,$_SESSION['user_id']);            
-                header("Location: likeCheck.php?post_id=$postId");
-                exit();
-            }    
+            }
+            header("Location: likeCheck.php?post_id=$postId");
+            exit();    
         }
         echo '
         <!-- 投稿のカード -->
